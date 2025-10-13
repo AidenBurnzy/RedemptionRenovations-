@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Redemption Renovations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a class="brand" href="index.html">Redemption Renovations</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a class="cta" href="contact.html">Start a Conversation</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: linear-gradient(135deg, rgba(29,138,155,0.85), rgba(31,31,31,0.85));">
+            <h1>Field Notes & Friendly Advice</h1>
+            <p>Real stories, planning tips, and behind-the-scenes updates from the Redemption crew. Written in plain language so you can make confident decisions.</p>
+        </section>
+
+        <section>
+            <div class="section-inner blog-list">
+                <article>
+                    <h3>Case Study: Solving a Tricky Roofline for a Mudroom Addition</h3>
+                    <p class="section-subtitle">How we tied a new gable into an existing structure without disturbing the upstairs bedrooms.</p>
+                    <p>We walked through the structural constraints, collaborated with an engineer, and staged the framing so the homeowners could keep their daily routine. The result: a bright mudroom that feels original to the home.</p>
+                    <a class="btn" href="#">Read the Story</a>
+                </article>
+
+                <article>
+                    <h3>Planning Your Remodel Timeline</h3>
+                    <p class="section-subtitle">A realistic look at how long permitting, design decisions, and construction actually take.</p>
+                    <p>We break down each phase with helpful checklists so you can plan around school schedules, family visits, or big life events. Spoiler: communication is everything.</p>
+                    <a class="btn" href="#">See the Checklist</a>
+                </article>
+
+                <article>
+                    <h3>Community Spotlight: Saturday Coffee Chats</h3>
+                    <p class="section-subtitle">Once a month we open the shop for questions, tool demos, and good conversation.</p>
+                    <p>It started as a few neighbors stopping by and has turned into one of our favorite traditions. Come with your project ideas or just stop in for a cup of coffee.</p>
+                    <a class="btn" href="#">Upcoming Dates</a>
+                </article>
+            </div>
+        </section>
+
+        <section style="background: rgba(255,255,255,0.9);">
+            <div class="section-inner">
+                <h2 class="section-title">Stay in the Loop</h2>
+                <p>Subscribe to receive project highlights, seasonal maintenance reminders, and stories from the shop. No spam, just useful notes.</p>
+                <form class="form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="you@example.com">
+                    </div>
+                    <button class="btn" type="submit">Join the Newsletter</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="lead-strip">
+            <div class="section-inner">
+                <h2>Have a Topic Request?</h2>
+                <p>Tell us what you are curious about. If it helps you plan your next step, chances are it will help someone else too.</p>
+                <a class="btn" href="contact.html">Send Your Idea</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">Redemption Renovations</div>
+                <p>Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            </div>
+            <div>
+                <h4>Visit</h4>
+                <p>Serving homeowners across the region.<br>Existing homes and new construction projects welcome.</p>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <p>Email: <a href="mailto:hello@redemptionrenovations.com">hello@redemptionrenovations.com</a><br>
+                Phone: <a href="tel:15551234567">(555) 123-4567</a><br>
+                Facebook: <a href="https://facebook.com" target="_blank" rel="noopener">Follow along</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
