@@ -8,8 +8,86 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div class="mobile-wrapper">
+        <header class="mobile-hero">
+            <span class="mobile-brand">Redemption Renovations</span>
+            <h1>Services that fit your home</h1>
+            <p>From additions to fine trim, we tailor every project so it feels like it has always belonged.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Request a project chat</a>
+                <a class="mobile-secondary" href="projects.html">See finished work</a>
+            </div>
+        </header>
+        <section class="mobile-section">
+            <h2>Top services</h2>
+            <ul class="mobile-list">
+                <li>Home additions and in-law suites</li>
+                <li>Garage builds with smart storage</li>
+                <li>Decking systems in composite or wood</li>
+                <li>Kitchens and bathrooms with custom cabinetry</li>
+                <li>Windows, doors, and exterior siding refreshes</li>
+                <li>Trim, built-ins, and custom carpentry accents</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Where we shine</h2>
+            <ul class="mobile-list">
+                <li>Rough-in framing that keeps future trades on schedule</li>
+                <li>Deck details: picture-frame borders, lighting, hidden fasteners</li>
+                <li>Signature trim packages that pull every room together</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Our process</h2>
+            <ul class="mobile-steps">
+                <li>Discover your goals and walk the space together</li>
+                <li>Design options, material picks, and honest budgets</li>
+                <li>Build with tidy job sites and proactive communication</li>
+                <li>Follow up with walkthroughs, touch-ups, and support</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Ready when you are</h2>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="tel:15551234567">Call (555) 123-4567</a>
+                <a class="mobile-secondary" href="mailto:hello@redemptionrenovations.com">Email a project idea</a>
+            </div>
+            <p class="mobile-microcopy">Exploring options? <a class="mobile-inline-link" href="contact.html">Send a quick note</a> and we'll help you plan.</p>
+        </section>
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand">Redemption Renovations</div>
+            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <div class="mobile-footer-links">
+                <a href="tel:15551234567">Call (555) 123-4567</a>
+                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
+                <a href="contact.html">Start a project</a>
+            </div>
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+            <span class="mobile-menu-icon"></span>
+        </button>
+        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Browse the site</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
+
     <header>
         <div class="nav-container">
             <a class="brand" href="index.html">Redemption Renovations</a>
@@ -48,12 +126,12 @@
                         <div class="badge">Includes concrete coordination</div>
                     </article>
                     <article class="card">
-                        <h3>Windows & Doors</h3>
+                        <h3>Windows &amp; Doors</h3>
                         <p>Energy-efficient replacements and custom-fit installs that keep drafts out and style in.</p>
                         <div class="badge">Certified installer</div>
                     </article>
                     <article class="card">
-                        <h3>Siding Installation & Repair</h3>
+                        <h3>Siding Installation &amp; Repair</h3>
                         <p>Refresh worn exteriors or repair storm damage with durable materials and clean lines.</p>
                         <div class="badge">Color matching expertise</div>
                     </article>
@@ -63,12 +141,12 @@
                         <div class="badge">Specialized framing crew</div>
                     </article>
                     <article class="card">
-                        <h3>Kitchen & Bathroom Remodels</h3>
+                        <h3>Kitchen &amp; Bathroom Remodels</h3>
                         <p>Layout refinements, custom cabinetry, and finishes that balance function and personality.</p>
                         <div class="badge">Design-build support</div>
                     </article>
                     <article class="card">
-                        <h3>Trim & Cabinetry Installation</h3>
+                        <h3>Trim &amp; Cabinetry Installation</h3>
                         <p>Precision millwork, wainscoting, coffered ceilings, and built-ins tailored to your space.</p>
                         <div class="badge">Finish carpentry pros</div>
                     </article>
@@ -169,8 +247,5 @@
             &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
         </div>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

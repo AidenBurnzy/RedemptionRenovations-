@@ -8,8 +8,85 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div class="mobile-wrapper">
+        <header class="mobile-hero">
+            <span class="mobile-brand">Redemption Renovations</span>
+            <h1>Projects with a story</h1>
+            <p>Take a quick look at additions, decks, and custom trim that show how we work.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Start your project</a>
+                <a class="mobile-secondary" href="services.html">Explore services</a>
+            </div>
+        </header>
+        <section class="mobile-section">
+            <h2>Gallery highlights</h2>
+            <div class="mobile-chip-group">
+                <span class="mobile-chip">Additions</span>
+                <span class="mobile-chip">Decks</span>
+                <span class="mobile-chip">Custom Trim</span>
+                <span class="mobile-chip">Kitchens &amp; Baths</span>
+                <span class="mobile-chip">Exterior Refresh</span>
+            </div>
+            <p class="mobile-microcopy">Tap the teal button to browse full galleries on any device.</p>
+        </section>
+        <section class="mobile-section">
+            <h2>Recent work</h2>
+            <ul class="mobile-list">
+                <li>Mudroom addition with heated tile and built-in storage for the Patterson family</li>
+                <li>Composite deck with cable rail lighting that keeps summer evenings glowing</li>
+                <li>Floor-to-ceiling oak built-ins that turned a spare room into a reading retreat</li>
+                <li>Garage with upstairs studio designed for art, work, and quiet focus</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>How to explore</h2>
+            <ul class="mobile-list">
+                <li>Save screenshots or links of the details you love</li>
+                <li>Ask us about timelines, budgets, or materials for any featured project</li>
+                <li>Schedule a site walkthrough to see active work in person when available</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Share your inspiration</h2>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="mailto:hello@redemptionrenovations.com">Email photos</a>
+                <a class="mobile-secondary" href="contact.html">Request a gallery tour</a>
+            </div>
+            <p class="mobile-microcopy">Prefer social? <a class="mobile-inline-link" href="https://facebook.com" target="_blank" rel="noopener">Message us on Facebook</a> with ideas.</p>
+        </section>
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand">Redemption Renovations</div>
+            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <div class="mobile-footer-links">
+                <a href="tel:15551234567">Call (555) 123-4567</a>
+                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
+                <a href="contact.html">Start a project</a>
+            </div>
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+            <span class="mobile-menu-icon"></span>
+        </button>
+        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Browse the site</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
     <header>
         <div class="nav-container">
             <a class="brand" href="index.html">Redemption Renovations</a>
@@ -36,7 +113,7 @@
         <section>
             <div class="section-inner">
                 <h2 class="section-title">Filter by Project Type</h2>
-                <p class="section-subtitle">Additions | Decks | Custom Trim | Kitchens & Baths | Exterior Refresh</p>
+                <p class="section-subtitle">Additions | Decks | Custom Trim | Kitchens &amp; Baths | Exterior Refresh</p>
                 <div class="gallery-grid">
                     <article class="gallery-item">
                         <div class="image" style="height: 180px; background: linear-gradient(135deg, rgba(31,31,31,0.35), rgba(29,138,155,0.45));"></div>
@@ -144,8 +221,5 @@
             &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
         </div>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

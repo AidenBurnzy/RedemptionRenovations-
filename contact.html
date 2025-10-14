@@ -8,8 +8,76 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div class="mobile-wrapper">
+        <header class="mobile-hero">
+            <span class="mobile-brand">Redemption Renovations</span>
+            <h1>Let's start with a conversation</h1>
+            <p>Tell us what is working, what is not, and how you imagine your home feeling when we are done.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="tel:15551234567">Call (555) 123-4567</a>
+                <a class="mobile-secondary" href="mailto:hello@redemptionrenovations.com">Email us</a>
+            </div>
+        </header>
+        <section class="mobile-section">
+            <h2>Quick contact</h2>
+            <p class="mobile-microcopy">Prefer messaging? Reach out on Facebook and we will follow up within two business days.</p>
+            <a class="mobile-primary" href="https://facebook.com" target="_blank" rel="noopener">Message on Facebook</a>
+        </section>
+        <section class="mobile-section">
+            <h2>What happens next</h2>
+            <ul class="mobile-steps">
+                <li>We trade a few details to be sure we are the right fit</li>
+                <li>Schedule a walkthrough to see your space and talk ideas</li>
+                <li>Share a proposal with scope, timeline, and budget ranges</li>
+                <li>Stay in touch with updates from kickoff to final walkthrough</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Frequently asked</h2>
+            <ul class="mobile-list">
+                <li><strong>Do you work on mobile homes?</strong> We focus on existing homes and new construction. If it is not a match, we will point you toward someone who can help.</li>
+                <li><strong>How far do you travel?</strong> Most projects are within an hour of our shop. Share your location and we will confirm.</li>
+                <li><strong>What should I prepare?</strong> Photos, inspiration links, and must-have lists are helpful but not required.</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Service area</h2>
+            <p class="mobile-microcopy">We serve homeowners across the region with a focus on single-family homes and new builds. Ask if you are unsure whether we can make the drive.</p>
+            <p class="mobile-microcopy">Prefer the detailed request form? Open this page on a tablet or desktop and it will be ready for you.</p>
+        </section>
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand">Redemption Renovations</div>
+            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <div class="mobile-footer-links">
+                <a href="tel:15551234567">Call (555) 123-4567</a>
+                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
+                <a href="contact.html">Start a project</a>
+            </div>
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+            <span class="mobile-menu-icon"></span>
+        </button>
+        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Browse the site</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
     <header>
         <div class="nav-container">
             <a class="brand" href="index.html">Redemption Renovations</a>
@@ -141,8 +209,5 @@
             &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
         </div>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

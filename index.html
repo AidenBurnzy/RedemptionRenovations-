@@ -8,8 +8,74 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div class="mobile-wrapper">
+        <header class="mobile-hero">
+            <span class="mobile-brand">Redemption Renovations</span>
+            <h1>Renovations that feel like home</h1>
+            <p>Family-owned builders crafting additions, decks, and custom trim with neighborly care.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Start a conversation</a>
+                <a class="mobile-secondary" href="projects.html">Browse projects</a>
+            </div>
+        </header>
+        <section class="mobile-section">
+            <h2>What we do</h2>
+            <ul class="mobile-list">
+                <li>Thoughtful home additions that blend right in</li>
+                <li>Decking systems built for everyday gatherings</li>
+                <li>Custom carpentry and trim with crisp detail</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>How we work</h2>
+            <p class="mobile-microcopy">Licensed, insured, and focused on clear communication from first visit to final walkthrough.</p>
+            <ul class="mobile-list">
+                <li>Rough-in framing, decking, and trim specialists</li>
+                <li>Weekly updates and transparent budgets</li>
+                <li>Friendly crews who respect your home</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Reach out</h2>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="tel:15551234567">Call (555) 123-4567</a>
+                <a class="mobile-secondary" href="mailto:hello@redemptionrenovations.com">Email us</a>
+            </div>
+            <p class="mobile-microcopy">Prefer social? <a class="mobile-inline-link" href="https://facebook.com" target="_blank" rel="noopener">Message us on Facebook</a>.</p>
+        </section>
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand">Redemption Renovations</div>
+            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <div class="mobile-footer-links">
+                <a href="tel:15551234567">Call (555) 123-4567</a>
+                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
+                <a href="contact.html">Start a project</a>
+            </div>
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+            <span class="mobile-menu-icon"></span>
+        </button>
+        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Browse the site</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
     <header>
         <div class="nav-container">
             <a class="brand" href="index.html">Redemption Renovations</a>
@@ -51,7 +117,7 @@
                         <p>Built-ins, trim, and one-of-a-kind features that bring character and warmth to every room.</p>
                     </article>
                     <article class="card">
-                        <h3>Kitchen & Bath Remodels</h3>
+                        <h3>Kitchen &amp; Bath Remodels</h3>
                         <p>From the first sketch to finish details, we handle the heavy lifting so you can enjoy the reveal.</p>
                     </article>
                 </div>
@@ -73,7 +139,7 @@
                     <div class="card">
                         <h3>Recent Project Snapshot</h3>
                         <p>"We asked Redemption to turn our breezeway into a welcoming mudroom. They handled the tricky roofline, matched our existing siding, and the built-in bench is now everyone's favorite spot."</p>
-                        <cite style="padding-right: 10px;">— The Pattersons, Homeowners</cite>
+                        <cite style="padding-right: 10px;">- The Pattersons, Homeowners</cite>
                         <a class="btn dark" href="projects.html" style="margin-top: 1.5rem;">See the Gallery</a>
                     </div>
                 </div>
@@ -110,8 +176,5 @@
             &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
         </div>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

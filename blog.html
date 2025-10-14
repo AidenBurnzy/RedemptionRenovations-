@@ -8,8 +8,77 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div class="mobile-wrapper">
+        <header class="mobile-hero">
+            <span class="mobile-brand">Redemption Renovations</span>
+            <h1>Field notes &amp; friendly advice</h1>
+            <p>Short reads from the shop to help you plan your next project with less stress.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="blog.html">Read the latest</a>
+                <a class="mobile-secondary" href="contact.html">Send topic ideas</a>
+            </div>
+        </header>
+        <section class="mobile-section">
+            <h2>Latest posts</h2>
+            <ul class="mobile-list">
+                <li><strong>Case Study:</strong> Solving a tricky mudroom roofline without disturbing upstairs bedrooms.</li>
+                <li><strong>Planning Timeline:</strong> Realistic checkpoints from permit applications to punch lists.</li>
+                <li><strong>Community Spotlight:</strong> Saturday coffee chats where neighbors swap ideas.</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Browse by category</h2>
+            <div class="mobile-chip-group">
+                <span class="mobile-chip">Project Stories</span>
+                <span class="mobile-chip">Planning Tips</span>
+                <span class="mobile-chip">Maintenance</span>
+                <span class="mobile-chip">Community</span>
+            </div>
+            <p class="mobile-microcopy">Tap a chip to jump to the topic you want when you view the full site.</p>
+        </section>
+        <section class="mobile-section">
+            <h2>Stay in the loop</h2>
+            <p class="mobile-microcopy">Join our newsletter for seasonal reminders and project stories. We send a quick update once a month.</p>
+            <a class="mobile-primary" href="mailto:hello@redemptionrenovations.com?subject=Add%20me%20to%20the%20newsletter">Email to subscribe</a>
+        </section>
+        <section class="mobile-section">
+            <h2>Have a question?</h2>
+            <p class="mobile-microcopy">Tell us what you are curious about. If it helps you plan, it will help other homeowners too.</p>
+            <a class="mobile-secondary" href="contact.html">Share your idea</a>
+        </section>
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand">Redemption Renovations</div>
+            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <div class="mobile-footer-links">
+                <a href="tel:15551234567">Call (555) 123-4567</a>
+                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
+                <a href="contact.html">Start a project</a>
+            </div>
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+            <span class="mobile-menu-icon"></span>
+        </button>
+        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Browse the site</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
     <header>
         <div class="nav-container">
             <a class="brand" href="index.html">Redemption Renovations</a>
@@ -29,7 +98,7 @@
 
     <main>
         <section class="hero" style="background-image: linear-gradient(135deg, rgba(29,138,155,0.85), rgba(31,31,31,0.85));">
-            <h1>Field Notes & Friendly Advice</h1>
+            <h1>Field Notes &amp; Friendly Advice</h1>
             <p>Real stories, planning tips, and behind-the-scenes updates from the Redemption crew. Written in plain language so you can make confident decisions.</p>
         </section>
 
@@ -106,8 +175,5 @@
             &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
         </div>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

@@ -8,8 +8,85 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div class="mobile-wrapper">
+        <header class="mobile-hero">
+            <span class="mobile-brand">Redemption Renovations</span>
+            <h1>Neighbors on our side</h1>
+            <p>Real words from homeowners who trusted us with their spaces.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Request a reference</a>
+                <a class="mobile-secondary" href="https://facebook.com" target="_blank" rel="noopener">Read Facebook reviews</a>
+            </div>
+        </header>
+        <section class="mobile-section">
+            <h2>Recent praise</h2>
+            <div class="mobile-quote">
+                "They opened up our first floor without disrupting the kids. The crew left the house tidy every night."
+                <cite>Sarah &amp; Miguel, kitchen remodel</cite>
+            </div>
+            <div class="mobile-quote">
+                "When supply delays hit, they already had backup options ready. The deck is now our weekend hangout."
+                <cite>Liam &amp; Jess, decking system</cite>
+            </div>
+            <div class="mobile-quote">
+                "Alex said the trim would take time if we wanted it perfect. He was right, and the built-ins are stunning."
+                <cite>Priya, custom carpentry</cite>
+            </div>
+        </section>
+        <section class="mobile-section">
+            <h2>Why people recommend us</h2>
+            <ul class="mobile-list">
+                <li>Respectful crews who protect floors and say hi to your pets</li>
+                <li>Honest conversations about budgets, timelines, and trade-offs</li>
+                <li>Follow-through with touch-ups, check-ins, and seasonal tips</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Share your story</h2>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="https://facebook.com" target="_blank" rel="noopener">Leave a review</a>
+                <a class="mobile-secondary" href="mailto:hello@redemptionrenovations.com">Email a testimonial</a>
+            </div>
+            <p class="mobile-microcopy">Not big on writing? Send a few bullet points and we will draft it for you to approve.</p>
+        </section>
+        <section class="mobile-section">
+            <h2>Want to chat with a past client?</h2>
+            <p class="mobile-microcopy">We keep a list of homeowners who are happy to answer questions. Reach out and we will connect you.</p>
+            <a class="mobile-primary" href="contact.html">Ask for an introduction</a>
+        </section>
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand">Redemption Renovations</div>
+            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <div class="mobile-footer-links">
+                <a href="tel:15551234567">Call (555) 123-4567</a>
+                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
+                <a href="contact.html">Start a project</a>
+            </div>
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+            <span class="mobile-menu-icon"></span>
+        </button>
+        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Browse the site</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
     <header>
         <div class="nav-container">
             <a class="brand" href="index.html">Redemption Renovations</a>
@@ -39,11 +116,11 @@
                 <div class="grid cols-2">
                     <article class="testimonial">
                         <p>"We were nervous about opening up our first floor, but the crew walked us through every decision and treated our house with care. They cleaned up every night and left our kids' routines undisturbed."</p>
-                        <cite>Sarah & Miguel, Kitchen Remodel</cite>
+                        <cite>Sarah &amp; Miguel, Kitchen Remodel</cite>
                     </article>
                     <article class="testimonial">
                         <p>"Communication was outstanding. When material delays cropped up, they already had a plan B ready to go. The finished deck is where we spend every weekend now."</p>
-                        <cite>Liam & Jess, Decking System</cite>
+                        <cite>Liam &amp; Jess, Decking System</cite>
                     </article>
                     <article class="testimonial">
                         <p>"Alex told us up front that the trim work would take time if we wanted it flawless. He was right, and it was worth the wait. The built-ins turned a basic room into our favorite place to read."</p>
@@ -126,8 +203,5 @@
             &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
         </div>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

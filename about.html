@@ -8,8 +8,78 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div class="mobile-wrapper">
+        <header class="mobile-hero">
+            <span class="mobile-brand">Redemption Renovations</span>
+            <h1>Built on relationships</h1>
+            <p>We started with a borrowed table saw and a promise to treat every home like our own.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Start a walkthrough</a>
+                <a class="mobile-secondary" href="services.html">See what we build</a>
+            </div>
+        </header>
+        <section class="mobile-section">
+            <h2>Our story</h2>
+            <p class="mobile-microcopy">From a small workshop to a trusted crew serving homeowners across the region.</p>
+            <ul class="mobile-list">
+                <li>Family-owned and rooted in the community</li>
+                <li>Craftsmanship learned on real job sites, not in showrooms</li>
+                <li>Every project begins with a kitchen table conversation</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>What guides us</h2>
+            <ul class="mobile-list">
+                <li><strong>Integrity:</strong> Straight talk and promises kept</li>
+                <li><strong>Craft:</strong> Details that hold up to daily life</li>
+                <li><strong>Community:</strong> We lend a hand where we live</li>
+                <li><strong>Clarity:</strong> You always know the next step</li>
+            </ul>
+        </section>
+        <section class="mobile-section">
+            <h2>Meet the crew</h2>
+            <p class="mobile-microcopy">Say hello to the folks who will show up at your door.</p>
+            <ul class="mobile-list">
+                <li>Alex &amp; Morgan - owners and project guides</li>
+                <li>Chris - framing lead who catches structural surprises early</li>
+                <li>Rey - finish carpenter with laser-straight trim</li>
+                <li>Jules - coordinator keeping schedules tidy</li>
+                <li>Jamie - decking specialist and problem solver</li>
+            </ul>
+        </section>
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand">Redemption Renovations</div>
+            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <div class="mobile-footer-links">
+                <a href="tel:15551234567">Call (555) 123-4567</a>
+                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
+                <a href="contact.html">Start a project</a>
+            </div>
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+            <span class="mobile-menu-icon"></span>
+        </button>
+        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Browse the site</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
     <header>
         <div class="nav-container">
             <a class="brand" href="index.html">Redemption Renovations</a>
@@ -71,7 +141,7 @@
                 <p class="section-subtitle">The people who show up on your doorstep are the same folks we share family dinners with. Here's a quick hello from the team.</p>
                 <div class="grid cols-3">
                     <article class="card">
-                        <h3>Alex & Morgan</h3>
+                        <h3>Alex &amp; Morgan</h3>
                         <p>Owners and lead project guides. They keep projects organized and communication flowing.</p>
                     </article>
                     <article class="card">
@@ -128,8 +198,5 @@
             &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
         </div>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

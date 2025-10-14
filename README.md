@@ -15,6 +15,7 @@ Static multi-page website draft for Redemption Renovations, a residential constr
 ## Styling
 
 - Shared styles in `assets/css/style.css` using the requested palette (grey, teal, black, white) and clean/modern layout.
+- Custom mobile experience (≤640px) with simplified content, floating teal menu button, and bottom-sheet navigation for thumb-friendly browsing.
 
 ## Preview
 
