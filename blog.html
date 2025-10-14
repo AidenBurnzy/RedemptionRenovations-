@@ -12,8 +12,15 @@
 </head>
 <body>
     <div class="mobile-wrapper">
+        <div class="mobile-top-bar">
+            <span class="mobile-top-brand">Redemption Renovations</span>
+            <span class="mobile-top-page">Blog</span>
+        </div>
         <header class="mobile-hero">
             <span class="mobile-brand">Redemption Renovations</span>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Notebook and coffee on a workbench">
+            </figure>
             <h1>Field notes &amp; friendly advice</h1>
             <p>Short reads from the shop to help you plan your next project with less stress.</p>
             <div class="mobile-actions">
@@ -23,6 +30,9 @@
         </header>
         <section class="mobile-section">
             <h2>Latest posts</h2>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Builder jotting notes during a walkthrough" loading="lazy">
+            </figure>
             <ul class="mobile-list">
                 <li><strong>Case Study:</strong> Solving a tricky mudroom roofline without disturbing upstairs bedrooms.</li>
                 <li><strong>Planning Timeline:</strong> Realistic checkpoints from permit applications to punch lists.</li>
@@ -31,6 +41,9 @@
         </section>
         <section class="mobile-section">
             <h2>Browse by category</h2>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Stack of woodworking magazines and tools" loading="lazy">
+            </figure>
             <div class="mobile-chip-group">
                 <span class="mobile-chip">Project Stories</span>
                 <span class="mobile-chip">Planning Tips</span>
@@ -89,7 +102,7 @@
                     <li><a href="services.html">Services</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a class="active-link" href="blog.html">Blog</a></li>
                     <li><a class="cta" href="contact.html">Start a Conversation</a></li>
                 </ul>
             </nav>
@@ -98,13 +111,23 @@
 
     <main>
         <section class="hero" style="background-image: linear-gradient(135deg, rgba(29,138,155,0.85), rgba(31,31,31,0.85));">
-            <h1>Field Notes &amp; Friendly Advice</h1>
-            <p>Real stories, planning tips, and behind-the-scenes updates from the Redemption crew. Written in plain language so you can make confident decisions.</p>
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <h1>Field Notes &amp; Friendly Advice</h1>
+                    <p>Real stories, planning tips, and behind-the-scenes updates from the Redemption crew. Written in plain language so you can make confident decisions.</p>
+                </div>
+                <figure class="hero-media media-frame">
+                    <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1400&q=80" alt="Notebook and coffee on a workbench">
+                </figure>
+            </div>
         </section>
 
         <section>
             <div class="section-inner blog-list">
                 <article>
+                    <figure class="media-frame" style="margin-bottom: 1.5rem;">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="Construction team reviewing a roofline plan" loading="lazy">
+                    </figure>
                     <h3>Case Study: Solving a Tricky Roofline for a Mudroom Addition</h3>
                     <p class="section-subtitle">How we tied a new gable into an existing structure without disturbing the upstairs bedrooms.</p>
                     <p>We walked through the structural constraints, collaborated with an engineer, and staged the framing so the homeowners could keep their daily routine. The result: a bright mudroom that feels original to the home.</p>
@@ -112,6 +135,9 @@
                 </article>
 
                 <article>
+                    <figure class="media-frame" style="margin-bottom: 1.5rem;">
+                        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="Family planning a remodel at the kitchen table" loading="lazy">
+                    </figure>
                     <h3>Planning Your Remodel Timeline</h3>
                     <p class="section-subtitle">A realistic look at how long permitting, design decisions, and construction actually take.</p>
                     <p>We break down each phase with helpful checklists so you can plan around school schedules, family visits, or big life events. Spoiler: communication is everything.</p>
@@ -119,6 +145,9 @@
                 </article>
 
                 <article>
+                    <figure class="media-frame" style="margin-bottom: 1.5rem;">
+                        <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Neighbors gathered for a community coffee chat" loading="lazy">
+                    </figure>
                     <h3>Community Spotlight: Saturday Coffee Chats</h3>
                     <p class="section-subtitle">Once a month we open the shop for questions, tool demos, and good conversation.</p>
                     <p>It started as a few neighbors stopping by and has turned into one of our favorite traditions. Come with your project ideas or just stop in for a cup of coffee.</p>
@@ -131,6 +160,9 @@
             <div class="section-inner">
                 <h2 class="section-title">Stay in the Loop</h2>
                 <p>Subscribe to receive project highlights, seasonal maintenance reminders, and stories from the shop. No spam, just useful notes.</p>
+                <figure class="media-frame" style="margin-bottom: 2rem;">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80" alt="Newsletter on a tablet beside a cup of coffee" loading="lazy">
+                </figure>
                 <form class="form" action="#" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>

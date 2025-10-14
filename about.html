@@ -12,8 +12,15 @@
 </head>
 <body>
     <div class="mobile-wrapper">
+        <div class="mobile-top-bar">
+            <span class="mobile-top-brand">Redemption Renovations</span>
+            <span class="mobile-top-page">About</span>
+        </div>
         <header class="mobile-hero">
             <span class="mobile-brand">Redemption Renovations</span>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Crew smiling together on a renovation job site">
+            </figure>
             <h1>Built on relationships</h1>
             <p>We started with a borrowed table saw and a promise to treat every home like our own.</p>
             <div class="mobile-actions">
@@ -24,6 +31,9 @@
         <section class="mobile-section">
             <h2>Our story</h2>
             <p class="mobile-microcopy">From a small workshop to a trusted crew serving homeowners across the region.</p>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" alt="Vintage woodworking tools neatly arranged" loading="lazy">
+            </figure>
             <ul class="mobile-list">
                 <li>Family-owned and rooted in the community</li>
                 <li>Craftsmanship learned on real job sites, not in showrooms</li>
@@ -32,6 +42,9 @@
         </section>
         <section class="mobile-section">
             <h2>What guides us</h2>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1505693445123-16fe60f28332?auto=format&fit=crop&w=1200&q=80" alt="Team members reviewing blueprints" loading="lazy">
+            </figure>
             <ul class="mobile-list">
                 <li><strong>Integrity:</strong> Straight talk and promises kept</li>
                 <li><strong>Craft:</strong> Details that hold up to daily life</li>
@@ -42,6 +55,9 @@
         <section class="mobile-section">
             <h2>Meet the crew</h2>
             <p class="mobile-microcopy">Say hello to the folks who will show up at your door.</p>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Crew members smiling and holding coffee cups" loading="lazy">
+            </figure>
             <ul class="mobile-list">
                 <li>Alex &amp; Morgan - owners and project guides</li>
                 <li>Chris - framing lead who catches structural surprises early</li>
@@ -86,7 +102,7 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a class="active-link" href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
@@ -99,13 +115,23 @@
 
     <main>
         <section class="hero" style="background-image: linear-gradient(135deg, rgba(29,138,155,0.9), rgba(31,31,31,0.85));">
-            <h1>Craftsmanship with Heart</h1>
-            <p>Redemption Renovations began as a way to provide for our family and grew into a mission to treat every home like our own. We believe in building the kind of relationships that outlast the projects themselves.</p>
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <h1>Craftsmanship with Heart</h1>
+                    <p>Redemption Renovations began as a way to provide for our family and grew into a mission to treat every home like our own. We believe in building the kind of relationships that outlast the projects themselves.</p>
+                </div>
+                <figure class="hero-media media-frame">
+                    <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1400&q=80" alt="Team celebrating a completed renovation project">
+                </figure>
+            </div>
         </section>
 
         <section>
             <div class="section-inner">
                 <h2 class="section-title">Our Story</h2>
+                <figure class="media-frame" style="margin: 0 0 1.75rem 0;">
+                    <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=80" alt="Founders working together in a woodshop" loading="lazy">
+                </figure>
                 <p>We started in a small workshop with a borrowed table saw and a big desire to do things the right way. Word spread quickly because people felt heard, respected, and taken care of. Today, we lead a full team of builders, designers, and craftsmen who share those same values.</p>
                 <blockquote>"The best part of our week is still sitting down with homeowners at their kitchen table, napkin sketches in hand, and dreaming about what comes next."</blockquote>
             </div>
@@ -116,18 +142,30 @@
                 <h2 class="section-title">What Guides Us</h2>
                 <div class="grid cols-2">
                     <div class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Handshake between builder and homeowner" loading="lazy">
+                        </figure>
                         <h3>Integrity</h3>
                         <p>No surprises, no cut corners. We communicate clearly and own our work.</p>
                     </div>
                     <div class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Craftsman installing detailed trim" loading="lazy">
+                        </figure>
                         <h3>Craft</h3>
                         <p>Details matter. From rough framing to trim, we approach every phase like it will carry our name.</p>
                     </div>
                     <div class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Community members gathered for a renovation open house" loading="lazy">
+                        </figure>
                         <h3>Community</h3>
                         <p>We show up for local events, support neighbors, and volunteer our skills whenever we can.</p>
                     </div>
                     <div class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80" alt="Detailed plans spread out on a table" loading="lazy">
+                        </figure>
                         <h3>Clarity</h3>
                         <p>Renovations are big commitments. We keep the process transparent so you always know the next step.</p>
                     </div>
@@ -141,26 +179,44 @@
                 <p class="section-subtitle">The people who show up on your doorstep are the same folks we share family dinners with. Here's a quick hello from the team.</p>
                 <div class="grid cols-3">
                     <article class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?auto=format&fit=crop&w=1200&q=80" alt="Alex and Morgan reviewing project plans together" loading="lazy">
+                        </figure>
                         <h3>Alex &amp; Morgan</h3>
                         <p>Owners and lead project guides. They keep projects organized and communication flowing.</p>
                     </article>
                     <article class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1486428268050-0d915dbf42dc?auto=format&fit=crop&w=1200&q=80" alt="Chris measuring framing lumber" loading="lazy">
+                        </figure>
                         <h3>Chris</h3>
                         <p>Lead framer who can spot structural challenges long before they become problems.</p>
                     </article>
                     <article class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80" alt="Rey finishing intricate trim details" loading="lazy">
+                        </figure>
                         <h3>Rey</h3>
                         <p>Finish carpenter known for trim work that lines up so precisely it looks effortless.</p>
                     </article>
                     <article class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1521737451536-00a86f630f14?auto=format&fit=crop&w=1200&q=80" alt="Jules coordinating notes at a job site" loading="lazy">
+                        </figure>
                         <h3>Jules</h3>
                         <p>Project coordinator who keeps schedules tight and job sites tidy.</p>
                     </article>
                     <article class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1523419409543-0c1df022bdd1?auto=format&fit=crop&w=1200&q=80" alt="Jamie installing decking boards" loading="lazy">
+                        </figure>
                         <h3>Jamie</h3>
                         <p>Decking specialist and resident problem solver for complex outdoor builds.</p>
                     </article>
                     <article class="card">
+                        <figure class="card-media">
+                            <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Homeowner reviewing plans with the team" loading="lazy">
+                        </figure>
                         <h3>You</h3>
                         <p>We build our projects alongside homeowners. Your ideas and feedback shape the outcome.</p>
                     </article>
