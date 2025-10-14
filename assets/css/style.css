@@ -53,9 +53,10 @@ main {
 .hero {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-end;
     min-height: 100vh;
-    padding: 11rem 1.5rem 6rem;
+    padding: 6.5rem 1.5rem 6rem;
     text-align: left;
     background-image: url('../../home-bg-image.jpg');
     background-repeat: no-repeat;
@@ -64,27 +65,60 @@ main {
     color: var(--white);
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
     border-bottom: 10px solid var(--teal);
+    overflow: hidden;
+    z-index: 0;
 }
 
 .hero-inner {
     position: relative;
     width: 100%;
     max-width: var(--max-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
-    align-items: center;
+    margin: 0 0 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: clamp(0.5rem, 2vw, 2rem);
+    padding-top: clamp(0rem, 4vh, 1.5rem);
 }
 
 .hero-copy {
+    margin-left: auto;
+    max-width: 440px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.86));
+    color: var(--charcoal);
+    padding: 2.5rem 2.5rem;
+    border-radius: calc(var(--radius) * 1.8);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow: 0 32px 60px rgba(31, 31, 31, 0.28), 0 18px 36px rgba(29, 138, 155, 0.14);
     text-align: left;
+    text-shadow: none;
+    backdrop-filter: blur(6px);
+    margin-top: clamp(5rem, 18vh, 9rem);
+    margin-right: clamp(2rem, 10vw, 7rem);
+    transform: translate(3%, -1%);
+}
+
+.hero-copy h1,
+.hero-copy p {
+    text-shadow: none;
 }
 
 .hero h1 {
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: clamp(2.5rem, 4vw, 3.2rem);
     margin-bottom: 1rem;
+}
+
+.hero-copy h1 {
+    color: var(--charcoal);
+}
+
+.hero-copy p {
+    color: #415156;
+}
+
+.hero-copy .btn.secondary {
+    border-color: var(--teal);
+    color: var(--teal);
 }
 .hero-actions {
     display: flex;

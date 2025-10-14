@@ -77,4 +77,73 @@ document.addEventListener('DOMContentLoaded', () => {
             mediaQuery.addListener(handleViewportChange);
         }
     }
+
+    const initLogoSwap = () => {
+        const navbar = document.querySelector('.airbnb-navbar');
+        const logoImg = document.querySelector('.airbnb-logo img');
+        if (!navbar || !logoImg) {
+            return false;
+        }
+
+        const hero = document.querySelector('.hero');
+        const LOGO_DARK_SRC = 'logo1.PNG';
+        const LOGO_LIGHT_SRC = 'logo2white.PNG';
+
+        const applyVariant = (variant) => {
+            if (logoImg.dataset.logoVariant === variant) {
+                return;
+            }
+
+            logoImg.src = variant === 'light' ? LOGO_LIGHT_SRC : LOGO_DARK_SRC;
+            logoImg.dataset.logoVariant = variant;
+        };
+
+        const updateLogoVariant = () => {
+            if (!hero) {
+                applyVariant('dark');
+                return;
+            }
+
+            const heroRect = hero.getBoundingClientRect();
+            const navbarHeight = navbar.getBoundingClientRect().height || 0;
+            const useLight = heroRect.bottom > navbarHeight;
+            applyVariant(useLight ? 'light' : 'dark');
+        };
+
+        updateLogoVariant();
+
+        if (!hero) {
+            return true;
+        }
+
+        let ticking = false;
+        const requestUpdate = () => {
+            if (ticking) {
+                return;
+            }
+            ticking = true;
+            window.requestAnimationFrame(() => {
+                updateLogoVariant();
+                ticking = false;
+            });
+        };
+
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate);
+
+        return true;
+    };
+
+    if (!initLogoSwap()) {
+        const navbarContainer = document.getElementById('navbar-container');
+        if (navbarContainer) {
+            const observer = new MutationObserver(() => {
+                if (initLogoSwap()) {
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(navbarContainer, { childList: true, subtree: true });
+        }
+    }
 });
