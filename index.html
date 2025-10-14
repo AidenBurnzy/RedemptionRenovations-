@@ -8,9 +8,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
     <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+            });
+    </script>
     <div class="mobile-wrapper">
         <div class="mobile-top-bar">
             <span class="mobile-top-brand">Redemption Renovations</span>
@@ -24,7 +33,7 @@
             <h1>Renovations that feel like home</h1>
             <p>Family-owned builders crafting additions, decks, and custom trim with neighborly care.</p>
             <div class="mobile-actions">
-                <a class="mobile-primary" href="contact.html">Start a conversation</a>
+                <a class="mobile-primary" href="contact.html">Contact Us!</a>
                 <a class="mobile-secondary" href="projects.html">Browse projects</a>
             </div>
         </header>
@@ -82,22 +91,6 @@
             </div>
         </nav>
     </div>
-    <header>
-        <div class="nav-container">
-            <a class="brand" href="index.html">Redemption Renovations</a>
-            <nav>
-                <ul>
-                    <li><a class="active-link" href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a class="cta" href="contact.html">Start a Conversation</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
     <main>
         <section class="hero">
@@ -110,9 +103,6 @@
                         <a class="btn secondary" href="contact.html">Reach Out to Us</a>
                     </div>
                 </div>
-                <figure class="hero-media media-frame">
-                    <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1400&q=80" alt="Freshly renovated living space with warm natural light">
-                </figure>
             </div>
         </section>
 

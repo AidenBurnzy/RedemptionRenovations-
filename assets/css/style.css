@@ -45,73 +45,30 @@ button:hover {
     opacity: 0.85;
 }
 
-header {
-    background: var(--white);
-    border-bottom: 1px solid rgba(31, 31, 31, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+main {
+    padding-top: 0;
 }
 
-.nav-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1.5rem;
-}
-
-.brand {
-    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    font-size: 1.4rem;
-    color: var(--teal);
-    letter-spacing: 0.04em;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.2rem;
-}
-
-nav a {
-    font-weight: 600;
-    color: var(--charcoal);
-    transition: color 0.2s ease;
-    padding: 0.4rem 0.9rem;
-    border-radius: 999px;
-}
-
-nav a.cta {
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    background: var(--teal);
-    color: var(--white);
-    white-space: nowrap;
-}
-
-nav a.active-link {
-    background: rgba(29, 138, 155, 0.16);
-    color: var(--teal);
-    box-shadow: inset 0 0 0 1px rgba(29, 138, 155, 0.35);
-}
-
-nav a.active-link.cta {
-    background: var(--teal);
-    color: var(--white);
-    box-shadow: none;
-}
 
 .hero {
-    background: linear-gradient(135deg, rgba(29, 138, 155, 0.85), rgba(31, 31, 31, 0.85));
-    color: var(--white);
-    padding: 6rem 1.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    padding: 11rem 1.5rem 6rem;
     text-align: left;
+    background-image: url('../../home-bg-image.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: var(--white);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    border-bottom: 10px solid var(--teal);
 }
 
 .hero-inner {
+    position: relative;
+    width: 100%;
     max-width: var(--max-width);
     margin: 0 auto;
     display: grid;
@@ -129,13 +86,6 @@ nav a.active-link.cta {
     font-size: clamp(2.5rem, 4vw, 3.2rem);
     margin-bottom: 1rem;
 }
-
-.hero p {
-    font-size: 1.15rem;
-    max-width: 540px;
-    margin: 0 0 2rem;
-}
-
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
