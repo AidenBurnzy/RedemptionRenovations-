@@ -258,12 +258,14 @@ textarea {
 }
 
 
+/* Enhanced Hero Section - Responsive Welcome Container */
+
 .hero {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    min-height: clamp(520px, 90vh, 820px);
+    min-height: clamp(650px, 100vh, 980px);
     padding: clamp(2.9rem, 6.5vw, 4.2rem) clamp(1.5rem, 6vw, 4rem);
     padding-top: clamp(8.5rem, 13vw, 10.5rem);
     text-align: left;
@@ -293,190 +295,29 @@ textarea {
     width: 100%;
     max-width: var(--max-width);
     margin-left: auto;
-    margin-right: clamp(0.75rem, 3.5vw, 4.5rem);
+    margin-right: clamp(1.5rem, 4vw, 5rem);
     display: flex;
     justify-content: flex-end;
-    padding-right: clamp(0.75rem, 3vw, 3.5rem);
+    padding-right: clamp(1rem, 3.5vw, 4rem);
     z-index: 1;
 }
 
+/* Welcome Container - Scales smoothly with viewport */
 .hero-copy {
     margin-left: auto;
-    inline-size: min(100%, clamp(230px, 26vw, 340px));
+    width: min(100%, clamp(280px, 28vw, 380px));
+    max-width: 380px;
     background: linear-gradient(150deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.82));
     color: var(--charcoal);
-    padding: clamp(1.25rem, 2.7vw, 1.9rem) clamp(1.1rem, 2.5vw, 1.75rem);
+    padding: clamp(1.4rem, 3vw, 2.2rem) clamp(1.2rem, 2.8vw, 2rem);
     border-radius: calc(var(--radius) * 1.6);
     border: 1px solid rgba(255, 255, 255, 0.6);
     box-shadow: 0 26px 52px rgba(31, 31, 31, 0.26), 0 14px 32px rgba(29, 138, 155, 0.12);
     text-align: left;
     text-shadow: none;
     backdrop-filter: blur(5px);
-    margin-right: clamp(0.35rem, 2.5vw, 2.5rem);
-}
-
-.hero-gap-note {
-    position: absolute;
-    bottom: clamp(1.35rem, 4.2vw, 2.2rem);
-    left: clamp(1.5rem, 5vw, 3rem);
-    width: min(46%, 420px);
-    padding: clamp(0.75rem, 2.2vw, 1.2rem) clamp(1rem, 2.6vw, 1.8rem);
-    background: rgba(6, 28, 34, 0.82);
-    color: rgba(255, 255, 255, 0.9);
-    border-radius: calc(var(--radius) * 1.2);
-    font-size: clamp(0.9rem, 2vw, 1.05rem);
-    line-height: 1.5;
-    letter-spacing: 0.03em;
-    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.22);
-    text-align: left;
-    z-index: 2;
-    display: none;
-}
-
-@media (max-width: 1200px) {
-    .hero-inner {
-        margin-right: clamp(0.6rem, 3vw, 2.5rem);
-        padding-right: clamp(0.5rem, 2.5vw, 2.25rem);
-    }
-
-    .hero-copy {
-        inline-size: min(100%, clamp(210px, 32vw, 300px));
-        margin-right: clamp(0.25rem, 2vw, 1.75rem);
-    }
-
-    .hero-gap-note {
-        display: block;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-}
-
-@media (max-width: 960px) {
-    .hero {
-        padding: clamp(2.6rem, 6.5vw, 3.6rem) clamp(1rem, 4.2vw, 2.2rem);
-        padding-top: clamp(6.8rem, 13vw, 8.2rem);
-        min-height: clamp(440px, 84vh, 620px);
-        background-size: 100% auto;
-        background-position: top center;
-        background-color: var(--teal);
-    }
-
-    .hero-inner {
-        justify-content: flex-end;
-        margin-right: clamp(0.35rem, 2.5vw, 1.25rem);
-        padding-right: clamp(0.3rem, 2.5vw, 1.25rem);
-    }
-
-    .hero-copy {
-        margin-left: auto;
-        margin-right: 0;
-        inline-size: min(100%, clamp(200px, 56vw, 280px));
-        margin-right: clamp(0.2rem, 2vw, 1rem);
-        padding: clamp(1.1rem, 2.4vw, 1.6rem) clamp(0.95rem, 2.1vw, 1.4rem);
-    }
-
-    .hero h1 {
-        font-size: clamp(1.6rem, 4.2vw, 2.2rem);
-        margin-bottom: 0.6rem;
-    }
-
-    .hero-copy p {
-        font-size: clamp(0.9rem, 3vw, 1rem);
-        line-height: 1.42;
-        margin-bottom: clamp(0.7rem, 2vw, 1rem);
-    }
-
-    .hero-actions .btn {
-        padding: 0.65rem 1.4rem;
-        font-size: 0.95rem;
-    }
-
-    .hero-gap-note {
-        bottom: clamp(1.1rem, 4vw, 1.8rem);
-        left: clamp(1.1rem, 6vw, 2.5rem);
-        width: min(55%, 360px);
-        padding: clamp(0.7rem, 2.4vw, 1.05rem) clamp(0.85rem, 2.4vw, 1.5rem);
-        font-size: clamp(0.86rem, 2.4vw, 0.98rem);
-    }
-}
-
-@media (max-width: 640px) {
-    .hero {
-        padding: clamp(2rem, 6vw, 2.6rem) 1rem;
-        padding-top: clamp(6rem, 14vw, 7rem);
-        min-height: clamp(380px, 80vh, 520px);
-        background-size: 100% auto;
-        background-position: top center;
-        background-color: var(--teal);
-    }
-
-    .hero-copy {
-        padding: 1.1rem 1.15rem;
-        margin-left: auto;
-        margin-right: 0.25rem;
-        inline-size: 100%;
-    }
-
-    .hero h1 {
-        font-size: clamp(1.75rem, 4.4vw, 2.4rem);
-    }
-
-    .hero-copy p {
-        font-size: clamp(0.95rem, 3.2vw, 1.05rem);
-    }
-
-    .hero-actions {
-        gap: 0.6rem;
-    }
-
-    .hero-actions .btn {
-        padding: 0.6rem 1.25rem;
-        font-size: 0.92rem;
-    }
-
-    .hero-gap-note {
-        bottom: clamp(0.9rem, 5vw, 1.4rem);
-        left: clamp(0.9rem, 6vw, 2rem);
-        width: min(64%, 320px);
-        padding: clamp(0.6rem, 3vw, 0.95rem) clamp(0.75rem, 3vw, 1.2rem);
-        font-size: clamp(0.84rem, 3.2vw, 0.96rem);
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        padding: clamp(1.8rem, 6vw, 2.2rem) 0.9rem;
-        padding-top: clamp(5.5rem, 18vw, 6.4rem);
-        min-height: clamp(340px, 78vh, 460px);
-    }
-
-    .hero-copy {
-        padding: 1rem 1.05rem;
-        inline-size: 100%;
-    }
-
-    .hero h1 {
-        font-size: clamp(1.55rem, 5vw, 2.1rem);
-    }
-
-    .hero-copy p {
-        font-size: clamp(0.88rem, 3.6vw, 0.98rem);
-        line-height: 1.38;
-    }
-
-    .hero-actions .btn {
-        padding: 0.55rem 1.15rem;
-        font-size: 0.9rem;
-    }
-
-    .hero-gap-note {
-        bottom: clamp(0.7rem, 6vw, 1.1rem);
-        left: clamp(0.75rem, 7vw, 1.5rem);
-        width: min(72%, 280px);
-        padding: clamp(0.55rem, 3.6vw, 0.85rem) clamp(0.7rem, 3.2vw, 1rem);
-        font-size: clamp(0.82rem, 3.8vw, 0.94rem);
-    }
+    margin-right: clamp(0.5rem, 2.5vw, 2.5rem);
+    transition: all 0.3s ease;
 }
 
 .hero-copy h1,
@@ -486,30 +327,229 @@ textarea {
 
 .hero h1 {
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: clamp(1.85rem, 3.1vw, 2.7rem);
-    margin-bottom: 0.7rem;
-}
-
-.hero-copy h1 {
+    font-size: clamp(1.75rem, 3.5vw, 2.7rem);
+    line-height: 1.2;
+    margin-bottom: clamp(0.6rem, 1.5vw, 0.8rem);
     color: var(--charcoal);
 }
 
 .hero-copy p {
     color: #415156;
-    font-size: clamp(0.96rem, 2.1vw, 1.05rem);
-    line-height: 1.48;
-    margin-bottom: clamp(0.9rem, 2vw, 1.2rem);
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    line-height: 1.5;
+    margin-bottom: clamp(0.8rem, 2vw, 1.2rem);
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.6rem, 1.5vw, 0.85rem);
+    margin-top: clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+.hero-actions .btn {
+    padding: clamp(0.65rem, 1.8vw, 0.85rem) clamp(1.2rem, 2.5vw, 1.6rem);
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .hero-copy .btn.secondary {
     border-color: var(--teal);
     color: var(--teal);
 }
-.hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: clamp(0.65rem, 2.1vw, 1rem);
+
+/* Gap note stays on left side */
+.hero-gap-note {
+    position: absolute;
+    bottom: clamp(1.5rem, 4vw, 2.5rem);
+    left: clamp(1.5rem, 5vw, 3rem);
+    width: min(48%, 420px);
+    padding: clamp(0.8rem, 2.2vw, 1.2rem) clamp(1rem, 2.6vw, 1.8rem);
+    background: rgba(6, 28, 34, 0.82);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: calc(var(--radius) * 1.2);
+    font-size: clamp(0.88rem, 1.8vw, 1.05rem);
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.22);
+    text-align: left;
+    z-index: 2;
+    display: block;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1400px) {
+    .hero-copy {
+        width: min(100%, clamp(260px, 32vw, 340px));
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero-inner {
+        margin-right: clamp(1rem, 3.5vw, 3rem);
+        padding-right: clamp(0.75rem, 2.5vw, 2.5rem);
+    }
+
+    .hero-copy {
+        width: min(100%, clamp(240px, 36vw, 320px));
+        margin-right: clamp(0.5rem, 2vw, 1.5rem);
+    }
+}
+
+@media (max-width: 960px) {
+    .hero {
+        padding: clamp(2.6rem, 6.5vw, 3.6rem) clamp(0.75rem, 2vw, 1.5rem);
+        padding-top: clamp(6.8rem, 13vw, 8.2rem);
+    min-height: clamp(660px, 96vh, 840px);
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding-bottom: clamp(3rem, 6vw, 4rem);
+        padding-right: clamp(0.75rem, 2vw, 1.5rem);
+    }
+
+    .hero-inner {
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-right: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+        width: 100%;
+    }
+
+    .hero-copy {
+        width: min(52%, 420px);
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: clamp(0.5rem, 1.5vw, 1rem);
+        padding: clamp(1.3rem, 2.8vw, 1.9rem) clamp(1.2rem, 2.5vw, 1.7rem);
+    }
+
+    .hero-gap-note {
+        width: min(52%, 380px);
+        bottom: auto;
+        top: clamp(7.5rem, 15vw, 10rem);
+        left: clamp(1rem, 4vw, 2rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding: clamp(2.5rem, 6vw, 3rem) 0.75rem;
+        padding-top: clamp(7rem, 14vw, 8rem);
+        padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+        padding-right: 0.75rem;
+    min-height: clamp(640px, 94vh, 780px);
+    }
+
+    .hero-inner {
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-right: 0;
+        padding-right: 0;
+        width: 100%;
+    }
+
+    .hero-copy {
+        width: min(54%, 380px);
+        max-width: 380px;
+        margin-left: auto;
+        margin-right: 0.5rem;
+        padding: clamp(1.4rem, 3.2vw, 2rem) clamp(1.3rem, 3vw, 1.8rem);
+    }
+
+    .hero-gap-note {
+        display: none; /* Hide on smaller screens to reduce clutter */
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding: 2rem 0.65rem;
+        padding-top: clamp(6.5rem, 16vw, 7.5rem);
+        padding-bottom: clamp(2rem, 5vw, 3rem);
+        padding-right: 0.65rem;
+    min-height: clamp(600px, 90vh, 760px);
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+
+    .hero-inner {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .hero-copy {
+        width: min(56%, 320px);
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: 0.4rem;
+        padding: 1.3rem 1.2rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.65rem, 5.2vw, 2.3rem);
+    }
+
+    .hero-copy p {
+        font-size: clamp(0.9rem, 3.6vw, 1.02rem);
+    }
+
+    .hero-actions .btn {
+        padding: 0.75rem 1.35rem;
+        font-size: 0.96rem;
+    }
+
+    .hero-gap-note {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 1.75rem 0.5rem;
+        padding-top: clamp(6rem, 18vw, 7rem);
+        padding-bottom: clamp(1.75rem, 5vw, 2.5rem);
+        padding-right: 0.5rem;
+    min-height: clamp(560px, 86vh, 720px);
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+
+    .hero-inner {
+        justify-content: flex-end;
+    }
+
+    .hero-copy {
+        width: min(58%, 280px);
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: 0.3rem;
+        padding: 1.15rem 1.05rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.45rem, 5.8vw, 2rem);
+        margin-bottom: 0.65rem;
+    }
+
+    .hero-copy p {
+        font-size: clamp(0.84rem, 3.9vw, 0.94rem);
+        margin-bottom: 0.8rem;
+        line-height: 1.45;
+    }
+
+    .hero-actions .btn {
+        padding: 0.7rem 1.1rem;
+        font-size: 0.88rem;
+    }
+
+    .hero-gap-note {
+        display: none;
+    }
 }
 
 .media-frame {
@@ -1146,12 +1186,6 @@ section {
     .signature-title::after {
         width: 84px;
         flex: 0 0 auto;
-
-    .hero-gap-note {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
     }
 
     .signature-subtitle {
