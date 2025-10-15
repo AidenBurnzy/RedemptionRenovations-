@@ -9,6 +9,40 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileYearElement.textContent = new Date().getFullYear();
     }
 
+    const loadSectionIncludes = () => {
+        const includeTargets = Array.from(document.querySelectorAll('[data-include]'));
+        if (!includeTargets.length) {
+            return Promise.resolve();
+        }
+
+        const loaders = includeTargets.map((target) => {
+            const source = target.getAttribute('data-include');
+            if (!source) {
+                return Promise.resolve();
+            }
+
+            return fetch(source)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to load include: ${response.status} ${response.statusText}`);
+                    }
+
+                    return response.text();
+                })
+                .then((html) => {
+                    const template = document.createElement('template');
+                    template.innerHTML = html.trim();
+                    const fragment = template.content.cloneNode(true);
+                    target.replaceWith(fragment);
+                })
+                .catch((error) => {
+                    console.error('Include load failed', source, error);
+                });
+        });
+
+        return Promise.all(loaders);
+    };
+
     const menuButton = document.querySelector('[data-menu-button]');
     const menuSheet = document.querySelector('[data-menu-sheet]');
     const menuOverlay = document.querySelector('[data-menu-overlay]');
@@ -77,68 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mediaQuery.addListener(handleViewportChange);
         }
     }
-
-    const initLogoSwap = () => {
-        const navbar = document.querySelector('.airbnb-navbar');
-        const logoImg = document.querySelector('.airbnb-logo img');
-        if (!navbar || !logoImg) {
-            return false;
-        }
-
-        const hero = document.querySelector('.hero');
-        const LOGO_DARK_SRC = 'logo1.PNG';
-        const LOGO_LIGHT_SRC = 'logo2white.PNG';
-
-        const applyVariant = (variant) => {
-            if (logoImg.dataset.logoVariant === variant) {
-                return;
-            }
-
-            logoImg.src = variant === 'light' ? LOGO_LIGHT_SRC : LOGO_DARK_SRC;
-            logoImg.dataset.logoVariant = variant;
-        };
-
-        const updateLogoVariant = () => {
-            if (!hero) {
-                applyVariant('dark');
-                return;
-            }
-
-            const heroRect = hero.getBoundingClientRect();
-            const navbarHeight = navbar.getBoundingClientRect().height || 0;
-            const useLight = heroRect.bottom > navbarHeight;
-            applyVariant(useLight ? 'light' : 'dark');
-        };
-
-        updateLogoVariant();
-
-        if (logoImg.dataset.logoSwapInitialized === 'true') {
-            return true;
-        }
-
-        logoImg.dataset.logoSwapInitialized = 'true';
-
-        if (!hero) {
-            return true;
-        }
-
-        let ticking = false;
-        const requestUpdate = () => {
-            if (ticking) {
-                return;
-            }
-            ticking = true;
-            window.requestAnimationFrame(() => {
-                updateLogoVariant();
-                ticking = false;
-            });
-        };
-
-        window.addEventListener('scroll', requestUpdate, { passive: true });
-        window.addEventListener('resize', requestUpdate);
-
-        return true;
-    };
 
     const initNavbarGapController = () => {
         const navbarContainer = document.getElementById('navbar-container');
@@ -217,21 +189,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const initNavbarEnhancements = () => {
-        const logoReady = initLogoSwap();
         const gapReady = initNavbarGapController();
-        return logoReady && gapReady;
+        return gapReady;
     };
 
-    if (!initNavbarEnhancements()) {
-        const navbarContainer = document.getElementById('navbar-container');
-        if (navbarContainer) {
-            const observer = new MutationObserver(() => {
-                if (initNavbarEnhancements()) {
-                    observer.disconnect();
-                }
-            });
+    const bootstrapNavbarEnhancements = () => {
+        if (!initNavbarEnhancements()) {
+            const navbarContainer = document.getElementById('navbar-container');
+            if (navbarContainer) {
+                const observer = new MutationObserver(() => {
+                    if (initNavbarEnhancements()) {
+                        observer.disconnect();
+                    }
+                });
 
-            observer.observe(navbarContainer, { childList: true, subtree: true });
+                observer.observe(navbarContainer, { childList: true, subtree: true });
+            }
         }
-    }
+    };
+
+    loadSectionIncludes().then(bootstrapNavbarEnhancements);
 });

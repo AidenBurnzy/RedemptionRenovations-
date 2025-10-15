@@ -207,11 +207,11 @@
 }
 
 #navbar-container.navbar-gapless .airbnb-logo {
-  align-items: flex-start;
+  align-items: center;
 }
 
 #navbar-container.navbar-gapless .airbnb-logo img {
   height: 120px;
   margin-top: 0;
-  transform: translateY(-12px);
+  transform: none;
 }
