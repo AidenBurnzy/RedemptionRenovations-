@@ -112,6 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateLogoVariant();
 
+        if (logoImg.dataset.logoSwapInitialized === 'true') {
+            return true;
+        }
+
+        logoImg.dataset.logoSwapInitialized = 'true';
+
         if (!hero) {
             return true;
         }
@@ -134,11 +140,93 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     };
 
-    if (!initLogoSwap()) {
+    const initNavbarGapController = () => {
+        const navbarContainer = document.getElementById('navbar-container');
+        const navbar = navbarContainer ? navbarContainer.querySelector('.airbnb-navbar') : null;
+        if (!navbarContainer || !navbar) {
+            return false;
+        }
+
+        if (navbarContainer.dataset.gapControllerInitialized === 'true') {
+            return true;
+        }
+
+        navbarContainer.dataset.gapControllerInitialized = 'true';
+
+    // Track scroll direction and toggle the navbar gap accordingly.
+    const GAPLESS_CLASS = 'navbar-gapless';
+    const SCROLL_DELTA_THRESHOLD = 2;
+        let lastScrollY = window.scrollY;
+        let lastDirection = window.scrollY > 0 ? 'down' : 'up';
+        let frameRequested = false;
+        let gapHidden = navbarContainer.classList.contains(GAPLESS_CLASS);
+
+        const applyGapState = (shouldHideGap) => {
+            if (shouldHideGap === gapHidden) {
+                return;
+            }
+
+            gapHidden = shouldHideGap;
+
+            if (shouldHideGap) {
+                navbarContainer.classList.add(GAPLESS_CLASS);
+            } else {
+                navbarContainer.classList.remove(GAPLESS_CLASS);
+            }
+        };
+
+        const evaluateGap = () => {
+            frameRequested = false;
+            const currentScrollY = window.scrollY;
+            const isAtTop = currentScrollY <= 0;
+            let direction = lastDirection;
+
+            if (currentScrollY - lastScrollY > SCROLL_DELTA_THRESHOLD) {
+                direction = 'down';
+            } else if (lastScrollY - currentScrollY > SCROLL_DELTA_THRESHOLD) {
+                direction = 'up';
+            }
+
+            if (isAtTop) {
+                applyGapState(false);
+                direction = 'up';
+            } else if (direction === 'up') {
+                applyGapState(false);
+            } else if (direction === 'down') {
+                applyGapState(true);
+            }
+
+            lastScrollY = currentScrollY;
+            lastDirection = direction;
+        };
+
+        const handleScroll = () => {
+            if (frameRequested) {
+                return;
+            }
+
+            frameRequested = true;
+            window.requestAnimationFrame(evaluateGap);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', evaluateGap);
+        evaluateGap();
+
+        return true;
+    };
+
+    const initNavbarEnhancements = () => {
+        const logoReady = initLogoSwap();
+        const gapReady = initNavbarGapController();
+        return logoReady && gapReady;
+    };
+
+    if (!initNavbarEnhancements()) {
         const navbarContainer = document.getElementById('navbar-container');
         if (navbarContainer) {
             const observer = new MutationObserver(() => {
-                if (initLogoSwap()) {
+                if (initNavbarEnhancements()) {
                     observer.disconnect();
                 }
             });
