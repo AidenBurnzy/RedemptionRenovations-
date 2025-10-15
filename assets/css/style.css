@@ -269,17 +269,28 @@ textarea {
     padding: clamp(2.9rem, 6.5vw, 4.2rem) clamp(1.5rem, 6vw, 4rem);
     padding-top: clamp(8.5rem, 13vw, 10.5rem);
     text-align: left;
-    background-image: url('../../home-bg-image.jpg');
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: 100% auto;
+    background-image: url('../../home-bg-image.jpg'), linear-gradient(135deg, rgba(29, 138, 155, 0.92) 0%, rgba(63, 90, 97, 0.94) 55%, rgba(31, 31, 31, 0.9) 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: top center, center;
+    background-size: 100% auto, cover;
     background-attachment: scroll;
     color: var(--white);
     background-color: var(--teal);
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-    border-bottom: 8px solid var(--teal);
+    border-bottom: 0;
     overflow: hidden;
     z-index: 0;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 8px;
+    background: linear-gradient(135deg, rgba(29, 138, 155, 0.92) 0%, rgba(63, 90, 97, 0.94) 55%, rgba(31, 31, 31, 0.9) 100%);
+    z-index: 1;
 }
 
 .hero::after {
@@ -299,7 +310,7 @@ textarea {
     display: flex;
     justify-content: flex-end;
     padding-right: clamp(1rem, 3.5vw, 4rem);
-    z-index: 1;
+    z-index: 2;
 }
 
 /* Welcome Container - Scales smoothly with viewport */
