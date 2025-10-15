@@ -318,11 +318,15 @@ textarea {
     backdrop-filter: blur(5px);
     margin-right: clamp(0.5rem, 2.5vw, 2.5rem);
     transition: all 0.3s ease;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .hero-copy h1,
 .hero-copy p {
     text-shadow: none;
+    hyphens: auto;
+    overflow-wrap: anywhere;
 }
 
 .hero h1 {
@@ -352,7 +356,7 @@ textarea {
     font-size: clamp(0.9rem, 1.8vw, 1rem);
     width: 100%;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .hero-copy .btn.secondary {
@@ -419,11 +423,19 @@ textarea {
     }
 
     .hero-copy {
-        width: min(52%, 420px);
-        max-width: 420px;
+        width: min(100%, clamp(260px, 64vw, 380px));
+        max-width: 380px;
         margin-left: auto;
         margin-right: clamp(0.5rem, 1.5vw, 1rem);
         padding: clamp(1.3rem, 2.8vw, 1.9rem) clamp(1.2rem, 2.5vw, 1.7rem);
+    }
+
+    .hero h1 {
+        font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    }
+
+    .hero-copy p {
+        font-size: clamp(0.86rem, 2.8vw, 1rem);
     }
 
     .hero-gap-note {
@@ -454,8 +466,8 @@ textarea {
     }
 
     .hero-copy {
-        width: min(54%, 380px);
-        max-width: 380px;
+        width: min(100%, clamp(240px, 72vw, 360px));
+        max-width: 360px;
         margin-left: auto;
         margin-right: 0.5rem;
         padding: clamp(1.4rem, 3.2vw, 2rem) clamp(1.3rem, 3vw, 1.8rem);
@@ -483,7 +495,7 @@ textarea {
     }
 
     .hero-copy {
-        width: min(56%, 320px);
+        width: min(100%, clamp(220px, 82vw, 320px));
         max-width: 320px;
         margin-left: auto;
         margin-right: 0.4rem;
@@ -491,11 +503,12 @@ textarea {
     }
 
     .hero h1 {
-        font-size: clamp(1.65rem, 5.2vw, 2.3rem);
+        font-size: clamp(1.55rem, 4.8vw, 2.1rem);
     }
 
     .hero-copy p {
-        font-size: clamp(0.9rem, 3.6vw, 1.02rem);
+        font-size: clamp(0.84rem, 3.4vw, 0.98rem);
+        line-height: 1.45;
     }
 
     .hero-actions .btn {
@@ -524,22 +537,22 @@ textarea {
     }
 
     .hero-copy {
-        width: min(58%, 280px);
-        max-width: 280px;
+        width: min(100%, clamp(200px, 90vw, 300px));
+        max-width: 300px;
         margin-left: auto;
         margin-right: 0.3rem;
         padding: 1.15rem 1.05rem;
     }
 
     .hero h1 {
-        font-size: clamp(1.45rem, 5.8vw, 2rem);
+        font-size: clamp(1.35rem, 5.6vw, 1.85rem);
         margin-bottom: 0.65rem;
     }
 
     .hero-copy p {
-        font-size: clamp(0.84rem, 3.9vw, 0.94rem);
-        margin-bottom: 0.8rem;
-        line-height: 1.45;
+        font-size: clamp(0.8rem, 3.8vw, 0.92rem);
+        margin-bottom: 0.75rem;
+        line-height: 1.42;
     }
 
     .hero-actions .btn {
