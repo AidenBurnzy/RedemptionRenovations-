@@ -1,4 +1,12 @@
+<!-- ============================================
+     UPDATED hero-section.html
+     Place company name OUTSIDE of hero-inner
+     ============================================ -->
+
 <section id="hero" class="hero">
+    <div class="hero-company-name">
+        <h2>Redemption<br>Renovations</h2>
+    </div>
     <div class="hero-inner">
         <div class="hero-copy">
             <h1>Restoring Homes and Rebuilding Lives</h1>
@@ -10,3 +18,49 @@
         </div>
     </div>
 </section>
+
+<!-- CSS to add to your style.css -->
+<style>
+/* Company name positioned on left */
+.hero-company-name {
+    position: absolute;
+    left: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+.hero-company-name h2 {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(3.5rem, 6.5vw, 7rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+    text-shadow: 0 6px 28px rgba(0, 0, 0, 0.85), 
+                 0 3px 14px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    letter-spacing: -0.04em;
+}
+
+@media (max-width: 960px) {
+    .hero-company-name {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        text-align: center;
+        margin: 0 auto 2rem;
+        padding: 0 1rem;
+    }
+    
+    .hero-company-name h2 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-company-name h2 {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+    }
+}
+</style>
