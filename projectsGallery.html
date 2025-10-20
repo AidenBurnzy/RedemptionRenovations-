@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Redemption Renovations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/projectsGallery.css">
+    <script src="assets/js/site.js" defer></script>
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+            });
+    </script>
+
+    <div class="mobile-wrapper">
+        <div class="mobile-top-bar">
+            <span class="mobile-top-brand">Redemption Renovations</span>
+            <span class="mobile-top-page">Gallery</span>
+        </div>
+        <header class="mobile-hero">
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=1200&q=80" alt="Beautiful completed renovation project">
+            </figure>
+            <h1>Our Work in Action</h1>
+            <p>Explore real projects that showcase our craftsmanship and attention to detail.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Start Your Project</a>
+                <a class="mobile-secondary" href="services.html">Our Services</a>
+            </div>
+        </header>
+        
+        <section class="mobile-section">
+            <h2>Project Categories</h2>
+            <div class="mobile-chip-group">
+                <span class="mobile-chip">Kitchen Remodels</span>
+                <span class="mobile-chip">Bathroom Renovations</span>
+                <span class="mobile-chip">Home Additions</span>
+                <span class="mobile-chip">Outdoor Living</span>
+                <span class="mobile-chip">Custom Carpentry</span>
+            </div>
+        </section>
+
+        <section class="mobile-section">
+            <h2>Featured Projects</h2>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=1200&q=80" alt="Modern kitchen transformation" loading="lazy">
+            </figure>
+            <h3>Modern Kitchen Transformation</h3>
+            <p>Complete kitchen renovation featuring custom cabinetry and open concept design.</p>
+        </section>
+
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand">Redemption Renovations</div>
+            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <div class="mobile-footer-links">
+                <a href="tel:15551234567">Call (555) 123-4567</a>
+                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
+                <a href="contact.html">Start a project</a>
+            </div>
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
+        
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+            <span class="mobile-menu-icon"></span>
+        </button>
+        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+            <div class="mobile-nav-header">
+                <span class="mobile-nav-title">Browse the site</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <main>
+        <section class="gallery-hero">
+            <div class="gallery-hero-content">
+                <h1>Project Gallery</h1>
+                <p>Explore our portfolio of completed projects. Each space tells a story of transformation, craftsmanship, and attention to detail.</p>
+            </div>
+        </section>
+
+        <section class="gallery-filter-section">
+            <div class="section-inner">
+                <div class="gallery-filter-bar">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="kitchen">Kitchens</button>
+                    <button class="filter-btn" data-filter="bathroom">Bathrooms</button>
+                    <button class="filter-btn" data-filter="addition">Additions</button>
+                    <button class="filter-btn" data-filter="outdoor">Outdoor Living</button>
+                    <button class="filter-btn" data-filter="carpentry">Custom Carpentry</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-main">
+            <div class="section-inner">
+                <div class="gallery-masonry">
+                    <article class="gallery-card" data-category="kitchen">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=1200&q=80" alt="Modern kitchen with white cabinets" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Kitchen Remodel</span>
+                            <h3>Modern Farmhouse Kitchen</h3>
+                            <p>Complete transformation featuring custom white cabinetry, quartz countertops, and open shelving.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 West Michigan</span>
+                                <span>⏱ 6 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card" data-category="bathroom">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80" alt="Spa-like bathroom renovation" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Bathroom Renovation</span>
+                            <h3>Spa-Inspired Master Bath</h3>
+                            <p>Luxurious master bathroom with freestanding tub, walk-in shower, and custom tile work.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 Grand Rapids</span>
+                                <span>⏱ 4 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card" data-category="addition">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80" alt="Home addition with natural light" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Home Addition</span>
+                            <h3>Sunlit Family Room Addition</h3>
+                            <p>Spacious addition that seamlessly blends with existing architecture, featuring vaulted ceilings and oversized windows.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 Holland</span>
+                                <span>⏱ 12 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card" data-category="outdoor">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="Custom deck with outdoor kitchen" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Outdoor Living</span>
+                            <h3>Entertainment Deck & Patio</h3>
+                            <p>Multi-level composite deck with built-in seating, outdoor kitchen, and ambient lighting.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 Zeeland</span>
+                                <span>⏱ 5 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card" data-category="carpentry">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="Custom built-in shelving" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Custom Carpentry</span>
+                            <h3>Floor-to-Ceiling Built-ins</h3>
+                            <p>Handcrafted oak built-ins with integrated lighting and adjustable shelving for a home library.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 Hudsonville</span>
+                                <span>⏱ 3 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card" data-category="kitchen">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c0c?auto=format&fit=crop&w=1200&q=80" alt="Navy blue kitchen cabinets" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Kitchen Remodel</span>
+                            <h3>Bold Navy Kitchen</h3>
+                            <p>Stunning kitchen featuring navy cabinetry, brass hardware, and marble backsplash.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 Jenison</span>
+                                <span>⏱ 7 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card" data-category="bathroom">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1200&q=80" alt="Modern guest bathroom" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Bathroom Renovation</span>
+                            <h3>Contemporary Guest Bath</h3>
+                            <p>Sleek powder room with floating vanity, geometric tile, and modern fixtures.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 Wyoming</span>
+                                <span>⏱ 3 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card" data-category="carpentry">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Custom mudroom built-ins" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Custom Carpentry</span>
+                            <h3>Family Mudroom Storage</h3>
+                            <p>Custom mudroom featuring individual cubbies, bench seating, and hooks for the whole family.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 Byron Center</span>
+                                <span>⏱ 2 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="gallery-card" data-category="outdoor">
+                        <figure class="gallery-card-image">
+                            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" alt="Covered porch addition" loading="lazy">
+                        </figure>
+                        <div class="gallery-card-content">
+                            <span class="gallery-card-tag">Outdoor Living</span>
+                            <h3>Covered Front Porch</h3>
+                            <p>Classic covered porch with ceiling fan, beadboard ceiling, and composite decking.</p>
+                            <div class="gallery-card-meta">
+                                <span>📍 Grandville</span>
+                                <span>⏱ 4 weeks</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="lead-strip">
+            <div class="section-inner cta-highlight-inner">
+                <div class="cta-highlight-content">
+                    <span class="cta-highlight-eyebrow">Ready to Start Your Project?</span>
+                    <h2>Let's Create Something Beautiful Together</h2>
+                    <p>Every project starts with a conversation. Share your vision, and we'll help bring it to life with the same care and craftsmanship you see in our gallery.</p>
+                    <div class="cta-highlight-actions">
+                        <a class="btn" href="contact.html">Schedule a Consultation</a>
+                        <a class="btn secondary" href="services.html">View Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand-block">
+                <span class="footer-eyebrow">Redemption Renovations</span>
+                <h2>Spaces crafted to welcome neighbors in.</h2>
+                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal.</p>
+                <div class="footer-cta">
+                    <a class="btn" href="contact.html">Book a Consultation</a>
+                </div>
+            </div>
+            <div class="footer-panels">
+                <div class="footer-panel">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
+                        <li><a href="mailto:hello@redemptionrenovations.com">hello@redemptionrenovations.com</a></li>
+                        <li><a href="contact.html">Start a project conversation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-panel">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; <span id="year"></span> Redemption Renovations. All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+</html>

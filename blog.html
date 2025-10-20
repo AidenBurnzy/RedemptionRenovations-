@@ -8,60 +8,46 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/blog.css">
     <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+            });
+    </script>
+
     <div class="mobile-wrapper">
         <div class="mobile-top-bar">
             <span class="mobile-top-brand">Redemption Renovations</span>
             <span class="mobile-top-page">Blog</span>
         </div>
         <header class="mobile-hero">
-            <span class="mobile-brand">Redemption Renovations</span>
             <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Notebook and coffee on a workbench">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80" alt="Notebook and coffee">
             </figure>
-            <h1>Field notes &amp; friendly advice</h1>
+            <h1>Field notes & friendly advice</h1>
             <p>Short reads from the shop to help you plan your next project with less stress.</p>
             <div class="mobile-actions">
-                <a class="mobile-primary" href="blog.html">Read the latest</a>
+                <a class="mobile-primary" href="#articles">Read the latest</a>
                 <a class="mobile-secondary" href="contact.html">Send topic ideas</a>
             </div>
         </header>
+        
         <section class="mobile-section">
             <h2>Latest posts</h2>
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Builder jotting notes during a walkthrough" loading="lazy">
-            </figure>
             <ul class="mobile-list">
-                <li><strong>Case Study:</strong> Solving a tricky mudroom roofline without disturbing upstairs bedrooms.</li>
-                <li><strong>Planning Timeline:</strong> Realistic checkpoints from permit applications to punch lists.</li>
-                <li><strong>Community Spotlight:</strong> Saturday coffee chats where neighbors swap ideas.</li>
+                <li><strong>Case Study:</strong> Solving a tricky mudroom roofline</li>
+                <li><strong>Planning:</strong> Realistic timeline checkpoints</li>
+                <li><strong>Community:</strong> Saturday coffee chats</li>
             </ul>
         </section>
-        <section class="mobile-section">
-            <h2>Browse by category</h2>
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Stack of woodworking magazines and tools" loading="lazy">
-            </figure>
-            <div class="mobile-chip-group">
-                <span class="mobile-chip">Project Stories</span>
-                <span class="mobile-chip">Planning Tips</span>
-                <span class="mobile-chip">Maintenance</span>
-                <span class="mobile-chip">Community</span>
-            </div>
-            <p class="mobile-microcopy">Tap a chip to jump to the topic you want when you view the full site.</p>
-        </section>
-        <section class="mobile-section">
-            <h2>Stay in the loop</h2>
-            <p class="mobile-microcopy">Join our newsletter for seasonal reminders and project stories. We send a quick update once a month.</p>
-            <a class="mobile-primary" href="mailto:hello@redemptionrenovations.com?subject=Add%20me%20to%20the%20newsletter">Email to subscribe</a>
-        </section>
-        <section class="mobile-section">
-            <h2>Have a question?</h2>
-            <p class="mobile-microcopy">Tell us what you are curious about. If it helps you plan, it will help other homeowners too.</p>
-            <a class="mobile-secondary" href="contact.html">Share your idea</a>
-        </section>
+
         <div class="mobile-footer">
             <div class="mobile-footer-brand">Redemption Renovations</div>
             <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
@@ -72,6 +58,7 @@
             </div>
             <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
         </div>
+        
         <div class="mobile-nav-overlay" data-menu-overlay></div>
         <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
             <span class="mobile-menu-icon"></span>
@@ -85,126 +72,211 @@
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="projects.html">Projects</a>
+                <a href="gallery.html">Gallery</a>
                 <a href="testimonials.html">Testimonials</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
             </div>
         </nav>
     </div>
-    <header>
-        <div class="nav-container">
-            <a class="brand" href="index.html">Redemption Renovations</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a class="active-link" href="blog.html">Blog</a></li>
-                    <li><a class="cta" href="contact.html">Start a Conversation</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
     <main>
-        <section class="hero" style="background-image: linear-gradient(135deg, rgba(29,138,155,0.85), rgba(31,31,31,0.85));">
-            <div class="hero-inner">
-                <div class="hero-copy">
-                    <h1>Field Notes &amp; Friendly Advice</h1>
-                    <p>Real stories, planning tips, and behind-the-scenes updates from the Redemption crew. Written in plain language so you can make confident decisions.</p>
-                </div>
-                <figure class="hero-media media-frame">
-                    <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1400&q=80" alt="Notebook and coffee on a workbench">
-                </figure>
+        <section class="blog-hero">
+            <div class="blog-hero-content">
+                <h1>Field Notes & Friendly Advice</h1>
+                <p>Real stories, planning tips, and behind-the-scenes updates from the Redemption crew. Written in plain language so you can make confident decisions.</p>
             </div>
         </section>
 
-        <section>
-            <div class="section-inner blog-list">
-                <article>
-                    <figure class="media-frame" style="margin-bottom: 1.5rem;">
-                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="Construction team reviewing a roofline plan" loading="lazy">
-                    </figure>
-                    <h3>Case Study: Solving a Tricky Roofline for a Mudroom Addition</h3>
-                    <p class="section-subtitle">How we tied a new gable into an existing structure without disturbing the upstairs bedrooms.</p>
-                    <p>We walked through the structural constraints, collaborated with an engineer, and staged the framing so the homeowners could keep their daily routine. The result: a bright mudroom that feels original to the home.</p>
-                    <a class="btn" href="#">Read the Story</a>
-                </article>
-
-                <article>
-                    <figure class="media-frame" style="margin-bottom: 1.5rem;">
-                        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="Family planning a remodel at the kitchen table" loading="lazy">
-                    </figure>
-                    <h3>Planning Your Remodel Timeline</h3>
-                    <p class="section-subtitle">A realistic look at how long permitting, design decisions, and construction actually take.</p>
-                    <p>We break down each phase with helpful checklists so you can plan around school schedules, family visits, or big life events. Spoiler: communication is everything.</p>
-                    <a class="btn" href="#">See the Checklist</a>
-                </article>
-
-                <article>
-                    <figure class="media-frame" style="margin-bottom: 1.5rem;">
-                        <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Neighbors gathered for a community coffee chat" loading="lazy">
-                    </figure>
-                    <h3>Community Spotlight: Saturday Coffee Chats</h3>
-                    <p class="section-subtitle">Once a month we open the shop for questions, tool demos, and good conversation.</p>
-                    <p>It started as a few neighbors stopping by and has turned into one of our favorite traditions. Come with your project ideas or just stop in for a cup of coffee.</p>
-                    <a class="btn" href="#">Upcoming Dates</a>
-                </article>
-            </div>
-        </section>
-
-        <section style="background: rgba(255,255,255,0.9);">
+        <section class="blog-featured" id="articles">
             <div class="section-inner">
-                <h2 class="section-title">Stay in the Loop</h2>
-                <p>Subscribe to receive project highlights, seasonal maintenance reminders, and stories from the shop. No spam, just useful notes.</p>
-                <figure class="media-frame" style="margin-bottom: 2rem;">
-                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80" alt="Newsletter on a tablet beside a cup of coffee" loading="lazy">
-                </figure>
-                <form class="form" action="#" method="post">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input id="name" name="name" type="text" placeholder="Your name">
+                <span class="featured-eyebrow">Featured Post</span>
+                <article class="featured-post">
+                    <figure class="featured-post-image">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=80" alt="Construction team reviewing plans" loading="lazy">
+                    </figure>
+                    <div class="featured-post-content">
+                        <div class="post-meta">
+                            <span class="post-category">Case Study</span>
+                            <span class="post-date">October 15, 2025</span>
+                        </div>
+                        <h2>Solving a Tricky Roofline for a Mudroom Addition</h2>
+                        <p>How we tied a new gable into an existing structure without disturbing the upstairs bedrooms. We walked through the structural constraints, collaborated with an engineer, and staged the framing so the homeowners could keep their daily routine.</p>
+                        <a class="btn" href="#">Read the Full Story</a>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="email" placeholder="you@example.com">
-                    </div>
-                    <button class="btn" type="submit">Join the Newsletter</button>
-                </form>
+                </article>
+            </div>
+        </section>
+
+        <section class="blog-grid-section">
+            <div class="section-inner">
+                <div class="blog-filter">
+                    <button class="blog-filter-btn active" data-filter="all">All Posts</button>
+                    <button class="blog-filter-btn" data-filter="case-study">Case Studies</button>
+                    <button class="blog-filter-btn" data-filter="planning">Planning Tips</button>
+                    <button class="blog-filter-btn" data-filter="maintenance">Maintenance</button>
+                    <button class="blog-filter-btn" data-filter="community">Community</button>
+                </div>
+
+                <div class="blog-posts-grid">
+                    <article class="blog-post-card" data-category="planning">
+                        <figure class="blog-post-image">
+                            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="Family planning at kitchen table" loading="lazy">
+                        </figure>
+                        <div class="blog-post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Planning Tips</span>
+                                <span class="post-date">October 10, 2025</span>
+                            </div>
+                            <h3>Planning Your Remodel Timeline</h3>
+                            <p>A realistic look at how long permitting, design decisions, and construction actually take. We break down each phase with helpful checklists.</p>
+                            <a class="post-link" href="#">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post-card" data-category="community">
+                        <figure class="blog-post-image">
+                            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Community gathering" loading="lazy">
+                        </figure>
+                        <div class="blog-post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Community</span>
+                                <span class="post-date">October 5, 2025</span>
+                            </div>
+                            <h3>Saturday Coffee Chats</h3>
+                            <p>Once a month we open the shop for questions, tool demos, and good conversation. It's become one of our favorite traditions.</p>
+                            <a class="post-link" href="#">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post-card" data-category="maintenance">
+                        <figure class="blog-post-image">
+                            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="Deck maintenance" loading="lazy">
+                        </figure>
+                        <div class="blog-post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Maintenance</span>
+                                <span class="post-date">September 28, 2025</span>
+                            </div>
+                            <h3>Seasonal Deck Care Tips</h3>
+                            <p>Simple maintenance routines to keep your outdoor living space looking great year after year, regardless of Midwest weather.</p>
+                            <a class="post-link" href="#">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post-card" data-category="case-study">
+                        <figure class="blog-post-image">
+                            <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=1200&q=80" alt="Kitchen transformation" loading="lazy">
+                        </figure>
+                        <div class="blog-post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Case Study</span>
+                                <span class="post-date">September 20, 2025</span>
+                            </div>
+                            <h3>Opening Up a Closed-Off Kitchen</h3>
+                            <p>How removing a load-bearing wall transformed a cramped galley kitchen into an open family hub without compromising structural integrity.</p>
+                            <a class="post-link" href="#">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post-card" data-category="planning">
+                        <figure class="blog-post-image">
+                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" alt="Budget planning tools" loading="lazy">
+                        </figure>
+                        <div class="blog-post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Planning Tips</span>
+                                <span class="post-date">September 12, 2025</span>
+                            </div>
+                            <h3>Budgeting for Your Renovation</h3>
+                            <p>Honest talk about where costs come from, how to prioritize spending, and what contingency really means for your project budget.</p>
+                            <a class="post-link" href="#">Read More →</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post-card" data-category="community">
+                        <figure class="blog-post-image">
+                            <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Community project" loading="lazy">
+                        </figure>
+                        <div class="blog-post-content">
+                            <div class="post-meta">
+                                <span class="post-category">Community</span>
+                                <span class="post-date">September 5, 2025</span>
+                            </div>
+                            <h3>Our Annual Habitat Build Day</h3>
+                            <p>Every year our crew takes a day to volunteer with Habitat for Humanity. Here's why it matters to us and how you can join.</p>
+                            <a class="post-link" href="#">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="blog-newsletter">
+            <div class="section-inner">
+                <div class="newsletter-content">
+                    <span class="newsletter-eyebrow">Stay Updated</span>
+                    <h2>Join Our Newsletter</h2>
+                    <p>Get project highlights, seasonal maintenance reminders, and stories from the shop delivered once a month. No spam, just useful notes.</p>
+                    <form class="newsletter-form" action="#" method="post">
+                        <div class="newsletter-inputs">
+                            <input type="email" name="email" placeholder="Your email address" required>
+                            <button class="btn" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
 
         <section class="lead-strip">
-            <div class="section-inner">
-                <h2>Have a Topic Request?</h2>
-                <p>Tell us what you are curious about. If it helps you plan your next step, chances are it will help someone else too.</p>
-                <a class="btn" href="contact.html">Send Your Idea</a>
+            <div class="section-inner cta-highlight-inner">
+                <div class="cta-highlight-content">
+                    <span class="cta-highlight-eyebrow">Have a Topic Request?</span>
+                    <h2>Suggest a Blog Post</h2>
+                    <p>Tell us what you're curious about. If it helps you plan your next step, chances are it will help someone else too.</p>
+                    <div class="cta-highlight-actions">
+                        <a class="btn" href="contact.html">Send Your Idea</a>
+                        <a class="btn secondary" href="gallery.html">View Our Work</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-inner">
-            <div>
-                <div class="footer-brand">Redemption Renovations</div>
-                <p>Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand-block">
+                <span class="footer-eyebrow">Redemption Renovations</span>
+                <h2>Spaces crafted to welcome neighbors in.</h2>
+                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal.</p>
+                <div class="footer-cta">
+                    <a class="btn" href="contact.html">Book a Consultation</a>
+                </div>
             </div>
-            <div>
-                <h4>Visit</h4>
-                <p>Serving homeowners across the region.<br>Existing homes and new construction projects welcome.</p>
-            </div>
-            <div>
-                <h4>Connect</h4>
-                <p>Email: <a href="mailto:hello@redemptionrenovations.com">hello@redemptionrenovations.com</a><br>
-                Phone: <a href="tel:15551234567">(555) 123-4567</a><br>
-                Facebook: <a href="https://facebook.com" target="_blank" rel="noopener">Follow along</a></p>
+            <div class="footer-panels">
+                <div class="footer-panel">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
+                        <li><a href="mailto:hello@redemptionrenovations.com">hello@redemptionrenovations.com</a></li>
+                        <li><a href="contact.html">Start a project conversation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-panel">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
+            <span>&copy; <span id="year"></span> Redemption Renovations. All rights reserved.</span>
         </div>
     </footer>
 </body>

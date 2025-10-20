@@ -8,71 +8,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/testimonials.css">
     <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+            });
+    </script>
+
     <div class="mobile-wrapper">
         <div class="mobile-top-bar">
             <span class="mobile-top-brand">Redemption Renovations</span>
             <span class="mobile-top-page">Testimonials</span>
         </div>
         <header class="mobile-hero">
-            <span class="mobile-brand">Redemption Renovations</span>
             <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Happy homeowners chatting with the crew">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Happy homeowners">
             </figure>
             <h1>Neighbors on our side</h1>
             <p>Real words from homeowners who trusted us with their spaces.</p>
             <div class="mobile-actions">
                 <a class="mobile-primary" href="contact.html">Request a reference</a>
-                <a class="mobile-secondary" href="https://facebook.com" target="_blank" rel="noopener">Read Facebook reviews</a>
+                <a class="mobile-secondary" href="https://facebook.com" target="_blank" rel="noopener">Read reviews</a>
             </div>
         </header>
+        
         <section class="mobile-section">
             <h2>Recent praise</h2>
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Homeowners relaxing in their refreshed living room" loading="lazy">
-            </figure>
             <div class="mobile-quote">
                 "They opened up our first floor without disrupting the kids. The crew left the house tidy every night."
-                <cite>Sarah &amp; Miguel, kitchen remodel</cite>
+                <cite>Sarah & Miguel</cite>
             </div>
             <div class="mobile-quote">
                 "When supply delays hit, they already had backup options ready. The deck is now our weekend hangout."
-                <cite>Liam &amp; Jess, decking system</cite>
-            </div>
-            <div class="mobile-quote">
-                "Alex said the trim would take time if we wanted it perfect. He was right, and the built-ins are stunning."
-                <cite>Priya, custom carpentry</cite>
+                <cite>Liam & Jess</cite>
             </div>
         </section>
-        <section class="mobile-section">
-            <h2>Why people recommend us</h2>
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Crew member greeting a homeowner at the door" loading="lazy">
-            </figure>
-            <ul class="mobile-list">
-                <li>Respectful crews who protect floors and say hi to your pets</li>
-                <li>Honest conversations about budgets, timelines, and trade-offs</li>
-                <li>Follow-through with touch-ups, check-ins, and seasonal tips</li>
-            </ul>
-        </section>
-        <section class="mobile-section">
-            <h2>Share your story</h2>
-            <div class="mobile-actions">
-                <a class="mobile-primary" href="https://facebook.com" target="_blank" rel="noopener">Leave a review</a>
-                <a class="mobile-secondary" href="mailto:hello@redemptionrenovations.com">Email a testimonial</a>
-            </div>
-            <p class="mobile-microcopy">Not big on writing? Send a few bullet points and we will draft it for you to approve.</p>
-        </section>
-        <section class="mobile-section">
-            <h2>Want to chat with a past client?</h2>
-            <p class="mobile-microcopy">We keep a list of homeowners who are happy to answer questions. Reach out and we will connect you.</p>
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1523419409543-0c1df022bdd1?auto=format&fit=crop&w=1200&q=80" alt="Two neighbors talking over coffee" loading="lazy">
-            </figure>
-            <a class="mobile-primary" href="contact.html">Ask for an introduction</a>
-        </section>
+
         <div class="mobile-footer">
             <div class="mobile-footer-brand">Redemption Renovations</div>
             <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
@@ -83,6 +61,7 @@
             </div>
             <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
         </div>
+        
         <div class="mobile-nav-overlay" data-menu-overlay></div>
         <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
             <span class="mobile-menu-icon"></span>
@@ -96,152 +75,214 @@
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="projects.html">Projects</a>
+                <a href="gallery.html">Gallery</a>
                 <a href="testimonials.html">Testimonials</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
             </div>
         </nav>
     </div>
-    <header>
-        <div class="nav-container">
-            <a class="brand" href="index.html">Redemption Renovations</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a class="active-link" href="testimonials.html">Testimonials</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a class="cta" href="contact.html">Start a Conversation</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
     <main>
-        <section class="hero" style="background-image: linear-gradient(135deg, rgba(31,31,31,0.85), rgba(29,138,155,0.85));">
-            <div class="hero-inner">
-                <div class="hero-copy">
-                    <h1>Kind Words from Neighbors</h1>
-                    <p>We are grateful for the trust homeowners place in us. Here are a few stories about what it is like to work together, straight from the people who know.</p>
-                </div>
-                <figure class="hero-media media-frame">
-                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80" alt="Homeowners sharing their renovation story">
-                </figure>
+        <section class="testimonials-hero">
+            <div class="testimonials-hero-content">
+                <h1>Kind Words from Neighbors</h1>
+                <p>We're grateful for the trust homeowners place in us. Here are stories about what it's like to work together, straight from the people who know.</p>
             </div>
         </section>
 
-        <section>
+        <section class="testimonials-featured">
             <div class="section-inner">
-                <h2 class="section-title">Recent Reviews</h2>
-                <figure class="media-frame" style="margin-bottom: 2rem;">
-                    <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1400&q=80" alt="Homeowners smiling with the renovation team" loading="lazy">
-                </figure>
-                <div class="grid cols-2">
-                    <article class="testimonial">
-                        <p>"We were nervous about opening up our first floor, but the crew walked us through every decision and treated our house with care. They cleaned up every night and left our kids' routines undisturbed."</p>
-                        <cite>Sarah &amp; Miguel, Kitchen Remodel</cite>
-                    </article>
-                    <article class="testimonial">
-                        <p>"Communication was outstanding. When material delays cropped up, they already had a plan B ready to go. The finished deck is where we spend every weekend now."</p>
-                        <cite>Liam &amp; Jess, Decking System</cite>
-                    </article>
-                    <article class="testimonial">
-                        <p>"Alex told us up front that the trim work would take time if we wanted it flawless. He was right, and it was worth the wait. The built-ins turned a basic room into our favorite place to read."</p>
-                        <cite>Priya, Custom Carpentry</cite>
-                    </article>
-                    <article class="testimonial">
-                        <p>"Even when we realized our timeline was too tight for this year, they still spent time answering questions and connecting us with other resources. That generosity speaks volumes."</p>
-                        <cite>Martin Family, Future Addition</cite>
-                    </article>
+                <div class="featured-testimonial">
+                    <div class="featured-quote-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                        </svg>
+                    </div>
+                    <blockquote class="featured-quote">
+                        "Working with Redemption Renovations completely changed how we feel about our home. They didn't just renovate our kitchen—they listened to how we actually use the space and designed something that works perfectly for our family. The attention to detail and genuine care they showed throughout the project was exceptional."
+                    </blockquote>
+                    <div class="featured-author">
+                        <div class="featured-author-info">
+                            <cite class="featured-author-name">The Patterson Family</cite>
+                            <span class="featured-author-project">Kitchen & Dining Room Remodel</span>
+                        </div>
+                        <div class="featured-rating">
+                            ★★★★★
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section style="background: rgba(255,255,255,0.9);">
+        <section class="testimonials-grid-section">
             <div class="section-inner">
-                <h2 class="section-title">Why People Recommend Us</h2>
-                <div class="grid cols-3">
-                    <article class="card">
-                        <figure class="card-media">
-                            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Crew member greeting a homeowner" loading="lazy">
-                        </figure>
+                <div class="testimonials-intro">
+                    <span class="testimonials-eyebrow">Client Reviews</span>
+                    <h2>What Our Clients Say</h2>
+                    <p>Real feedback from real projects. Every review represents a relationship built on trust, quality, and clear communication.</p>
+                </div>
+
+                <div class="testimonials-grid">
+                    <article class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"We were nervous about opening up our first floor, but the crew walked us through every decision and treated our house with care. They cleaned up every night and left our kids' routines undisturbed."</p>
+                        <div class="testimonial-author">
+                            <cite class="testimonial-name">Sarah & Miguel</cite>
+                            <span class="testimonial-project">Kitchen Remodel</span>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"Communication was outstanding. When material delays cropped up, they already had a plan B ready to go. The finished deck is where we spend every weekend now."</p>
+                        <div class="testimonial-author">
+                            <cite class="testimonial-name">Liam & Jess</cite>
+                            <span class="testimonial-project">Decking System</span>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"Alex told us up front that the trim work would take time if we wanted it flawless. He was right, and it was worth the wait. The built-ins turned a basic room into our favorite place to read."</p>
+                        <div class="testimonial-author">
+                            <cite class="testimonial-name">Priya</cite>
+                            <span class="testimonial-project">Custom Carpentry</span>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"Even when we realized our timeline was too tight for this year, they still spent time answering questions and connecting us with other resources. That generosity speaks volumes."</p>
+                        <div class="testimonial-author">
+                            <cite class="testimonial-name">Martin Family</cite>
+                            <span class="testimonial-project">Future Addition</span>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"The bathroom renovation exceeded our expectations. They helped us navigate all the decisions without overwhelming us, and the quality of work is evident in every detail."</p>
+                        <div class="testimonial-author">
+                            <cite class="testimonial-name">David & Rachel</cite>
+                            <span class="testimonial-project">Master Bath Renovation</span>
+                        </div>
+                    </article>
+
+                    <article class="testimonial-card">
+                        <div class="testimonial-rating">★★★★★</div>
+                        <p class="testimonial-text">"From the initial consultation to the final walkthrough, they made us feel like partners in the process. The addition feels like it was always part of our home."</p>
+                        <div class="testimonial-author">
+                            <cite class="testimonial-name">The Chen Family</cite>
+                            <span class="testimonial-project">Home Addition</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-reasons">
+            <div class="section-inner">
+                <span class="reasons-eyebrow">Why Clients Choose Us</span>
+                <h2 class="section-title">What Sets Us Apart</h2>
+                <div class="reasons-grid">
+                    <article class="reason-card">
+                        <div class="reason-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
                         <h3>Respectful Crews</h3>
-                        <p>We protect floors, seal off dust, and greet your pets by name.</p>
+                        <p>We protect floors, seal off dust, and treat your home and family with genuine care and respect.</p>
                     </article>
-                    <article class="card">
-                        <figure class="card-media">
-                            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80" alt="Project manager sharing updates with clients" loading="lazy">
-                        </figure>
-                        <h3>Honest Conversations</h3>
-                        <p>We share progress updates and have the real talks about budgets and timelines.</p>
+
+                    <article class="reason-card">
+                        <div class="reason-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <h3>Clear Communication</h3>
+                        <p>Regular updates, transparent budgets, and honest conversations about timelines and trade-offs.</p>
                     </article>
-                    <article class="card">
-                        <figure class="card-media">
-                            <img src="https://images.unsplash.com/photo-1523419409543-0c1df022bdd1?auto=format&fit=crop&w=1200&q=80" alt="Contractor completing finishing touches" loading="lazy">
-                        </figure>
-                        <h3>Follow-Through</h3>
-                        <p>Touch-ups, warranty checks, and seasonal maintenance tips come standard.</p>
+
+                    <article class="reason-card">
+                        <div class="reason-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <h3>Quality Follow-Through</h3>
+                        <p>Touch-ups, warranty checks, and seasonal maintenance tips come standard with every project.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section>
+        <section class="testimonials-cta">
             <div class="section-inner">
-                <h2 class="section-title">Leave a Review</h2>
-                <p>Have we worked together? Share your experience so neighbors can make confident decisions. We read every review and take them to heart.</p>
-                <div class="grid cols-2">
-                    <article class="card">
-                        <figure class="card-media">
-                            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="Homeowner leaving a review online" loading="lazy">
-                        </figure>
-                        <h3>Facebook</h3>
-                        <p>Leave a note on our Facebook page. We love sharing those updates with the team.</p>
-                        <a class="btn" href="https://facebook.com" target="_blank" rel="noopener">Review on Facebook</a>
-                    </article>
-                    <article class="card">
-                        <figure class="card-media">
-                            <img src="https://images.unsplash.com/photo-1523419409543-0c1df022bdd1?auto=format&fit=crop&w=1200&q=80" alt="Homeowner writing a thank-you note" loading="lazy">
-                        </figure>
-                        <h3>Send a Story</h3>
-                        <p>Email us a few sentences about how your project went. Photos are welcome too.</p>
-                        <a class="btn dark" href="mailto:hello@redemptionrenovations.com">Email Your Story</a>
-                    </article>
+                <div class="cta-content-testimonials">
+                    <span class="cta-eyebrow">Share Your Experience</span>
+                    <h2>Have We Worked Together?</h2>
+                    <p>Your feedback helps neighbors make confident decisions. Share your experience so others can see what it's really like to work with us.</p>
+                    <div class="cta-buttons">
+                        <a class="btn" href="https://facebook.com" target="_blank" rel="noopener">Leave a Facebook Review</a>
+                        <a class="btn secondary" href="mailto:hello@redemptionrenovations.com">Email Your Story</a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="lead-strip">
-            <div class="section-inner">
-                <h2>Want to Talk to a Past Client?</h2>
-                <p>We keep a list of homeowners who are happy to share their experience. Ask, and we will make an introduction.</p>
-                <a class="btn" href="contact.html">Request a Reference</a>
+            <div class="section-inner cta-highlight-inner">
+                <div class="cta-highlight-content">
+                    <span class="cta-highlight-eyebrow">Want to Talk to a Past Client?</span>
+                    <h2>Request a Reference</h2>
+                    <p>We keep a list of homeowners who are happy to share their experience. Ask, and we'll make an introduction.</p>
+                    <div class="cta-highlight-actions">
+                        <a class="btn" href="contact.html">Request a Reference</a>
+                        <a class="btn secondary" href="gallery.html">View Our Work</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-inner">
-            <div>
-                <div class="footer-brand">Redemption Renovations</div>
-                <p>Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand-block">
+                <span class="footer-eyebrow">Redemption Renovations</span>
+                <h2>Spaces crafted to welcome neighbors in.</h2>
+                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal.</p>
+                <div class="footer-cta">
+                    <a class="btn" href="contact.html">Book a Consultation</a>
+                </div>
             </div>
-            <div>
-                <h4>Visit</h4>
-                <p>Serving homeowners across the region.<br>Existing homes and new construction projects welcome.</p>
-            </div>
-            <div>
-                <h4>Connect</h4>
-                <p>Email: <a href="mailto:hello@redemptionrenovations.com">hello@redemptionrenovations.com</a><br>
-                Phone: <a href="tel:15551234567">(555) 123-4567</a><br>
-                Facebook: <a href="https://facebook.com" target="_blank" rel="noopener">Follow along</a></p>
+            <div class="footer-panels">
+                <div class="footer-panel">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
+                        <li><a href="mailto:hello@redemptionrenovations.com">hello@redemptionrenovations.com</a></li>
+                        <li><a href="contact.html">Start a project conversation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-panel">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            &copy; <span id="year"></span> Redemption Renovations. All rights reserved.
+            <span>&copy; <span id="year"></span> Redemption Renovations. All rights reserved.</span>
         </div>
     </footer>
 </body>

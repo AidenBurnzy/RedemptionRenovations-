@@ -1,0 +1,392 @@
+/* About Page Styles for Redemption Renovations */
+
+/* About Hero Section */
+.about-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 3rem);
+    align-items: center;
+    padding: clamp(11rem, 14vh, 12rem) clamp(1.5rem, 6vw, 4rem) clamp(2rem, 4vh, 3rem);
+    background: linear-gradient(135deg, rgba(29, 138, 155, 0.95) 0%, rgba(63, 90, 97, 0.92) 100%);
+    color: var(--white);
+    overflow: hidden;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+    color: var(--charcoal);
+    padding: clamp(2rem, 4vw, 2.75rem);
+    border-radius: calc(var(--radius) * 1.6);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 26px 52px rgba(31, 31, 31, 0.26), 0 14px 32px rgba(29, 138, 155, 0.12);
+    backdrop-filter: blur(5px);
+}
+
+.about-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 1rem;
+}
+
+.about-hero-eyebrow::before {
+    content: '';
+    width: 42px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--teal);
+}
+
+.about-hero h1 {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+}
+
+.about-hero p {
+    font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+    line-height: 1.7;
+    color: #4c5c62;
+}
+
+.about-hero-image {
+    position: relative;
+    border-radius: calc(var(--radius) * 1.4);
+    overflow: hidden;
+    box-shadow: 0 26px 52px rgba(31, 31, 31, 0.28), 0 14px 32px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.about-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 320px;
+    max-height: 400px;
+}
+
+@media (max-width: 960px) {
+    .about-hero {
+        grid-template-columns: 1fr;
+        padding-top: clamp(9rem, 12vh, 10rem);
+        padding-bottom: clamp(2rem, 4vh, 3rem);
+    }
+
+    .about-hero-content {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .about-hero-image {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .about-hero-image img {
+        max-height: 350px;
+    }
+}
+
+/* Story Section */
+.about-story {
+    padding: clamp(4rem, 8vh, 6rem) 1.5rem;
+    background: var(--white);
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+}
+
+.story-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 1rem;
+}
+
+.story-eyebrow::before {
+    content: '';
+    width: 42px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--teal);
+}
+
+.story-content h2 {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+    color: var(--charcoal);
+}
+
+.story-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4c5c62;
+    margin-bottom: 1.25rem;
+}
+
+.story-image {
+    border-radius: calc(var(--radius) * 1.4);
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(31, 31, 31, 0.12);
+}
+
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    min-height: 400px;
+}
+
+@media (max-width: 960px) {
+    .story-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .story-image {
+        order: -1;
+    }
+}
+
+/* Values Section */
+.about-values {
+    padding: clamp(4rem, 8vh, 6rem) 1.5rem;
+    background: var(--warm-gray);
+}
+
+.values-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 1rem;
+}
+
+.values-eyebrow::before {
+    content: '';
+    width: 42px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--teal);
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.value-card {
+    background: var(--white);
+    border-radius: calc(var(--radius) * 1.2);
+    padding: 2.5rem 2rem;
+    box-shadow: 0 12px 28px rgba(31, 31, 31, 0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.value-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(31, 31, 31, 0.14);
+}
+
+.value-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(29, 138, 155, 0.12);
+    border-radius: 50%;
+    color: var(--teal);
+}
+
+.value-icon svg {
+    width: 36px;
+    height: 36px;
+}
+
+.value-card h3 {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--charcoal);
+}
+
+.value-card p {
+    color: #4c5c62;
+    line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Team Section */
+.about-team {
+    padding: clamp(4rem, 8vh, 6rem) 1.5rem;
+    background: var(--white);
+}
+
+.team-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 1rem;
+}
+
+.team-eyebrow::before {
+    content: '';
+    width: 42px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--teal);
+}
+
+.team-grid-about {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    background: var(--warm-gray);
+    border-radius: calc(var(--radius) * 1.2);
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(31, 31, 31, 0.08);
+    transition: all 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(31, 31, 31, 0.14);
+}
+
+.team-member-image {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+}
+
+.team-member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .team-member-image img {
+    transform: scale(1.08);
+}
+
+.team-member-content {
+    padding: 2rem 1.75rem;
+    background: var(--white);
+}
+
+.team-member-content h3 {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--charcoal);
+}
+
+.team-role {
+    display: block;
+    color: var(--teal);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+
+.team-member-content p {
+    color: #4c5c62;
+    line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+    .team-grid-about {
+        grid-template-columns: 1fr;
+    }
+
+    .team-member-image {
+        height: 280px;
+    }
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+    .about-hero {
+        padding-top: clamp(8rem, 14vh, 9rem);
+    }
+
+    .about-hero-content {
+        padding: clamp(1.75rem, 3.5vw, 2rem);
+    }
+
+    .about-story,
+    .about-values,
+    .about-team {
+        padding: 3rem 1.25rem;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .story-content p {
+        font-size: 1rem;
+    }
+}
