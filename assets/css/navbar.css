@@ -1,7 +1,7 @@
 /* Airbnb-style Navbar CSS for Redemption Renovations */
 
 #navbar-container {
-  --navbar-gap: 1.3rem;
+  --navbar-gap: 0.5rem;
   --navbar-pad-bottom: 0.45rem;
   position: fixed;
   top: 0;
@@ -21,7 +21,7 @@
 .airbnb-navbar {
   width: 100%;
   position: relative;
-  min-height: 150px;
+  min-height: 260px;
   transition: min-height 0.3s ease;
 }
 
@@ -48,7 +48,7 @@
   box-shadow: none;
   border-radius: 0;
   min-height: 0;
-  width: 140px;
+  width: 240px;
   transition: top 0.3s ease, transform 0.3s ease, width 0.3s ease;
 }
 
@@ -75,7 +75,7 @@
 
 .airbnb-logo img {
   display: block;
-  height: 138px;
+  height: 240px;
   width: auto;
   transition: height 0.3s ease, transform 0.3s ease;
 }
@@ -88,7 +88,7 @@
   align-items: center;
   padding: 0 1.35rem;
   position: relative;
-  min-height: 150px;
+  min-height: 260px;
   transition: min-height 0.3s ease;
 }
 
@@ -175,14 +175,14 @@
 
 #navbar-container.navbar-gapless .airbnb-navbar,
 #navbar-container.navbar-gapless .airbnb-navbar-inner {
-  min-height: 95px;
+  min-height: 80px;
 }
 
 #navbar-container.navbar-gapless .airbnb-brand-bubble {
   top: 0;
   transform: none;
-  width: 88px;
-  height: 88px;
+  width: 70px;
+  height: 70px;
   padding: 0;
 }
 
@@ -214,27 +214,27 @@
 }
 
 #navbar-container.navbar-gapless .airbnb-logo img {
-  height: 88px;
+  height: 70px;
   margin-top: 0;
   transform: none;
 }
 
 @media (max-width: 1280px) {
   #navbar-container {
-    --navbar-gap: 1.1rem;
+    --navbar-gap: 0.5rem;
   }
 
   .airbnb-navbar,
   .airbnb-navbar-inner {
-    min-height: 136px;
+    min-height: 232px;
   }
 
   .airbnb-brand-bubble {
-    width: 130px;
+    width: 222px;
   }
 
   .airbnb-logo img {
-    height: 130px;
+    height: 222px;
   }
 
   .airbnb-contact-bubble {
@@ -258,36 +258,36 @@
 
   #navbar-container.navbar-gapless .airbnb-navbar,
   #navbar-container.navbar-gapless .airbnb-navbar-inner {
-    min-height: 88px;
+    min-height: 74px;
   }
 
   #navbar-container.navbar-gapless .airbnb-brand-bubble {
-    width: 82px;
-    height: 82px;
+    width: 66px;
+    height: 66px;
   }
 
   #navbar-container.navbar-gapless .airbnb-logo img {
-    height: 82px;
+    height: 66px;
   }
 }
 
 @media (max-width: 1180px) {
   #navbar-container {
-    --navbar-gap: 1rem;
+    --navbar-gap: 0.4rem;
     padding: var(--navbar-gap) 0.95rem var(--navbar-pad-bottom);
   }
 
   .airbnb-navbar,
   .airbnb-navbar-inner {
-    min-height: 122px;
+    min-height: 208px;
   }
 
   .airbnb-brand-bubble {
-    width: 122px;
+    width: 208px;
   }
 
   .airbnb-logo img {
-    height: 120px;
+    height: 204px;
   }
 
   .airbnb-contact-bubble {
@@ -312,21 +312,21 @@
 
 @media (max-width: 1040px) {
   #navbar-container {
-    --navbar-gap: 0.9rem;
+    --navbar-gap: 0.3rem;
     padding: var(--navbar-gap) 1rem var(--navbar-pad-bottom);
   }
 
   .airbnb-navbar,
   .airbnb-navbar-inner {
-    min-height: 118px;
+    min-height: 200px;
   }
 
   .airbnb-brand-bubble {
-    width: 110px;
+    width: 188px;
   }
 
   .airbnb-logo img {
-    height: 110px;
+    height: 188px;
   }
 
   .airbnb-contact-bubble {
@@ -350,36 +350,36 @@
 
   #navbar-container.navbar-gapless .airbnb-navbar,
   #navbar-container.navbar-gapless .airbnb-navbar-inner {
-    min-height: 82px;
+    min-height: 70px;
   }
 
   #navbar-container.navbar-gapless .airbnb-brand-bubble {
-    width: 78px;
-    height: 78px;
+    width: 64px;
+    height: 64px;
   }
 
   #navbar-container.navbar-gapless .airbnb-logo img {
-    height: 78px;
+    height: 64px;
   }
 
   #navbar-container.navbar-gapless .airbnb-contact-bubble {
-    min-height: 62px;
+    min-height: 58px;
     padding: 0.32rem 0.85rem;
   }
 }
 
 @media (max-width: 900px) {
   #navbar-container {
-    --navbar-gap: 0.8rem;
+    --navbar-gap: 0.3rem;
     padding: var(--navbar-gap) 0.9rem var(--navbar-pad-bottom);
   }
 
   .airbnb-navbar {
-    min-height: 114px;
+    min-height: 194px;
   }
 
   .airbnb-navbar-inner {
-    min-height: 114px;
+    min-height: 194px;
     flex-direction: column;
     gap: 0.6rem;
   }
@@ -392,12 +392,12 @@
 
   .airbnb-brand-bubble {
     position: static;
-    width: 112px;
+    width: 192px;
     transform: none;
   }
 
   .airbnb-logo img {
-    height: 112px;
+    height: 192px;
   }
 
   .airbnb-contact-bubble {
@@ -435,13 +435,13 @@
 
 @media (max-width: 780px) {
   #navbar-container {
-    --navbar-gap: 0.7rem;
+    --navbar-gap: 0.25rem;
     padding: var(--navbar-gap) 0.75rem var(--navbar-pad-bottom);
   }
 
   .airbnb-navbar,
   .airbnb-navbar-inner {
-    min-height: 98px;
+    min-height: 168px;
     padding: 0 0.6rem;
   }
 
@@ -452,11 +452,11 @@
   }
 
   .airbnb-brand-bubble {
-    width: 96px;
+    width: 164px;
   }
 
   .airbnb-logo img {
-    height: 94px;
+    height: 160px;
   }
 
   .airbnb-contact-bubble {
@@ -482,13 +482,13 @@
 
 @media (max-width: 640px) {
   #navbar-container {
-    --navbar-gap: 0.65rem;
+    --navbar-gap: 0.2rem;
     padding: var(--navbar-gap) 0.65rem var(--navbar-pad-bottom);
   }
 
   .airbnb-navbar,
   .airbnb-navbar-inner {
-    min-height: 90px;
+    min-height: 154px;
     padding: 0 0.5rem;
   }
 
@@ -499,11 +499,11 @@
   }
 
   .airbnb-brand-bubble {
-    width: 84px;
+    width: 144px;
   }
 
   .airbnb-logo img {
-    height: 84px;
+    height: 144px;
   }
 
   .airbnb-contact-bubble {
@@ -530,7 +530,7 @@
 @media (max-width: 540px) {
   .airbnb-navbar,
   .airbnb-navbar-inner {
-    min-height: 84px;
+    min-height: 144px;
     padding: 0 0.4rem;
   }
 
@@ -541,11 +541,11 @@
   }
 
   .airbnb-brand-bubble {
-    width: 76px;
+    width: 130px;
   }
 
   .airbnb-logo img {
-    height: 76px;
+    height: 130px;
   }
 
   .airbnb-contact-bubble {

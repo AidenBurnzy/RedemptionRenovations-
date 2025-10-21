@@ -269,7 +269,7 @@ textarea {
     padding: clamp(2.9rem, 6.5vw, 4.2rem) clamp(1.5rem, 6vw, 4rem);
     padding-top: clamp(8.5rem, 13vw, 10.5rem);
     text-align: left;
-    background-image: url('../../home-bg-image.jpg'), linear-gradient(135deg, rgba(29, 138, 155, 0.92) 0%, rgba(63, 90, 97, 0.94) 55%, rgba(31, 31, 31, 0.9) 100%);
+    background-image: url('../../home-bg-image.png'), linear-gradient(135deg, rgba(29, 138, 155, 0.92) 0%, rgba(63, 90, 97, 0.94) 55%, rgba(31, 31, 31, 0.9) 100%);
     background-repeat: no-repeat, no-repeat;
     background-position: top center, center;
     background-size: 100% auto, cover;
