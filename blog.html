@@ -19,6 +19,12 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
+                // Remove active-link from all navigation links
+                const allLinks = document.querySelectorAll('#navbar-container .airbnb-link');
+                allLinks.forEach(link => link.classList.remove('active-link'));
+                // Set active link for Blog page only
+                const blogLink = document.querySelector('#navbar-container a[href="blog.html"]');
+                if (blogLink) blogLink.classList.add('active-link');
             });
     </script>
 
@@ -248,7 +254,7 @@
             <div class="footer-brand-block">
                 <span class="footer-eyebrow">Redemption Renovations</span>
                 <h2>Spaces crafted to welcome neighbors in.</h2>
-                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal.</p>
+                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal. Let&apos;s design the kind of home addition or remodel that becomes everyone&apos;s favorite room.</p>
                 <div class="footer-cta">
                     <a class="btn" href="contact.html">Book a Consultation</a>
                 </div>
@@ -260,23 +266,45 @@
                         <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
                         <li><a href="mailto:hello@redemptionrenovations.com">hello@redemptionrenovations.com</a></li>
                         <li><a href="contact.html">Start a project conversation</a></li>
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener">Facebook Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-panel">
+                    <h3>Studio &amp; Hours</h3>
+                    <ul class="footer-links">
+                        <li>Serving greater West Michigan</li>
+                        <li>Weekdays 8am – 6pm</li>
+                        <li>Saturday site visits by appointment</li>
+                        <li>Licensed &amp; insured • License RR-2418</li>
                     </ul>
                 </div>
                 <div class="footer-panel">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="testimonials.html">Testimonials</a></li>
                         <li><a href="blog.html">Blog</a></li>
                     </ul>
                 </div>
+                <div class="footer-panel">
+                    <h3>Service Highlights</h3>
+                    <ul class="footer-links">
+                        <li>Custom kitchens &amp; baths</li>
+                        <li>Whole-home renovations</li>
+                        <li>Additions &amp; outdoor living</li>
+                        <li>Trim &amp; built-in specialties</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
             <span>&copy; <span id="year"></span> Redemption Renovations. All rights reserved.</span>
+            <div class="footer-bottom-links">
+                <span>Crafted for families across West Michigan.</span>
+                <span class="footer-status">Member, Home Builders Association</span>
+            </div>
         </div>
     </footer>
 </body>

@@ -7,8 +7,8 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: clamp(2rem, 4vw, 3rem);
     align-items: center;
-    padding: clamp(11rem, 14vh, 12rem) clamp(1.5rem, 6vw, 4rem) clamp(2rem, 4vh, 3rem);
-    background: linear-gradient(135deg, rgba(29, 138, 155, 0.95) 0%, rgba(63, 90, 97, 0.92) 100%);
+    padding: clamp(14rem, 18vh, 16rem) clamp(1.5rem, 6vw, 4rem) clamp(2rem, 4vh, 3rem);
+    background: linear-gradient(135deg, rgb(218, 231, 233) 0%, rgba(20, 100, 112, 0.98) 50%, rgba(6, 50, 63, 0.96) 100%);
     color: var(--white);
     overflow: hidden;
 }
@@ -209,9 +209,12 @@
 
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
     margin-top: 3rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .value-card {
@@ -257,9 +260,16 @@
     line-height: 1.7;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 1200px) {
+    .values-grid {
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
     .values-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
 }
 
@@ -267,6 +277,12 @@
 .about-team {
     padding: clamp(4rem, 8vh, 6rem) 1.5rem;
     background: var(--white);
+    text-align: center;
+}
+
+.about-team .section-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
 .team-eyebrow {
@@ -289,16 +305,28 @@
     background: var(--teal);
 }
 
+.section-title {
+    text-align: center;
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
 .team-grid-about {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2.5rem;
     margin-top: 3rem;
+    justify-items: center;
 }
 
 .team-member {
     display: flex;
     flex-direction: column;
+    align-items: center;
     background: var(--warm-gray);
     border-radius: calc(var(--radius) * 1.2);
     overflow: hidden;
@@ -314,14 +342,19 @@
 .team-member-image {
     width: 100%;
     height: 320px;
-    overflow: hidden;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    overflow: visible;
 }
 
 .team-member-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 80%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     transition: transform 0.5s ease;
 }
 
@@ -332,6 +365,7 @@
 .team-member-content {
     padding: 2rem 1.75rem;
     background: var(--white);
+    text-align: center;
 }
 
 .team-member-content h3 {
@@ -389,4 +423,63 @@
     .story-content p {
         font-size: 1rem;
     }
+}
+/* Team Section */
+.about-team {
+    padding: clamp(4rem, 8vh, 6rem) 1.5rem;
+    background: var(--white);
+}
+
+.about-team .section-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.team-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+.team-grid-about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    justify-content: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-member {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--warm-gray);
+    border-radius: calc(var(--radius) * 1.2);
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(31, 31, 31, 0.08);
+    transition: all 0.3s ease;
 }
