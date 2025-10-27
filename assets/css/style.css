@@ -1320,9 +1320,13 @@ section {
     transition: transform 0.45s ease, box-shadow 0.45s ease;
     cursor: pointer;
     outline: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 .service-card:hover,
+.service-card:focus,
+.service-card:focus-visible,
 .service-card:focus-within {
     --service-card-peek: var(--service-card-image-height);
     --service-card-elevation: 14px;
@@ -1352,6 +1356,8 @@ section {
 }
 
 .service-card:hover .service-card-media img,
+.service-card:focus .service-card-media img,
+.service-card:focus-visible .service-card-media img,
 .service-card:focus-within .service-card-media img {
     transform: translateY(0);
     filter: saturate(1.05);
@@ -1368,6 +1374,8 @@ section {
 }
 
 .service-card:hover .service-card-media::after,
+.service-card:focus .service-card-media::after,
+.service-card:focus-visible .service-card-media::after,
 .service-card:focus-within .service-card-media::after {
     opacity: 0;
 }
@@ -1397,6 +1405,8 @@ section {
 }
 
 .service-card:hover .service-card-description,
+.service-card:focus .service-card-description,
+.service-card:focus-visible .service-card-description,
 .service-card:focus-within .service-card-description {
     max-height: 220px;
     opacity: 1;
