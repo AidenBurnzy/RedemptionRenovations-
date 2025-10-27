@@ -19,10 +19,8 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                // Remove active-link from all navigation links
                 const allLinks = document.querySelectorAll('#navbar-container .airbnb-link');
                 allLinks.forEach(link => link.classList.remove('active-link'));
-                // Set active link for Services page only
                 const servicesLink = document.querySelector('#navbar-container a[href="services.html"]');
                 if (servicesLink) servicesLink.classList.add('active-link');
             });
@@ -35,35 +33,38 @@
         </div>
         <header class="mobile-hero">
             <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Craftsperson installing trim">
+                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Construction work">
             </figure>
-            <h1>Services that fit your home</h1>
-            <p>From additions to fine trim, we tailor every project so it feels like it has always belonged.</p>
+            <h1>Our Services</h1>
+            <p>Quality residential construction and remodeling with a focus on rough in framing, decking, custom built-ins, and trim work.</p>
             <div class="mobile-actions">
-                <a class="mobile-primary" href="contact.html">Request a project chat</a>
-                <a class="mobile-secondary" href="gallery.html">See finished work</a>
+                <a class="mobile-primary" href="contact.html">Request Information</a>
+                <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
             </div>
         </header>
         
         <section class="mobile-section">
-            <h2>Top services</h2>
+            <h2>What We Do</h2>
             <ul class="mobile-list">
-                <li>Home additions and in-law suites</li>
-                <li>Garage builds with smart storage</li>
-                <li>Decking systems in composite or wood</li>
-                <li>Kitchens and bathrooms with custom cabinetry</li>
-                <li>Windows, doors, and exterior siding</li>
-                <li>Trim, built-ins, and custom carpentry</li>
+                <li>Home additions</li>
+                <li>Garage builds</li>
+                <li>Windows and doors</li>
+                <li>Siding installation and repair</li>
+                <li>Decking systems</li>
+                <li>Kitchen and bathroom remodels</li>
+                <li>Trim and cabinetry installation</li>
+                <li>Custom carpentry</li>
+                <li>General contracting</li>
             </ul>
         </section>
 
         <div class="mobile-footer">
             <div class="mobile-footer-brand">Redemption Renovations</div>
-            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
+            <p class="mobile-footer-text">Restoring Homes and Rebuilding Lives through quality residential construction and remodeling.</p>
             <div class="mobile-footer-links">
-                <a href="tel:15551234567">Call (555) 123-4567</a>
-                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
-                <a href="contact.html">Start a project</a>
+                <a href="tel:6163759073">Call 616-375-9073</a>
+                <a href="mailto:jake@redemptionrenovationsgr.com">Email Us</a>
+                <a href="contact.html">Request Information</a>
             </div>
             <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
         </div>
@@ -81,7 +82,7 @@
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="gallery.html">Gallery</a>
+                <a href="projectsGallery.html">Gallery</a>
                 <a href="testimonials.html">Testimonials</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
@@ -90,183 +91,99 @@
     </div>
 
     <main>
-        <section class="services-hero">
+        <section class="services-hero" style="padding-top: clamp(16rem, 22vh, 20rem);">
             <div class="services-hero-content">
-                <h1>Services That Fit Your Home</h1>
-                <p>We specialize in projects that blend craftsmanship and comfort. Every service begins with listening and ends with a space that feels right for the way you live.</p>
+                <h1>Our Services</h1>
+                <p>Quality residential construction and remodeling services. We specialize in rough in framing, decking, custom built-ins, and trim work.</p>
             </div>
         </section>
 
         <section class="services-main">
             <div class="section-inner">
                 <div class="services-intro">
-                    <span class="services-eyebrow">Our Expertise</span>
-                    <h2>Comprehensive Renovation Services</h2>
-                    <p>From concept to completion, we handle every aspect of your renovation with care, precision, and transparent communication.</p>
+                    <span class="services-eyebrow">What We Do</span>
+                    <h2>Residential Construction & Remodeling</h2>
+                    <p>From home additions to custom carpentry, we handle a variety of residential construction and remodeling projects.</p>
                 </div>
 
                 <div class="services-grid">
                     <article class="service-detail-card">
-                        <div class="service-detail-number">01</div>
                         <figure class="service-detail-image">
-                            <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=1200&q=80" alt="Home addition" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Home addition" loading="lazy">
                         </figure>
                         <div class="service-detail-content">
                             <h3>Home Additions</h3>
-                            <p>Expand your living space with custom additions that seamlessly integrate with your existing home. From sunrooms to second-story expansions, we design and build with your lifestyle in mind.</p>
-                            <ul class="service-features">
-                                <li>In-law suites & guest rooms</li>
-                                <li>Family room expansions</li>
-                                <li>Second-story additions</li>
-                                <li>Sunroom & mudroom additions</li>
-                            </ul>
+                            <p>Expand your living space with quality home additions that blend seamlessly with your existing home.</p>
                         </div>
                     </article>
 
                     <article class="service-detail-card">
-                        <div class="service-detail-number">02</div>
                         <figure class="service-detail-image">
-                            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c0c?auto=format&fit=crop&w=1200&q=80" alt="Kitchen remodel" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80" alt="Garage build" loading="lazy">
                         </figure>
                         <div class="service-detail-content">
-                            <h3>Kitchen Remodels</h3>
-                            <p>Transform your kitchen into the heart of your home. We create functional, beautiful spaces with custom cabinetry, quality materials, and thoughtful layouts.</p>
-                            <ul class="service-features">
-                                <li>Custom cabinetry & islands</li>
-                                <li>Countertop installation</li>
-                                <li>Lighting & electrical upgrades</li>
-                                <li>Open concept conversions</li>
-                            </ul>
+                            <h3>Garage Builds</h3>
+                            <p>Custom garage construction to meet your storage and workspace needs.</p>
                         </div>
                     </article>
 
                     <article class="service-detail-card">
-                        <div class="service-detail-number">03</div>
                         <figure class="service-detail-image">
-                            <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80" alt="Bathroom renovation" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80" alt="Windows and doors" loading="lazy">
                         </figure>
                         <div class="service-detail-content">
-                            <h3>Bathroom Renovations</h3>
-                            <p>Create your personal spa retreat with luxurious fixtures, custom tile work, and smart storage solutions that maximize space and style.</p>
-                            <ul class="service-features">
-                                <li>Walk-in showers & tubs</li>
-                                <li>Custom vanities & storage</li>
-                                <li>Tile & flooring installation</li>
-                                <li>Modern fixture upgrades</li>
-                            </ul>
+                            <h3>Windows & Doors</h3>
+                            <p>Professional window and door installation for your home.</p>
                         </div>
                     </article>
 
                     <article class="service-detail-card">
-                        <div class="service-detail-number">04</div>
                         <figure class="service-detail-image">
-                            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="Outdoor deck" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80" alt="Siding" loading="lazy">
                         </figure>
                         <div class="service-detail-content">
-                            <h3>Outdoor Living Spaces</h3>
-                            <p>Extend your home outdoors with custom decks, patios, and covered porches designed for Midwest weather and year-round enjoyment.</p>
-                            <ul class="service-features">
-                                <li>Composite & wood decking</li>
-                                <li>Covered porches & pergolas</li>
-                                <li>Outdoor kitchens & bars</li>
-                                <li>Built-in seating & lighting</li>
-                            </ul>
+                            <h3>Siding Installation & Repair</h3>
+                            <p>Quality siding work to protect and beautify your home.</p>
                         </div>
                     </article>
 
                     <article class="service-detail-card">
-                        <div class="service-detail-number">05</div>
                         <figure class="service-detail-image">
-                            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="Custom built-ins" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="Deck" loading="lazy">
                         </figure>
                         <div class="service-detail-content">
-                            <h3>Custom Carpentry & Built-ins</h3>
-                            <p>Handcrafted woodwork that adds character and functionality to any room. From entertainment centers to home offices, we build pieces that last.</p>
-                            <ul class="service-features">
-                                <li>Built-in shelving & cabinets</li>
-                                <li>Crown molding & trim work</li>
-                                <li>Fireplace surrounds</li>
-                                <li>Custom closet systems</li>
-                            </ul>
+                            <h3>Decking Systems</h3>
+                            <p>Quality deck construction and installation for outdoor living spaces.</p>
                         </div>
                     </article>
 
                     <article class="service-detail-card">
-                        <div class="service-detail-number">06</div>
                         <figure class="service-detail-image">
-                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80" alt="Exterior siding" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=1200&q=80" alt="Kitchen remodel" loading="lazy">
                         </figure>
                         <div class="service-detail-content">
-                            <h3>Exterior Improvements</h3>
-                            <p>Enhance your home's curb appeal and protection with quality siding, windows, and door installations that stand up to the elements.</p>
-                            <ul class="service-features">
-                                <li>Siding installation & repair</li>
-                                <li>Window & door replacement</li>
-                                <li>Garage construction</li>
-                                <li>Exterior trim & accents</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="services-process">
-            <div class="section-inner">
-                <div class="process-header">
-                    <span class="process-eyebrow">Our Approach</span>
-                    <h2>A Process Built on Communication</h2>
-                    <p>From initial consultation to final walkthrough, we keep you informed and involved every step of the way.</p>
-                </div>
-
-                <div class="process-timeline">
-                    <article class="process-step-card">
-                        <div class="process-step-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M8 12h8M12 8v8"/>
-                            </svg>
-                        </div>
-                        <div class="process-step-content">
-                            <h3>1. Discovery</h3>
-                            <p>We start with a conversation about your goals, budget, and timeline. Walk through your space together and discuss possibilities.</p>
+                            <h3>Kitchen & Bathroom Remodels</h3>
+                            <p>Transform your kitchen and bathroom spaces with quality remodeling work.</p>
                         </div>
                     </article>
 
-                    <article class="process-step-card">
-                        <div class="process-step-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                                <path d="M9 3v18M3 9h18M3 15h18"/>
-                            </svg>
-                        </div>
-                        <div class="process-step-content">
-                            <h3>2. Design & Planning</h3>
-                            <p>Develop detailed plans, select materials, and finalize the scope. We provide transparent pricing and realistic timelines.</p>
+                    <article class="service-detail-card">
+                        <figure class="service-detail-image">
+                            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="Trim work" loading="lazy">
+                        </figure>
+                        <div class="service-detail-content">
+                            <h3>Trim & Cabinetry Installation</h3>
+                            <p>Detailed trim work and cabinetry installation that adds character to your home.</p>
                         </div>
                     </article>
 
-                    <article class="process-step-card">
-                        <div class="process-step-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                            </svg>
-                        </div>
-                        <div class="process-step-content">
-                            <h3>3. Construction</h3>
-                            <p>Our skilled crew brings your vision to life with quality craftsmanship, tidy job sites, and regular progress updates.</p>
-                        </div>
-                    </article>
-
-                    <article class="process-step-card">
-                        <div class="process-step-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="20 6 9 17 4 12"/>
-                            </svg>
-                        </div>
-                        <div class="process-step-content">
-                            <h3>4. Completion & Support</h3>
-                            <p>Final walkthrough, quality checks, and ongoing support. We're here for touch-ups and maintenance guidance.</p>
+                    <article class="service-detail-card">
+                        <figure class="service-detail-image">
+                            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="Custom carpentry" loading="lazy">
+                        </figure>
+                        <div class="service-detail-content">
+                            <h3>Custom Carpentry</h3>
+                            <p>Skilled custom carpentry for unique projects and special requests.</p>
                         </div>
                     </article>
                 </div>
@@ -276,12 +193,12 @@
         <section class="lead-strip">
             <div class="section-inner cta-highlight-inner">
                 <div class="cta-highlight-content">
-                    <span class="cta-highlight-eyebrow">Ready to Get Started?</span>
+                    <span class="cta-highlight-eyebrow">Ready to Start?</span>
                     <h2>Let's Discuss Your Project</h2>
-                    <p>Tell us about your home, your goals, and what would make life easier. We'll help you map out a practical plan that fits your budget and timeline.</p>
+                    <p>Reach out to request information or ask questions about your residential construction or remodeling needs.</p>
                     <div class="cta-highlight-actions">
-                        <a class="btn" href="contact.html">Schedule a Consultation</a>
-                        <a class="btn secondary" href="gallery.html">View Our Portfolio</a>
+                        <a class="btn" href="contact.html">Request Information</a>
+                        <a class="btn secondary" href="projectsGallery.html">View Our Work</a>
                     </div>
                 </div>
             </div>
@@ -292,29 +209,25 @@
         <div class="footer-top">
             <div class="footer-brand-block">
                 <span class="footer-eyebrow">Redemption Renovations</span>
-                <h2>Spaces crafted to welcome neighbors in.</h2>
-                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal. Let&apos;s design the kind of home addition or remodel that becomes everyone&apos;s favorite room.</p>
+                <h2>Building relationships through quality work.</h2>
+                <p>We're here for more than just construction. We're here for community, to build relationships, and to spread kindness.</p>
                 <div class="footer-cta">
-                    <a class="btn" href="contact.html">Book a Consultation</a>
+                    <a class="btn" href="contact.html">Get in Touch</a>
                 </div>
             </div>
             <div class="footer-panels">
                 <div class="footer-panel">
                     <h3>Connect</h3>
                     <ul class="footer-links">
-                        <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
-                        <li><a href="mailto:hello@redemptionrenovations.com">hello@redemptionrenovations.com</a></li>
-                        <li><a href="contact.html">Start a project conversation</a></li>
-                        <li><a href="https://facebook.com" target="_blank" rel="noopener">Facebook Community</a></li>
+                        <li><a href="tel:6163759073">Call 616-375-9073</a></li>
+                        <li><a href="mailto:jake@redemptionrenovationsgr.com">jake@redemptionrenovationsgr.com</a></li>
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a></li>
                     </ul>
                 </div>
                 <div class="footer-panel">
-                    <h3>Studio &amp; Hours</h3>
+                    <h3>Location</h3>
                     <ul class="footer-links">
-                        <li>Serving greater West Michigan</li>
-                        <li>Weekdays 8am – 6pm</li>
-                        <li>Saturday site visits by appointment</li>
-                        <li>Licensed &amp; insured • License RR-2418</li>
+                        <li>Serving Georgetown Township and surrounding areas</li>
                     </ul>
                 </div>
                 <div class="footer-panel">
@@ -322,28 +235,24 @@
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="projectsGallery.html">Gallery</a></li>
                         <li><a href="testimonials.html">Testimonials</a></li>
                         <li><a href="blog.html">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-panel">
-                    <h3>Service Highlights</h3>
+                    <h3>Our Specialties</h3>
                     <ul class="footer-links">
-                        <li>Custom kitchens &amp; baths</li>
-                        <li>Whole-home renovations</li>
-                        <li>Additions &amp; outdoor living</li>
-                        <li>Trim &amp; built-in specialties</li>
+                        <li>Rough in framing</li>
+                        <li>Decking systems</li>
+                        <li>Custom built-ins</li>
+                        <li>Trim work</li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
             <span>&copy; <span id="year"></span> Redemption Renovations. All rights reserved.</span>
-            <div class="footer-bottom-links">
-                <span>Crafted for families across West Michigan.</span>
-                <span class="footer-status">Member, Home Builders Association</span>
-            </div>
         </div>
     </footer>
 </body>
