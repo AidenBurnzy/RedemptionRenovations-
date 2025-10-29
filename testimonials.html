@@ -29,56 +29,183 @@
     <div class="mobile-wrapper">
         <div class="mobile-top-bar">
             <span class="mobile-top-brand">Redemption Renovations</span>
-            <span class="mobile-top-page">Testimonials</span>
+            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+                <span class="mobile-menu-icon"></span>
+            </button>
         </div>
-        <header class="mobile-hero">
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Happy homeowners">
-            </figure>
-            <h1>What People Say</h1>
-            <p>We're building a reputation on quality work and genuine relationships.</p>
-            <div class="mobile-actions">
-                <a class="mobile-primary" href="contact.html">Work With Us</a>
-                <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
-            </div>
-        </header>
-        
-        <section class="mobile-section">
-            <h2>Share Your Experience</h2>
-            <p class="mobile-microcopy">Have you worked with us? We'd love to hear about your experience.</p>
-            <a class="mobile-primary" href="mailto:jake@redemptionrenovationsgr.com">Share Your Feedback</a>
-        </section>
-
-        <div class="mobile-footer">
-            <div class="mobile-footer-brand">Redemption Renovations</div>
-            <p class="mobile-footer-text">Restoring Homes and Rebuilding Lives through quality residential construction and remodeling.</p>
-            <div class="mobile-footer-links">
-                <a href="tel:6163759073">Call 616-375-9073</a>
-                <a href="mailto:jake@redemptionrenovationsgr.com">Email Us</a>
-                <a href="contact.html">Request Information</a>
-            </div>
-            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
-        </div>
-        
-        <div class="mobile-nav-overlay" data-menu-overlay></div>
-        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
-            <span class="mobile-menu-icon"></span>
-        </button>
-        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+        <nav class="mobile-nav-panel" id="mobileNav" data-menu-sheet>
             <div class="mobile-nav-header">
-                <span class="mobile-nav-title">Browse the site</span>
-                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+                <span class="mobile-nav-title">Navigate</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
             </div>
             <div class="mobile-nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="projectsGallery.html">Gallery</a>
+                <a href="projectsGallery.html">Projects</a>
                 <a href="testimonials.html">Testimonials</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
             </div>
         </nav>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <header class="mobile-hero">
+            <img src="logo.png" alt="Redemption Renovations" class="mobile-brand-logo">
+            <div class="mobile-hero-welcome">
+                <h1>What People Say</h1>
+                <p>We're building a reputation on quality work and genuine relationships.</p>
+                <div class="mobile-actions">
+                    <a class="mobile-primary" href="contact.html">Work With Us</a>
+                    <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
+                </div>
+            </div>
+        </header>
+        
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">Client Reviews</span>
+            <h2>What Our Clients Say</h2>
+            <p>We're building a reputation on quality work, integrity, and genuine relationships. Here's what homeowners are saying about working with us.</p>
+        </section>
+
+        <section class="mobile-section" style="background: var(--warm-gray);">
+            <article class="mobile-testimonial-card">
+                <div class="mobile-testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="mobile-testimonial-quote">"From start to finish, the team was professional, punctual, and incredibly skilled. Our kitchen looks amazing and the process was smooth."</p>
+                <div class="mobile-testimonial-author">
+                    <strong>Sarah M.</strong>
+                    <span>Kitchen Remodel, Grand Rapids</span>
+                </div>
+            </article>
+
+            <article class="mobile-testimonial-card">
+                <div class="mobile-testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="mobile-testimonial-quote">"We were impressed by the attention to detail and honest communication throughout our basement renovation. Highly recommend!"</p>
+                <div class="mobile-testimonial-author">
+                    <strong>Michael T.</strong>
+                    <span>Finished Basement, Kentwood</span>
+                </div>
+            </article>
+
+            <article class="mobile-testimonial-card">
+                <div class="mobile-testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="mobile-testimonial-quote">"The custom built-ins exceeded our expectations. The craftsmanship is outstanding and they stayed on budget and timeline."</p>
+                <div class="mobile-testimonial-author">
+                    <strong>Jennifer K.</strong>
+                    <span>Custom Built-ins, Wyoming</span>
+                </div>
+            </article>
+
+            <article class="mobile-testimonial-card">
+                <div class="mobile-testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="mobile-testimonial-quote">"Our deck is beautiful and built to last. The team was respectful of our property and cleaned up thoroughly every day."</p>
+                <div class="mobile-testimonial-author">
+                    <strong>David R.</strong>
+                    <span>Outdoor Deck, Walker</span>
+                </div>
+            </article>
+        </section>
+
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">Why Work With Us</span>
+            <h2>What Sets Us Apart</h2>
+            
+            <div class="mobile-value-card">
+                <div class="mobile-value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3>Trustworthy</h3>
+                <p>We do what we say we're going to do, with honest communication throughout your project.</p>
+            </div>
+
+            <div class="mobile-value-card">
+                <div class="mobile-value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                </div>
+                <h3>Quality Work</h3>
+                <p>Hardworking craftsmanship in every project, from rough in framing to detailed trim work.</p>
+            </div>
+
+            <div class="mobile-value-card">
+                <div class="mobile-value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h3>Community Focus</h3>
+                <p>We're here to build relationships and spread kindness in our community.</p>
+            </div>
+        </section>
+
+        <section class="mobile-section" style="background: linear-gradient(135deg, rgba(29,138,155,0.1), rgba(242,243,244,1));">
+            <span class="mobile-eyebrow">Share Your Experience</span>
+            <h2>Have You Worked With Us?</h2>
+            <p>We'd love to hear about your experience. Your feedback helps us improve and helps others learn what it's like to work with Redemption Renovations.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="mailto:hello@redemptionrenovations.com">Send Your Feedback</a>
+                <a class="mobile-secondary" href="https://facebook.com" target="_blank" rel="noopener">Facebook Review</a>
+            </div>
+        </section>
+
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">Ready to Start?</span>
+            <h2>Let's Work Together</h2>
+            <p>Reach out to request information or discuss your residential construction or remodeling project.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Request Information</a>
+                <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
+            </div>
+        </section>
+
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand-block">
+                <span class="mobile-footer-eyebrow">Redemption Renovations</span>
+                <h3>Spaces crafted to welcome neighbors in.</h3>
+                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal.</p>
+            </div>
+            
+            <div class="mobile-footer-panels">
+                <div class="mobile-footer-panel">
+                    <h4>Connect</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
+                        <li><a href="mailto:hello@redemptionrenovations.com">Email us</a></li>
+                        <li><a href="contact.html">Start a project</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mobile-footer-panel">
+                    <h4>Studio & Hours</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li>West Michigan</li>
+                        <li>Weekdays 8am – 6pm</li>
+                        <li>Licensed & insured</li>
+                    </ul>
+                </div>
+                
+                <div class="mobile-footer-panel">
+                    <h4>Quick Links</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projectsGallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
     </div>
 
     <main>

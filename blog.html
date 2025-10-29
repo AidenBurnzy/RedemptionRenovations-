@@ -29,50 +29,157 @@
     <div class="mobile-wrapper">
         <div class="mobile-top-bar">
             <span class="mobile-top-brand">Redemption Renovations</span>
-            <span class="mobile-top-page">Blog</span>
+            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+                <span class="mobile-menu-icon"></span>
+            </button>
         </div>
-        <header class="mobile-hero">
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80" alt="Notebook and coffee">
-            </figure>
-            <h1>News & Updates</h1>
-            <p>Stay updated on our latest projects, tips, and company news.</p>
-            <div class="mobile-actions">
-                <a class="mobile-primary" href="contact.html">Get in Touch</a>
-                <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
-            </div>
-        </header>
-
-        <div class="mobile-footer">
-            <div class="mobile-footer-brand">Redemption Renovations</div>
-            <p class="mobile-footer-text">Restoring Homes and Rebuilding Lives through quality residential construction and remodeling.</p>
-            <div class="mobile-footer-links">
-                <a href="tel:6163759073">Call 616-375-9073</a>
-                <a href="mailto:jake@redemptionrenovationsgr.com">Email Us</a>
-                <a href="contact.html">Request Information</a>
-            </div>
-            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
-        </div>
-        
-        <div class="mobile-nav-overlay" data-menu-overlay></div>
-        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
-            <span class="mobile-menu-icon"></span>
-        </button>
-        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+        <nav class="mobile-nav-panel" id="mobileNav" data-menu-sheet>
             <div class="mobile-nav-header">
-                <span class="mobile-nav-title">Browse the site</span>
-                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+                <span class="mobile-nav-title">Navigate</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
             </div>
             <div class="mobile-nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="projectsGallery.html">Gallery</a>
+                <a href="projectsGallery.html">Projects</a>
                 <a href="testimonials.html">Testimonials</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
             </div>
         </nav>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <header class="mobile-hero">
+            <img src="logo.png" alt="Redemption Renovations" class="mobile-brand-logo">
+            <div class="mobile-hero-welcome">
+                <h1>News & Updates</h1>
+                <p>Stay updated on our latest projects, tips, and company news.</p>
+                <div class="mobile-actions">
+                    <a class="mobile-primary" href="contact.html">Get in Touch</a>
+                    <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
+                </div>
+            </div>
+        </header>
+        
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">Latest Updates</span>
+            <h2>Recent News & Tips</h2>
+            <p>Stay informed about our latest projects, helpful renovation tips, and company updates.</p>
+        </section>
+
+        <section class="mobile-section" style="background: var(--warm-gray);">
+            <article class="mobile-blog-card">
+                <figure class="mobile-blog-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=800&q=80" alt="Kitchen renovation trends" loading="lazy">
+                </figure>
+                <div class="mobile-blog-content">
+                    <span class="mobile-blog-date">March 15, 2025</span>
+                    <h3>Top Kitchen Renovation Trends for 2025</h3>
+                    <p>Discover the latest design trends that are transforming modern kitchens, from smart storage to sustainable materials.</p>
+                    <a href="#" class="mobile-blog-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="mobile-blog-card">
+                <figure class="mobile-blog-image">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80" alt="Bathroom remodel planning" loading="lazy">
+                </figure>
+                <div class="mobile-blog-content">
+                    <span class="mobile-blog-date">March 8, 2025</span>
+                    <h3>Planning Your Bathroom Remodel: A Step-by-Step Guide</h3>
+                    <p>Learn how to plan a successful bathroom renovation, from budgeting to selecting fixtures and finishes.</p>
+                    <a href="#" class="mobile-blog-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="mobile-blog-card">
+                <figure class="mobile-blog-image">
+                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" alt="Deck maintenance tips" loading="lazy">
+                </figure>
+                <div class="mobile-blog-content">
+                    <span class="mobile-blog-date">February 28, 2025</span>
+                    <h3>Essential Deck Maintenance Tips for Spring</h3>
+                    <p>Prepare your outdoor deck for the warmer months with these maintenance tips to keep it looking great.</p>
+                    <a href="#" class="mobile-blog-link">Read More →</a>
+                </div>
+            </article>
+
+            <article class="mobile-blog-card">
+                <figure class="mobile-blog-image">
+                    <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=800&q=80" alt="Home addition planning" loading="lazy">
+                </figure>
+                <div class="mobile-blog-content">
+                    <span class="mobile-blog-date">February 20, 2025</span>
+                    <h3>Is a Home Addition Right for You?</h3>
+                    <p>Explore the benefits of adding square footage to your home versus moving to a new property.</p>
+                    <a href="#" class="mobile-blog-link">Read More →</a>
+                </div>
+            </article>
+        </section>
+
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">Stay Connected</span>
+            <h2>Subscribe to Updates</h2>
+            <p>Get renovation tips, project spotlights, and company news delivered to your inbox.</p>
+            <form class="mobile-newsletter-form" style="margin-top: 1.5rem;">
+                <input type="email" placeholder="Enter your email" required style="width: 100%; padding: 1rem; border: 1px solid #d0d5d8; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 1rem; margin-bottom: 1rem;">
+                <button type="submit" class="mobile-primary" style="width: 100%; border: none; cursor: pointer;">Subscribe</button>
+            </form>
+        </section>
+
+        <section class="mobile-section" style="background: linear-gradient(135deg, rgba(29,138,155,0.1), rgba(242,243,244,1));">
+            <span class="mobile-eyebrow">Have Questions?</span>
+            <h2>Get in Touch</h2>
+            <p>Reach out to request information or discuss your residential construction or remodeling project.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Request Information</a>
+                <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
+            </div>
+        </section>
+
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand-block">
+                <span class="mobile-footer-eyebrow">Redemption Renovations</span>
+                <h3>Spaces crafted to welcome neighbors in.</h3>
+                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal.</p>
+            </div>
+            
+            <div class="mobile-footer-panels">
+                <div class="mobile-footer-panel">
+                    <h4>Connect</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
+                        <li><a href="mailto:hello@redemptionrenovations.com">Email us</a></li>
+                        <li><a href="contact.html">Start a project</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mobile-footer-panel">
+                    <h4>Studio & Hours</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li>West Michigan</li>
+                        <li>Weekdays 8am – 6pm</li>
+                        <li>Licensed & insured</li>
+                    </ul>
+                </div>
+                
+                <div class="mobile-footer-panel">
+                    <h4>Quick Links</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projectsGallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
     </div>
 
     <main>

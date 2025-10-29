@@ -29,64 +29,209 @@
     <div class="mobile-wrapper">
         <div class="mobile-top-bar">
             <span class="mobile-top-brand">Redemption Renovations</span>
-            <span class="mobile-top-page">Services</span>
+            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+                <span class="mobile-menu-icon"></span>
+            </button>
         </div>
-        <header class="mobile-hero">
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="Construction work">
-            </figure>
-            <h1>Our Services</h1>
-            <p>Quality residential construction and remodeling with a focus on rough in framing, decking, custom built-ins, and trim work.</p>
-            <div class="mobile-actions">
-                <a class="mobile-primary" href="contact.html">Request Information</a>
-                <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
-            </div>
-        </header>
-        
-        <section class="mobile-section">
-            <h2>What We Do</h2>
-            <ul class="mobile-list">
-                <li>Kitchen transformations</li>
-                <li>Bath retreats</li>
-                <li>Whole-home renovations</li>
-                <li>Finished basements</li>
-                <li>Custom built-ins</li>
-                <li>Outdoor living spaces</li>
-                <li>Additions & extensions</li>
-                <li>Trim & millwork detailing</li>
-            </ul>
-        </section>
-
-        <div class="mobile-footer">
-            <div class="mobile-footer-brand">Redemption Renovations</div>
-            <p class="mobile-footer-text">Restoring Homes and Rebuilding Lives through quality residential construction and remodeling.</p>
-            <div class="mobile-footer-links">
-                <a href="tel:6163759073">Call 616-375-9073</a>
-                <a href="mailto:jake@redemptionrenovationsgr.com">Email Us</a>
-                <a href="contact.html">Request Information</a>
-            </div>
-            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
-        </div>
-        
-        <div class="mobile-nav-overlay" data-menu-overlay></div>
-        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
-            <span class="mobile-menu-icon"></span>
-        </button>
-        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+        <nav class="mobile-nav-panel" id="mobileNav" data-menu-sheet>
             <div class="mobile-nav-header">
-                <span class="mobile-nav-title">Browse the site</span>
-                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+                <span class="mobile-nav-title">Navigate</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
             </div>
             <div class="mobile-nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="projectsGallery.html">Gallery</a>
+                <a href="projectsGallery.html">Projects</a>
                 <a href="testimonials.html">Testimonials</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
             </div>
         </nav>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <header class="mobile-hero">
+            <img src="logo.png" alt="Redemption Renovations" class="mobile-brand-logo">
+            <div class="mobile-hero-welcome">
+                <h1>Our Services</h1>
+                <p>Quality residential construction and remodeling with expert craftsmanship.</p>
+                <div class="mobile-actions">
+                    <a class="mobile-primary" href="contact.html">Request Information</a>
+                    <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
+                </div>
+            </div>
+        </header>
+        
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">What We Do</span>
+            <h2>Residential Construction & Remodeling</h2>
+            <p>From home additions to custom carpentry, we handle a variety of residential construction and remodeling projects.</p>
+        </section>
+
+        <section class="mobile-section" style="background: var(--warm-gray); padding-top: 2rem;">
+            <article class="mobile-service-card">
+                <figure class="mobile-service-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-0ef3c08c0632?auto=format&fit=crop&w=1200&q=80" alt="Renovated kitchen with white cabinetry" loading="lazy">
+                </figure>
+                <div class="mobile-service-content">
+                    <h3>Kitchen Transformations</h3>
+                    <p>Full-scale kitchen remodels that blend durable materials, smart storage, and custom cabinetry so every gathering flows with ease.</p>
+                </div>
+            </article>
+
+            <article class="mobile-service-card">
+                <figure class="mobile-service-image">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80" alt="Serene bathroom with a freestanding tub" loading="lazy">
+                </figure>
+                <div class="mobile-service-content">
+                    <h3>Bath Retreats</h3>
+                    <p>Spa-inspired bathrooms designed with statement tile, luxe fixtures, and thoughtful lighting to deliver daily comfort.</p>
+                </div>
+            </article>
+
+            <article class="mobile-service-card">
+                <figure class="mobile-service-image">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80" alt="Construction team reviewing renovation plans" loading="lazy">
+                </figure>
+                <div class="mobile-service-content">
+                    <h3>Whole-Home Renovations</h3>
+                    <p>Coordinated updates that unify finishes, improve flow, and modernize systems while respecting the character of your home.</p>
+                </div>
+            </article>
+
+            <article class="mobile-service-card">
+                <figure class="mobile-service-image">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80" alt="Finished basement lounge with sectional seating" loading="lazy">
+                </figure>
+                <div class="mobile-service-content">
+                    <h3>Finished Basements</h3>
+                    <p>Transform lower levels into bright, multi-purpose spaces with moisture management, acoustics, and storage planned in.</p>
+                </div>
+            </article>
+
+            <article class="mobile-service-card">
+                <figure class="mobile-service-image">
+                    <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="Custom built-in shelving styled with books" loading="lazy">
+                </figure>
+                <div class="mobile-service-content">
+                    <h3>Custom Built-ins</h3>
+                    <p>Tailored storage solutions for mudrooms, media walls, and libraries that keep clutter at bay while showcasing craftsmanship.</p>
+                </div>
+            </article>
+
+            <article class="mobile-service-card">
+                <figure class="mobile-service-image">
+                    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="Backyard deck with outdoor kitchen" loading="lazy">
+                </figure>
+                <div class="mobile-service-content">
+                    <h3>Outdoor Living Spaces</h3>
+                    <p>Decks, covered porches, and hardscapes engineered for four-season enjoyment with durable Midwest-friendly materials.</p>
+                </div>
+            </article>
+
+            <article class="mobile-service-card">
+                <figure class="mobile-service-image">
+                    <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=1200&q=80" alt="New home addition exterior" loading="lazy">
+                </figure>
+                <div class="mobile-service-content">
+                    <h3>Additions & Extensions</h3>
+                    <p>Seamless expansions for growing families, from master suites to sunrooms, integrated with your existing roofline and aesthetic.</p>
+                </div>
+            </article>
+
+            <article class="mobile-service-card">
+                <figure class="mobile-service-image">
+                    <img src="https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=1200&q=80" alt="Precision trim and millwork detail" loading="lazy">
+                </figure>
+                <div class="mobile-service-content">
+                    <h3>Trim & Millwork Detailing</h3>
+                    <p>Crown molding, wainscoting, and baseboards that bring polish and character to any room, finished with precision.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="mobile-section" style="background: linear-gradient(135deg, rgba(29,138,155,0.1), rgba(242,243,244,1));">
+            <span class="mobile-eyebrow">Our Process</span>
+            <h2>How We Work</h2>
+            <div class="mobile-process-step">
+                <span class="mobile-step-number">01</span>
+                <h3>Discovery Call</h3>
+                <p>We start with a conversation to understand your vision, budget, and timeline.</p>
+            </div>
+            <div class="mobile-process-step">
+                <span class="mobile-step-number">02</span>
+                <h3>Site Visit & Estimate</h3>
+                <p>We tour the space, take measurements, and provide a detailed project estimate.</p>
+            </div>
+            <div class="mobile-process-step">
+                <span class="mobile-step-number">03</span>
+                <h3>Design & Planning</h3>
+                <p>Together we finalize materials, fixtures, and layouts before construction begins.</p>
+            </div>
+            <div class="mobile-process-step">
+                <span class="mobile-step-number">04</span>
+                <h3>Build & Communicate</h3>
+                <p>We keep you updated with regular check-ins and photo updates throughout construction.</p>
+            </div>
+            <div class="mobile-process-step">
+                <span class="mobile-step-number">05</span>
+                <h3>Final Walkthrough</h3>
+                <p>We review every detail together and ensure you're completely satisfied before closing out.</p>
+            </div>
+        </section>
+
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">Ready to Begin?</span>
+            <h2>Let's Talk About Your Project</h2>
+            <p>Whether you have blueprints ready or just a rough idea, we're here to help bring your vision to life.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Request a Consultation</a>
+                <a class="mobile-secondary" href="projectsGallery.html">See Our Portfolio</a>
+            </div>
+        </section>
+
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand-block">
+                <span class="mobile-footer-eyebrow">Redemption Renovations</span>
+                <h3>Spaces crafted to welcome neighbors in.</h3>
+                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal.</p>
+            </div>
+            
+            <div class="mobile-footer-panels">
+                <div class="mobile-footer-panel">
+                    <h4>Connect</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
+                        <li><a href="mailto:hello@redemptionrenovations.com">Email us</a></li>
+                        <li><a href="contact.html">Start a project</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mobile-footer-panel">
+                    <h4>Studio & Hours</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li>West Michigan</li>
+                        <li>Weekdays 8am – 6pm</li>
+                        <li>Licensed & insured</li>
+                    </ul>
+                </div>
+                
+                <div class="mobile-footer-panel">
+                    <h4>Quick Links</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projectsGallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
     </div>
 
     <main>

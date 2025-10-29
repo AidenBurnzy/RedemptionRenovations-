@@ -31,63 +31,176 @@
     <div class="mobile-wrapper">
         <div class="mobile-top-bar">
             <span class="mobile-top-brand">Redemption Renovations</span>
-            <span class="mobile-top-page">About</span>
+            <button class="mobile-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
+                <span class="mobile-menu-icon"></span>
+            </button>
         </div>
-        <header class="mobile-hero">
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1200&q=80" alt="Team smiling together">
-            </figure>
-            <h1>Built on relationships</h1>
-            <p>We started with a borrowed table saw and a promise to treat every home like our own.</p>
-            <div class="mobile-actions">
-                <a class="mobile-primary" href="contact.html">Start a walkthrough</a>
-                <a class="mobile-secondary" href="services.html">See what we build</a>
-            </div>
-        </header>
-        
-        <section class="mobile-section">
-            <h2>Our story</h2>
-            <p class="mobile-microcopy">From a small workshop to a trusted crew serving homeowners across the region.</p>
-            <figure class="mobile-media">
-                <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" alt="Vintage woodworking tools" loading="lazy">
-            </figure>
-            <ul class="mobile-list">
-                <li>Family-owned and rooted in the community</li>
-                <li>Craftsmanship learned on real job sites</li>
-                <li>Every project begins with a kitchen table conversation</li>
-            </ul>
-        </section>
-
-        <div class="mobile-footer">
-            <div class="mobile-footer-brand">Redemption Renovations</div>
-            <p class="mobile-footer-text">Renovations, remodels, and custom carpentry rooted in craftsmanship and kindness.</p>
-            <div class="mobile-footer-links">
-                <a href="tel:15551234567">Call (555) 123-4567</a>
-                <a href="mailto:hello@redemptionrenovations.com">Email us</a>
-                <a href="contact.html">Start a project</a>
-            </div>
-            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
-        </div>
-        
-        <div class="mobile-nav-overlay" data-menu-overlay></div>
-        <button class="mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav" data-menu-button>
-            <span class="mobile-menu-icon"></span>
-        </button>
-        <nav class="mobile-nav-sheet" id="mobileNav" data-menu-sheet>
+        <nav class="mobile-nav-panel" id="mobileNav" data-menu-sheet>
             <div class="mobile-nav-header">
-                <span class="mobile-nav-title">Browse the site</span>
-                <button class="mobile-nav-close" type="button" data-menu-close>Close</button>
+                <span class="mobile-nav-title">Navigate</span>
+                <button class="mobile-nav-close" type="button" data-menu-close>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
             </div>
             <div class="mobile-nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="services.html">Services</a>
-                <a href="gallery.html">Gallery</a>
+                <a href="projectsGallery.html">Projects</a>
                 <a href="testimonials.html">Testimonials</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
             </div>
         </nav>
+        <div class="mobile-nav-overlay" data-menu-overlay></div>
+        <header class="mobile-hero">
+            <img src="logo.png" alt="Redemption Renovations" class="mobile-brand-logo">
+            <div class="mobile-hero-welcome">
+                <h1>Built on relationships</h1>
+                <p>We started with a promise to treat every home like our own.</p>
+                <div class="mobile-actions">
+                    <a class="mobile-primary" href="contact.html">Start a walkthrough</a>
+                    <a class="mobile-secondary" href="services.html">See what we build</a>
+                </div>
+            </div>
+        </header>
+        
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">Our Journey</span>
+            <h2>Local Remodeling, Renovations & Home Additions</h2>
+            <p>At Redemption Renovations, we believe that exceptional building starts with a strong foundation, built on trust and transparency. We take pride in our craftsmanship and attention to detail, ensuring that every project is completed to the highest standards.</p>
+            <figure class="mobile-media">
+                <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" alt="Founders working in workshop" loading="lazy">
+            </figure>
+            <p>Our Business and men are dedicated to upholding these values, ensuring that every project is a true reflection of our commitment to quality and integrity.</p>
+        </section>
+
+        <section class="mobile-section" style="background: var(--warm-gray);">
+            <span class="mobile-eyebrow">What Guides Us</span>
+            <h2>Our Core Values</h2>
+            <div class="mobile-value-card">
+                <div class="mobile-value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3>Integrity</h3>
+                <p>No surprises, no cut corners. We communicate clearly and own our work from start to finish.</p>
+            </div>
+            
+            <div class="mobile-value-card">
+                <div class="mobile-value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                </div>
+                <h3>Craft</h3>
+                <p>Details matter. From rough framing to trim, we approach every phase like it will carry our name.</p>
+            </div>
+            
+            <div class="mobile-value-card">
+                <div class="mobile-value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h3>Community</h3>
+                <p>We show up for local events, support neighbors, and volunteer our skills whenever we can.</p>
+            </div>
+            
+            <div class="mobile-value-card">
+                <div class="mobile-value-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                </div>
+                <h3>Clarity</h3>
+                <p>Renovations are big commitments. We keep the process transparent so you always know the next step.</p>
+            </div>
+        </section>
+
+        <section class="mobile-section">
+            <span class="mobile-eyebrow">Meet the Crew</span>
+            <h2>The People Behind the Projects</h2>
+            <p class="mobile-microcopy">Family owned and operated.</p>
+            
+            <article class="mobile-team-member">
+                <figure class="mobile-team-image">
+                    <img src="personPlaceholder.png" alt="Jacob Hall" loading="lazy">
+                </figure>
+                <div class="mobile-team-content">
+                    <h3>Jacob Hall</h3>
+                    <span class="mobile-team-role">Owner</span>
+                    <p>The man at the jobsite putting first hand experience, and craftsmanship into every project.</p>
+                </div>
+            </article>
+            
+            <article class="mobile-team-member">
+                <figure class="mobile-team-image">
+                    <img src="womanPlaceholder.jpg" alt="Kristy Hall" loading="lazy">
+                </figure>
+                <div class="mobile-team-content">
+                    <h3>Kristy Hall</h3>
+                    <span class="mobile-team-role">Owner</span>
+                    <p>The woman putting in the hard work behind the scenes, Keeping everything running smoothly.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="mobile-section" style="background: linear-gradient(135deg, rgba(29,138,155,0.1), rgba(242,243,244,1));">
+            <span class="mobile-eyebrow">Let's Get to Know Each Other</span>
+            <h2>Ready to Start Your Project?</h2>
+            <p>Share your project vision, even if it's still a rough sketch. We'll lend our experience and help you decide the best path forward.</p>
+            <div class="mobile-actions">
+                <a class="mobile-primary" href="contact.html">Get In Contact</a>
+                <a class="mobile-secondary" href="projectsGallery.html">View Our Work</a>
+            </div>
+        </section>
+
+        <div class="mobile-footer">
+            <div class="mobile-footer-brand-block">
+                <span class="mobile-footer-eyebrow">Redemption Renovations</span>
+                <h3>Spaces crafted to welcome neighbors in.</h3>
+                <p>From first sketches to final walk-throughs, we keep timelines honest, craftsmanship tight, and communication personal.</p>
+            </div>
+            
+            <div class="mobile-footer-panels">
+                <div class="mobile-footer-panel">
+                    <h4>Connect</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li><a href="tel:15551234567">Call (555) 123-4567</a></li>
+                        <li><a href="mailto:hello@redemptionrenovations.com">Email us</a></li>
+                        <li><a href="contact.html">Start a project</a></li>
+                    </ul>
+                </div>
+                
+                <div class="mobile-footer-panel">
+                    <h4>Studio & Hours</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li>West Michigan</li>
+                        <li>Weekdays 8am – 6pm</li>
+                        <li>Licensed & insured</li>
+                    </ul>
+                </div>
+                
+                <div class="mobile-footer-panel">
+                    <h4>Quick Links</h4>
+                    <ul class="mobile-footer-links-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projectsGallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p class="mobile-footer-copy">&copy; <span id="mobileYear"></span> Redemption Renovations. All rights reserved.</p>
+        </div>
     </div>
 
     <main>
