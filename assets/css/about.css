@@ -323,6 +323,12 @@
     justify-items: center;
 }
 
+/* Single family photo styling */
+.team-grid-about .team-member.family-photo {
+    max-width: 500px;
+    width: 100%;
+}
+
 .team-member {
     display: flex;
     flex-direction: column;
