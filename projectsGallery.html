@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/projectsGallery.css">
     <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/projectsGallery.js" defer></script>
 </head>
 <body>
     <div id="navbar-container"></div>
@@ -239,24 +240,14 @@
             </div>
         </section>
 
-        <section class="gallery-filter-section">
-            <div class="section-inner">
-                <div class="gallery-filter-bar">
-                    <button class="filter-btn active" data-filter="all">All Projects</button>
-                    <button class="filter-btn" data-filter="addition">Home Additions</button>
-                    <button class="filter-btn" data-filter="garage">Garages</button>
-                    <button class="filter-btn" data-filter="deck">Decking</button>
-                    <button class="filter-btn" data-filter="remodel">Remodels</button>
-                    <button class="filter-btn" data-filter="carpentry">Custom Carpentry</button>
-                </div>
-            </div>
-        </section>
-
         <section class="gallery-main">
             <div class="section-inner">
-                <p style="text-align: center; padding: 3rem 1rem; color: #4c5c62; max-width: 600px; margin: 0 auto;">
-                    Our project gallery is being updated with photos of our completed work. Check back soon to see examples of home additions, garage builds, decking systems, remodels, and custom carpentry projects.
-                </p>
+                <div id="projectsGrid" class="projects-grid">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Loading projects...</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -274,6 +265,29 @@
             </div>
         </section>
     </main>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="project-modal" style="display: none;">
+        <div class="modal-overlay" onclick="closeProjectModal()"></div>
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeProjectModal()" aria-label="Close">&times;</button>
+            
+            <div class="modal-carousel">
+                <div class="carousel-container">
+                    <div id="carouselTrack" class="carousel-track"></div>
+                    <button class="carousel-btn prev" onclick="previousSlide()" aria-label="Previous">‹</button>
+                    <button class="carousel-btn next" onclick="nextSlide()" aria-label="Next">›</button>
+                </div>
+                <div id="carouselDots" class="carousel-dots"></div>
+            </div>
+            
+            <div class="modal-content">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <div id="modalMeta" class="modal-meta"></div>
+                <div id="modalDescription" class="modal-description"></div>
+            </div>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="footer-top">
