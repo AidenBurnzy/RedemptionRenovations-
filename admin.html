@@ -140,7 +140,33 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="projectImages">Project Images *</label>
+                    <label for="projectCoverImage">Cover Photo *</label>
+                    
+                    <!-- Cover Photo Drop Zone -->
+                    <div id="coverDropZone" class="drop-zone drop-zone-small">
+                        <div class="drop-zone-content">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <p><strong>Upload cover photo</strong> or click to browse</p>
+                        </div>
+                        <input type="file" id="coverFileInput" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                    </div>
+                    
+                    <!-- Cover Photo Preview -->
+                    <div id="coverPreview" class="featured-image-preview"></div>
+                    
+                    <!-- Manual URL Input Toggle -->
+                    <button type="button" id="toggleCoverUrlInput" class="btn-link" style="margin-top: 0.5rem;">+ Or enter URL manually</button>
+                    <input type="url" id="projectCoverUrl" style="display: none; margin-top: 0.5rem;"
+                           placeholder="https://example.com/cover-image.jpg">
+                    <small>This will be the main image shown in the gallery</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectImages">Gallery Images *</label>
                     
                     <!-- Drag and Drop Zone -->
                     <div id="dropZone" class="drop-zone">
@@ -150,7 +176,7 @@
                                 <polyline points="17 8 12 3 7 8"></polyline>
                                 <line x1="12" y1="3" x2="12" y2="15"></line>
                             </svg>
-                            <p><strong>Drag & drop images here</strong> or click to browse</p>
+                            <p><strong>Drag & drop gallery images</strong> or click to browse</p>
                             <p class="drop-zone-hint">Supports: JPG, PNG, WEBP (Max 5MB each)</p>
                         </div>
                         <input type="file" id="imageFileInput" accept="image/jpeg,image/png,image/webp" multiple style="display: none;">
@@ -163,7 +189,7 @@
                     <button type="button" id="toggleUrlInput" class="btn-link" style="margin-top: 0.5rem;">+ Or enter image URLs manually</button>
                     <textarea id="projectImages" name="images" required rows="6" style="display: none; margin-top: 0.5rem;"
                               placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"></textarea>
-                    <small id="urlInputHint" style="display: none;">Enter full image URLs, one per line.</small>
+                    <small id="urlInputHint" style="display: none;">Enter full image URLs, one per line. Cover photo will be added automatically as first image.</small>
                 </div>
 
                 <div class="form-actions">
@@ -237,15 +263,54 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="blogFeaturedImage">Featured Image URL</label>
-                    <input type="url" id="blogFeaturedImage" name="featured_image" 
+                    <label for="blogFeaturedImage">Featured Image (Cover Photo)</label>
+                    
+                    <!-- Featured Image Drop Zone -->
+                    <div id="blogFeaturedDropZone" class="drop-zone drop-zone-small">
+                        <div class="drop-zone-content">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <p><strong>Upload cover photo</strong> or click to browse</p>
+                        </div>
+                        <input type="file" id="blogFeaturedFileInput" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                    </div>
+                    
+                    <!-- Featured Image Preview -->
+                    <div id="blogFeaturedPreview" class="featured-image-preview"></div>
+                    
+                    <!-- Manual URL Input Toggle -->
+                    <button type="button" id="toggleFeaturedUrlInput" class="btn-link" style="margin-top: 0.5rem;">+ Or enter URL manually</button>
+                    <input type="url" id="blogFeaturedImage" name="featured_image" style="display: none; margin-top: 0.5rem;"
                            placeholder="https://example.com/featured-image.jpg">
                     <small>Main image that will appear at the top of the post</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="blogImages">Additional Image URLs (one per line)</label>
-                    <textarea id="blogImages" name="images" rows="4"
+                    <label for="blogImages">Additional Gallery Images</label>
+                    
+                    <!-- Gallery Images Drop Zone -->
+                    <div id="blogGalleryDropZone" class="drop-zone">
+                        <div class="drop-zone-content">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p><strong>Drag & drop gallery images</strong> or click to browse</p>
+                            <p class="drop-zone-hint">Supports: JPG, PNG, WEBP (Max 5MB each)</p>
+                        </div>
+                        <input type="file" id="blogGalleryFileInput" accept="image/jpeg,image/png,image/webp" multiple style="display: none;">
+                    </div>
+
+                    <!-- Gallery Image Preview List -->
+                    <div id="blogGalleryPreviewList" class="image-preview-list"></div>
+
+                    <!-- Manual URL Input Toggle -->
+                    <button type="button" id="toggleGalleryUrlInput" class="btn-link" style="margin-top: 0.5rem;">+ Or enter image URLs manually</button>
+                    <textarea id="blogImages" name="images" rows="4" style="display: none; margin-top: 0.5rem;"
                               placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"></textarea>
                 </div>
 

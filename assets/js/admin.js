@@ -209,8 +209,25 @@ function renderProjects(projects) {
     
     projectsList.innerHTML = projects.map(project => `
         <div class="project-item" data-id="${project.id}">
-            <div class="project-thumbnail">
-                <img src="${project.images[0]}" alt="${project.title}">
+            <div class="project-images-section">
+                <div class="cover-photo-section">
+                    <label class="image-section-label">Cover Photo:</label>
+                    ${project.images && project.images.length > 0 ? 
+                        `<img src="${project.images[0]}" alt="${project.title}" class="cover-photo-thumb">` :
+                        '<div class="no-image">No Cover Photo</div>'
+                    }
+                </div>
+                ${project.images && project.images.length > 1 ? `
+                    <div class="gallery-photos-section">
+                        <label class="image-section-label">Gallery (${project.images.length - 1} images):</label>
+                        <div class="gallery-thumbs">
+                            ${project.images.slice(1, 4).map(img => `
+                                <img src="${img}" alt="Gallery image" class="gallery-thumb">
+                            `).join('')}
+                            ${project.images.length > 4 ? `<div class="more-images">+${project.images.length - 4}</div>` : ''}
+                        </div>
+                    </div>
+                ` : ''}
             </div>
             <div class="project-info">
                 <h3>${project.title}</h3>
@@ -218,7 +235,7 @@ function renderProjects(projects) {
                     <span class="project-type-badge">${project.type}</span>
                     <span class="project-meta-item">📍 ${project.location}</span>
                     <span class="project-meta-item">📅 ${project.completedDate}</span>
-                    <span class="project-meta-item">🖼️ ${project.images.length} images</span>
+                    <span class="project-meta-item">🖼️ ${project.images.length} total images</span>
                 </div>
                 <p class="project-description">${project.description}</p>
             </div>
@@ -254,6 +271,8 @@ function openAddProjectModal() {
     document.getElementById('modalTitle').textContent = 'Add New Project';
     document.getElementById('projectForm').reset();
     document.getElementById('projectId').value = '';
+    clearImagePreviews();
+    clearProjectCoverImage();
     document.getElementById('projectModal').style.display = 'flex';
 }
 
@@ -262,6 +281,9 @@ function editProject(id) {
     if (!project) return;
     
     editingProjectId = id;
+    clearImagePreviews();
+    clearProjectCoverImage();
+    
     document.getElementById('modalTitle').textContent = 'Edit Project';
     document.getElementById('projectId').value = project.id;
     document.getElementById('projectTitle').value = project.title;
@@ -269,19 +291,29 @@ function editProject(id) {
     document.getElementById('projectLocation').value = project.location;
     document.getElementById('projectDate').value = project.completedDate;
     document.getElementById('projectDescription').value = project.description;
-    document.getElementById('projectImages').value = project.images.join('\n');
     
-    // Load existing images into preview
-    clearImagePreviews();
-    project.images.forEach((url, index) => {
-        const imageData = {
-            name: `Image ${index + 1}`,
-            data: url,
-            file: null // Existing image from URL
+    // Load cover image (first image)
+    if (project.images && project.images.length > 0) {
+        projectCoverImage = {
+            name: 'existing-cover',
+            data: project.images[0]
         };
-        uploadedImages.push(imageData);
-        addImagePreview(imageData);
-    });
+        showProjectCoverPreview(projectCoverImage);
+        
+        // Load remaining images as gallery
+        const galleryImages = project.images.slice(1);
+        document.getElementById('projectImages').value = galleryImages.join('\n');
+        
+        galleryImages.forEach((url, index) => {
+            const imageData = {
+                name: `Image ${index + 1}`,
+                data: url,
+                file: null // Existing image from URL
+            };
+            uploadedImages.push(imageData);
+            addImagePreview(imageData);
+        });
+    }
     
     document.getElementById('projectModal').style.display = 'flex';
 }
@@ -297,9 +329,26 @@ async function handleProjectSubmit(e) {
     e.preventDefault();
     
     const formData = new FormData(e.target);
-    const images = formData.get('images').split('\n')
+    
+    // Get cover image (from file upload or URL input)
+    let coverImageUrl = projectCoverImage ? projectCoverImage.data : '';
+    if (!coverImageUrl) {
+        const coverUrlInput = document.getElementById('projectCoverUrl');
+        coverImageUrl = coverUrlInput.value.trim();
+    }
+    
+    // Get gallery images
+    const galleryImages = formData.get('images').split('\n')
         .map(url => url.trim())
         .filter(url => url.length > 0);
+    
+    // Combine: cover image first, then gallery images
+    const allImages = coverImageUrl ? [coverImageUrl, ...galleryImages] : galleryImages;
+    
+    if (allImages.length === 0) {
+        alert('Please add at least a cover photo for the project.');
+        return;
+    }
     
     const projectData = {
         id: formData.get('id') || Date.now(),
@@ -308,7 +357,7 @@ async function handleProjectSubmit(e) {
         location: formData.get('location'),
         completedDate: formData.get('completedDate'),
         description: formData.get('description'),
-        images: images
+        images: allImages
     };
     
     try {
@@ -435,7 +484,103 @@ function getSampleProjects() {
 // Image Upload and Drag-and-Drop Functions
 let uploadedImages = [];
 
+// Project Cover Image Management
+let projectCoverImage = null;
+
+function setupProjectCoverUpload() {
+    const coverDropZone = document.getElementById('coverDropZone');
+    const coverFileInput = document.getElementById('coverFileInput');
+    const toggleCoverUrl = document.getElementById('toggleCoverUrlInput');
+    const coverUrlInput = document.getElementById('projectCoverUrl');
+    
+    if (coverDropZone && coverFileInput) {
+        coverDropZone.addEventListener('click', () => coverFileInput.click());
+        coverFileInput.addEventListener('change', (e) => handleProjectCoverFile(e.target.files[0]));
+        
+        coverDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            coverDropZone.classList.add('drag-over');
+        });
+        coverDropZone.addEventListener('dragleave', () => {
+            coverDropZone.classList.remove('drag-over');
+        });
+        coverDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            coverDropZone.classList.remove('drag-over');
+            if (e.dataTransfer.files.length > 0) {
+                handleProjectCoverFile(e.dataTransfer.files[0]);
+            }
+        });
+        
+        if (toggleCoverUrl) {
+            toggleCoverUrl.addEventListener('click', () => {
+                const isVisible = coverUrlInput.style.display !== 'none';
+                coverUrlInput.style.display = isVisible ? 'none' : 'block';
+                toggleCoverUrl.textContent = isVisible ? '+ Or enter URL manually' : '- Hide URL input';
+            });
+        }
+    }
+}
+
+function handleProjectCoverFile(file) {
+    if (!file) return;
+    
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    
+    if (!allowedTypes.includes(file.type)) {
+        alert(`${file.name} is not a supported image format. Please use JPG, PNG, or WEBP.`);
+        return;
+    }
+    
+    if (file.size > maxSize) {
+        alert(`${file.name} is too large. Maximum file size is 5MB.`);
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        projectCoverImage = {
+            name: file.name,
+            data: e.target.result
+        };
+        showProjectCoverPreview(projectCoverImage);
+    };
+    reader.readAsDataURL(file);
+}
+
+function showProjectCoverPreview(imageData) {
+    const previewContainer = document.getElementById('coverPreview');
+    previewContainer.className = 'featured-image-preview has-image';
+    
+    previewContainer.innerHTML = `
+        <div class="featured-preview-item">
+            <img src="${imageData.data}" alt="${imageData.name}">
+            <button type="button" class="remove-image" onclick="removeProjectCoverImage()">&times;</button>
+        </div>
+    `;
+}
+
+function removeProjectCoverImage() {
+    projectCoverImage = null;
+    const previewContainer = document.getElementById('coverPreview');
+    previewContainer.className = 'featured-image-preview';
+    previewContainer.innerHTML = '';
+}
+
+function clearProjectCoverImage() {
+    projectCoverImage = null;
+    const previewContainer = document.getElementById('coverPreview');
+    if (previewContainer) {
+        previewContainer.className = 'featured-image-preview';
+        previewContainer.innerHTML = '';
+    }
+}
+
 function setupImageUpload() {
+    // Setup project cover upload first
+    setupProjectCoverUpload();
+    
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('imageFileInput');
     const toggleUrlInput = document.getElementById('toggleUrlInput');
@@ -478,6 +623,226 @@ function setupImageUpload() {
             urlInputHint.style.display = isVisible ? 'none' : 'block';
             toggleUrlInput.textContent = isVisible ? '+ Or enter image URLs manually' : '- Hide URL input';
         });
+    }
+    
+    // Setup blog image uploads
+    setupBlogImageUpload();
+}
+
+// Blog Image Upload Setup
+let blogFeaturedImage = null;
+let blogGalleryImages = [];
+
+function setupBlogImageUpload() {
+    // Featured Image Setup
+    const featuredDropZone = document.getElementById('blogFeaturedDropZone');
+    const featuredFileInput = document.getElementById('blogFeaturedFileInput');
+    const toggleFeaturedUrl = document.getElementById('toggleFeaturedUrlInput');
+    const featuredUrlInput = document.getElementById('blogFeaturedImage');
+    
+    if (featuredDropZone && featuredFileInput) {
+        featuredDropZone.addEventListener('click', () => featuredFileInput.click());
+        featuredFileInput.addEventListener('change', (e) => handleBlogFeaturedFile(e.target.files[0]));
+        
+        featuredDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            featuredDropZone.classList.add('drag-over');
+        });
+        featuredDropZone.addEventListener('dragleave', () => {
+            featuredDropZone.classList.remove('drag-over');
+        });
+        featuredDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            featuredDropZone.classList.remove('drag-over');
+            if (e.dataTransfer.files.length > 0) {
+                handleBlogFeaturedFile(e.dataTransfer.files[0]);
+            }
+        });
+        
+        if (toggleFeaturedUrl) {
+            toggleFeaturedUrl.addEventListener('click', () => {
+                const isVisible = featuredUrlInput.style.display !== 'none';
+                featuredUrlInput.style.display = isVisible ? 'none' : 'block';
+                toggleFeaturedUrl.textContent = isVisible ? '+ Or enter URL manually' : '- Hide URL input';
+            });
+        }
+    }
+    
+    // Gallery Images Setup
+    const galleryDropZone = document.getElementById('blogGalleryDropZone');
+    const galleryFileInput = document.getElementById('blogGalleryFileInput');
+    const toggleGalleryUrl = document.getElementById('toggleGalleryUrlInput');
+    const galleryUrlInput = document.getElementById('blogImages');
+    
+    if (galleryDropZone && galleryFileInput) {
+        galleryDropZone.addEventListener('click', () => galleryFileInput.click());
+        galleryFileInput.addEventListener('change', (e) => handleBlogGalleryFiles(e.target.files));
+        
+        galleryDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            galleryDropZone.classList.add('drag-over');
+        });
+        galleryDropZone.addEventListener('dragleave', () => {
+            galleryDropZone.classList.remove('drag-over');
+        });
+        galleryDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            galleryDropZone.classList.remove('drag-over');
+            handleBlogGalleryFiles(e.dataTransfer.files);
+        });
+        
+        if (toggleGalleryUrl) {
+            toggleGalleryUrl.addEventListener('click', () => {
+                const isVisible = galleryUrlInput.style.display !== 'none';
+                galleryUrlInput.style.display = isVisible ? 'none' : 'block';
+                toggleGalleryUrl.textContent = isVisible ? '+ Or enter URLs manually' : '- Hide URL input';
+            });
+        }
+    }
+}
+
+function handleBlogFeaturedFile(file) {
+    if (!file) return;
+    
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    
+    if (!allowedTypes.includes(file.type)) {
+        alert(`${file.name} is not a supported image format. Please use JPG, PNG, or WEBP.`);
+        return;
+    }
+    
+    if (file.size > maxSize) {
+        alert(`${file.name} is too large. Maximum file size is 5MB.`);
+        return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        blogFeaturedImage = {
+            name: file.name,
+            data: e.target.result
+        };
+        showBlogFeaturedPreview(blogFeaturedImage);
+        updateBlogFeaturedInput();
+    };
+    reader.readAsDataURL(file);
+}
+
+function showBlogFeaturedPreview(imageData) {
+    const previewContainer = document.getElementById('blogFeaturedPreview');
+    previewContainer.className = 'featured-image-preview has-image';
+    
+    previewContainer.innerHTML = `
+        <div class="featured-preview-item">
+            <img src="${imageData.data}" alt="${imageData.name}">
+            <button type="button" class="remove-image" onclick="removeBlogFeaturedImage()">&times;</button>
+        </div>
+    `;
+}
+
+function removeBlogFeaturedImage() {
+    blogFeaturedImage = null;
+    const previewContainer = document.getElementById('blogFeaturedPreview');
+    previewContainer.className = 'featured-image-preview';
+    previewContainer.innerHTML = '';
+    updateBlogFeaturedInput();
+}
+
+function updateBlogFeaturedInput() {
+    const input = document.getElementById('blogFeaturedImage');
+    input.value = blogFeaturedImage ? blogFeaturedImage.data : '';
+}
+
+function handleBlogGalleryFiles(files) {
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    
+    Array.from(files).forEach(file => {
+        if (!allowedTypes.includes(file.type)) {
+            alert(`${file.name} is not a supported image format. Please use JPG, PNG, or WEBP.`);
+            return;
+        }
+        
+        if (file.size > maxSize) {
+            alert(`${file.name} is too large. Maximum file size is 5MB.`);
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const imageData = {
+                name: file.name,
+                data: e.target.result
+            };
+            blogGalleryImages.push(imageData);
+            addBlogGalleryPreview(imageData);
+            updateBlogGalleryInput();
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function addBlogGalleryPreview(imageData) {
+    const previewList = document.getElementById('blogGalleryPreviewList');
+    
+    const previewItem = document.createElement('div');
+    previewItem.className = 'image-preview-item';
+    previewItem.dataset.imageName = imageData.name;
+    
+    const img = document.createElement('img');
+    img.src = imageData.data;
+    img.alt = imageData.name;
+    
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'remove-image';
+    removeBtn.type = 'button';
+    removeBtn.innerHTML = '&times;';
+    removeBtn.onclick = (e) => {
+        e.stopPropagation();
+        removeBlogGalleryImage(imageData.name);
+    };
+    
+    const badge = document.createElement('div');
+    badge.className = 'image-url-badge';
+    badge.textContent = imageData.name;
+    
+    previewItem.appendChild(img);
+    previewItem.appendChild(removeBtn);
+    previewItem.appendChild(badge);
+    previewList.appendChild(previewItem);
+}
+
+function removeBlogGalleryImage(imageName) {
+    blogGalleryImages = blogGalleryImages.filter(img => img.name !== imageName);
+    
+    const previewItem = document.querySelector('#blogGalleryPreviewList [data-image-name="' + imageName + '"]');
+    if (previewItem) {
+        previewItem.remove();
+    }
+    
+    updateBlogGalleryInput();
+}
+
+function updateBlogGalleryInput() {
+    const textarea = document.getElementById('blogImages');
+    const imageUrls = blogGalleryImages.map(img => img.data);
+    textarea.value = imageUrls.join('\n');
+}
+
+function clearBlogImagePreviews() {
+    blogFeaturedImage = null;
+    blogGalleryImages = [];
+    
+    const featuredPreview = document.getElementById('blogFeaturedPreview');
+    if (featuredPreview) {
+        featuredPreview.className = 'featured-image-preview';
+        featuredPreview.innerHTML = '';
+    }
+    
+    const galleryPreview = document.getElementById('blogGalleryPreviewList');
+    if (galleryPreview) {
+        galleryPreview.innerHTML = '';
     }
 }
 
@@ -632,11 +997,25 @@ function renderBlogPosts(posts = currentBlogPosts) {
     
     const html = posts.map(post => `
         <div class="project-item">
-            <div class="project-thumbnail">
-                ${post.featured_image ? 
-                    `<img src="${post.featured_image}" alt="${post.title}">` :
-                    '<div class="no-image">No Image</div>'
-                }
+            <div class="project-images-section">
+                <div class="cover-photo-section">
+                    <label class="image-section-label">Cover Photo:</label>
+                    ${post.featured_image ? 
+                        `<img src="${post.featured_image}" alt="${post.title}" class="cover-photo-thumb">` :
+                        '<div class="no-image">No Cover Photo</div>'
+                    }
+                </div>
+                ${post.images && post.images.length > 0 ? `
+                    <div class="gallery-photos-section">
+                        <label class="image-section-label">Gallery (${post.images.length} images):</label>
+                        <div class="gallery-thumbs">
+                            ${post.images.slice(0, 3).map(img => `
+                                <img src="${img}" alt="Gallery image" class="gallery-thumb">
+                            `).join('')}
+                            ${post.images.length > 3 ? `<div class="more-images">+${post.images.length - 3}</div>` : ''}
+                        </div>
+                    </div>
+                ` : ''}
             </div>
             <div class="project-info">
                 <h3>${post.title}</h3>
@@ -671,6 +1050,7 @@ function openAddBlogPostModal() {
     document.getElementById('blogModalTitle').textContent = 'Add New Blog Post';
     document.getElementById('blogPostForm').reset();
     document.getElementById('blogPostId').value = '';
+    clearBlogImagePreviews();
     document.getElementById('blogPostModal').style.display = 'flex';
 }
 
@@ -679,6 +1059,8 @@ function editBlogPost(id) {
     if (!post) return;
     
     editingBlogPostId = id;
+    clearBlogImagePreviews();
+    
     document.getElementById('blogModalTitle').textContent = 'Edit Blog Post';
     document.getElementById('blogPostId').value = post.id;
     document.getElementById('blogTitle').value = post.title;
@@ -689,6 +1071,27 @@ function editBlogPost(id) {
     document.getElementById('blogImages').value = post.images ? post.images.join('\n') : '';
     document.getElementById('blogTags').value = post.tags ? post.tags.join(', ') : '';
     document.getElementById('blogPublished').checked = post.published;
+    
+    // Load existing featured image preview
+    if (post.featured_image) {
+        blogFeaturedImage = {
+            name: 'existing-featured',
+            data: post.featured_image
+        };
+        showBlogFeaturedPreview(blogFeaturedImage);
+    }
+    
+    // Load existing gallery images previews
+    if (post.images && post.images.length > 0) {
+        post.images.forEach((url, index) => {
+            const imageData = {
+                name: `existing-${index}`,
+                data: url
+            };
+            blogGalleryImages.push(imageData);
+            addBlogGalleryPreview(imageData);
+        });
+    }
     
     document.getElementById('blogPostModal').style.display = 'flex';
 }
@@ -805,5 +1208,7 @@ window.editBlogPost = editBlogPost;
 window.confirmDeleteBlogPost = confirmDeleteBlogPost;
 window.closeBlogPostModal = closeBlogPostModal;
 window.closeDeleteBlogModal = closeDeleteBlogModal;
+window.removeBlogFeaturedImage = removeBlogFeaturedImage;
+window.removeProjectCoverImage = removeProjectCoverImage;
 
 console.log('Admin panel loaded');
