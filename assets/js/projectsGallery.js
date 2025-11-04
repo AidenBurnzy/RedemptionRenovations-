@@ -1,8 +1,8 @@
 // Projects Gallery JavaScript
 // Manages project gallery display, modal interactions, and carousel functionality
 
-// Sample project data (will be replaced with database/API calls)
-const SAMPLE_PROJECTS = [
+// DEPRECATED: Sample data removed - all projects loaded from database
+const SAMPLE_PROJECTS_DEPRECATED = [
     {
         id: 1,
         title: "Modern Kitchen Renovation",
@@ -101,12 +101,62 @@ if (document.readyState === 'loading') {
 
 function initGallery() {
     console.log('Initializing gallery...');
-    setTimeout(() => {
-        currentProjects = [...SAMPLE_PROJECTS];
-        renderProjects();
-    }, 500);
-    
     document.addEventListener('keydown', handleKeyboard);
+    loadProjectsFromAPI();
+}
+
+async function loadProjectsFromAPI() {
+    const grid = document.getElementById('projectsGrid');
+    
+    try {
+        const response = await fetch('/.netlify/functions/projects');
+        
+        if (!response.ok) {
+            throw new Error('Failed to load projects from database');
+        }
+        
+        const data = await response.json();
+        // API returns array directly, not wrapped in projects property
+        currentProjects = Array.isArray(data) ? data : (data.projects || []);
+        
+        // Hide loading state
+        const loadingEl = document.querySelector('.loading-state');
+        if (loadingEl) loadingEl.style.display = 'none';
+        
+        if (currentProjects.length === 0) {
+            // Show empty state message with helpful instructions
+            grid.innerHTML = `
+                <div class="empty-state" style="text-align: center; padding: 4rem 2rem;">
+                    <h2 style="color: #333; margin-bottom: 1rem;">No Projects Yet</h2>
+                    <p style="color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Projects will appear here once they're added through the admin panel. 
+                        ${window.location.hostname === 'localhost' ? 'Make sure your database is configured first.' : ''}
+                    </p>
+                    <a href="admin.html" style="display: inline-block; padding: 0.75rem 2rem; background: #1d8a9b; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                        Go to Admin Panel
+                    </a>
+                </div>
+            `;
+        } else {
+            renderProjects();
+        }
+    } catch (error) {
+        console.error('Error loading projects from API:', error);
+        
+        // Show error message with helpful information
+        grid.innerHTML = `
+            <div class="error-state" style="text-align: center; padding: 4rem 2rem;">
+                <h2 style="color: #dc3545; margin-bottom: 1rem;">Unable to Load Projects</h2>
+                <p style="color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    There was an error connecting to the database. 
+                    ${window.location.hostname === 'localhost' ? 'Please check that your DATABASE_URL is configured in the .env file.' : 'Please try again later or contact support.'}
+                </p>
+                <button onclick="location.reload()" style="padding: 0.75rem 2rem; background: #1d8a9b; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                    Try Again
+                </button>
+            </div>
+        `;
+    }
 }
 
 function renderProjects() {
