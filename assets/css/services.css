@@ -157,6 +157,21 @@
     margin-bottom: 1.5rem;
 }
 
+.service-detail-content .btn {
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+.service-detail-content .btn.secondary {
+    border-color: var(--teal);
+    color: var(--teal);
+}
+
+.service-detail-content .btn.secondary:hover {
+    background: var(--teal);
+    color: var(--white);
+}
+
 .service-detail-card:target {
     background: rgba(29, 138, 155, 0.06);
 }
