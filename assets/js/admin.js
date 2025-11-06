@@ -1069,17 +1069,6 @@ function renderBlogPosts(posts = currentBlogPosts) {
                         '<div class="no-image">No Cover Photo</div>'
                     }
                 </div>
-                ${post.images && post.images.length > 0 ? `
-                    <div class="gallery-photos-section">
-                        <label class="image-section-label">Gallery (${post.images.length} images):</label>
-                        <div class="gallery-thumbs">
-                            ${post.images.slice(0, 3).map(img => `
-                                <img src="${img}" alt="Gallery image" class="gallery-thumb">
-                            `).join('')}
-                            ${post.images.length > 3 ? `<div class="more-images">+${post.images.length - 3}</div>` : ''}
-                        </div>
-                    </div>
-                ` : ''}
             </div>
             <div class="project-info">
                 <h3>${post.title}</h3>
@@ -1094,9 +1083,11 @@ function renderBlogPosts(posts = currentBlogPosts) {
                         `<span>Created: ${new Date(post.created_at).toLocaleDateString()}</span>`
                     }
                 </p>
-                <p class="project-description">${post.excerpt || post.content.substring(0, 150) + '...'}</p>
+                <p class="project-description">${post.content.substring(0, 200)}${post.content.length > 200 ? '...' : ''}</p>
                 ${post.tags && post.tags.length > 0 ? 
-                    `<p class="project-tags">Tags: ${post.tags.join(', ')}</p>` : ''
+                    `<div class="project-type-badges">
+                        ${post.tags.map(tag => `<span class="project-type-badge">${tag}</span>`).join('')}
+                    </div>` : ''
                 }
             </div>
             <div class="project-actions">

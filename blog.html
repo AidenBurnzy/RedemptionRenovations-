@@ -7,11 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/blog.css">
-    <script src="assets/js/site.js" defer></script>
-    <script src="assets/js/blog.js" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=6">
+    <link rel="stylesheet" href="assets/css/navbar.css?v=6">
+    <link rel="stylesheet" href="assets/css/blog.css?v=6">
+    <script src="assets/js/site.js?v=6" defer></script>
+    <script src="assets/js/blog.js?v=6" defer></script>
 </head>
 <body>
     <div id="navbar-container"></div>
@@ -191,11 +191,14 @@
             </div>
         </section>
 
-        <section class="blog-grid-section">
+        <section class="blog-feed-section">
             <div class="section-inner">
-                <p style="text-align: center; padding: 3rem 1rem; color: #4c5c62; max-width: 600px; margin: 0 auto;">
-                    Our blog is coming soon! Check back for project updates, construction tips, and news from Redemption Renovations.
-                </p>
+                <div id="blogFeed" class="blog-feed">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Loading posts...</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -264,13 +267,17 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
+                <div class="footer-bottom">
             <span>&copy; <span id="year"></span> Redemption Renovations. All rights reserved.</span>
             <div class="footer-bottom-links">
                 <span>Crafted for families across West Michigan.</span>
-                <span class="footer-status">Member, Home Builders Association</span>
+                <a href="admin.html" class="footer-status" style="cursor: pointer; color: white;">Admin Portal</a>
             </div>
         </div>
+    </footer>
+</body>
+</html>
+```
     </footer>
 </body>
 </html>
