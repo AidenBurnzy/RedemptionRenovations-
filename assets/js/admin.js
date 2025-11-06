@@ -89,6 +89,48 @@ function setupEventListeners() {
     
     // Setup drag and drop for images
     setupImageUpload();
+
+    attachModalOverlayClose('projectModal', closeProjectModal);
+    attachModalOverlayClose('deleteModal', closeDeleteModal);
+    attachModalOverlayClose('blogPostModal', closeBlogPostModal);
+    attachModalOverlayClose('deleteBlogModal', closeDeleteBlogModal);
+}
+
+function showModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) {
+        return;
+    }
+
+    modal.style.display = 'flex';
+    modal.dataset.open = 'true';
+    document.body.classList.add('modal-open');
+}
+
+function hideModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) {
+        return;
+    }
+
+    modal.style.display = 'none';
+    delete modal.dataset.open;
+
+    if (!document.querySelector('.modal[data-open="true"]')) {
+        document.body.classList.remove('modal-open');
+    }
+}
+
+function attachModalOverlayClose(modalId, closeHandler) {
+    const modal = document.getElementById(modalId);
+    if (!modal) {
+        return;
+    }
+
+    const overlay = modal.querySelector('.modal-overlay');
+    if (overlay) {
+        overlay.addEventListener('click', closeHandler);
+    }
 }
 
 // Authentication Functions
@@ -232,7 +274,10 @@ function renderProjects(projects) {
             <div class="project-info">
                 <h3>${project.title}</h3>
                 <div class="project-meta">
-                    <span class="project-type-badge">${project.type}</span>
+                    ${project.tags && project.tags.length > 0 ? 
+                        project.tags.map(tag => `<span class="project-type-badge">${tag}</span>`).join('') :
+                        `<span class="project-type-badge">${project.type}</span>`
+                    }
                     <span class="project-meta-item">📍 ${project.location}</span>
                     <span class="project-meta-item">📅 ${project.completedDate}</span>
                     <span class="project-meta-item">🖼️ ${project.images.length} total images</span>
@@ -273,7 +318,9 @@ function openAddProjectModal() {
     document.getElementById('projectId').value = '';
     clearImagePreviews();
     clearProjectCoverImage();
-    document.getElementById('projectModal').style.display = 'flex';
+    // Clear all checkboxes
+    document.querySelectorAll('input[name="projectTypes"]').forEach(cb => cb.checked = false);
+    showModal('projectModal');
 }
 
 function editProject(id) {
@@ -287,10 +334,16 @@ function editProject(id) {
     document.getElementById('modalTitle').textContent = 'Edit Project';
     document.getElementById('projectId').value = project.id;
     document.getElementById('projectTitle').value = project.title;
-    document.getElementById('projectType').value = project.type;
     document.getElementById('projectLocation').value = project.location;
     document.getElementById('projectDate').value = project.completedDate;
     document.getElementById('projectDescription').value = project.description;
+    
+    // Set checkbox values
+    const projectTypes = project.tags && project.tags.length > 0 ? project.tags : [project.type];
+    const checkboxes = document.querySelectorAll('input[name="projectTypes"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = projectTypes.includes(checkbox.value);
+    });
     
     // Load cover image (first image)
     if (project.images && project.images.length > 0) {
@@ -315,14 +368,15 @@ function editProject(id) {
         });
     }
     
-    document.getElementById('projectModal').style.display = 'flex';
+    showModal('projectModal');
 }
 
 function closeProjectModal() {
-    document.getElementById('projectModal').style.display = 'none';
+    hideModal('projectModal');
     document.getElementById('projectForm').reset();
     editingProjectId = null;
     clearImagePreviews();
+    clearProjectCoverImage();
 }
 
 async function handleProjectSubmit(e) {
@@ -350,14 +404,24 @@ async function handleProjectSubmit(e) {
         return;
     }
     
+    // Get selected types from checkboxes
+    const checkedBoxes = document.querySelectorAll('input[name="projectTypes"]:checked');
+    const selectedTypes = Array.from(checkedBoxes).map(checkbox => checkbox.value);
+    
+    if (selectedTypes.length === 0) {
+        alert('Please select at least one project category.');
+        return;
+    }
+    
     const projectData = {
         id: formData.get('id') || Date.now(),
         title: formData.get('title'),
-        type: formData.get('type'),
+        type: selectedTypes[0], // Primary type is the first selected
         location: formData.get('location'),
         completedDate: formData.get('completedDate'),
         description: formData.get('description'),
-        images: allImages
+        images: allImages,
+        tags: selectedTypes // All selected types stored as tags
     };
     
     try {
@@ -412,14 +476,14 @@ function confirmDeleteProject(id) {
     
     deletingProjectId = id;
     document.getElementById('deleteProjectName').textContent = project.title;
-    document.getElementById('deleteModal').style.display = 'flex';
+    showModal('deleteModal');
     
     // Setup confirm button
     document.getElementById('confirmDeleteBtn').onclick = () => deleteProject(id);
 }
 
 function closeDeleteModal() {
-    document.getElementById('deleteModal').style.display = 'none';
+    hideModal('deleteModal');
     deletingProjectId = null;
 }
 
@@ -1051,7 +1115,7 @@ function openAddBlogPostModal() {
     document.getElementById('blogPostForm').reset();
     document.getElementById('blogPostId').value = '';
     clearBlogImagePreviews();
-    document.getElementById('blogPostModal').style.display = 'flex';
+    showModal('blogPostModal');
 }
 
 function editBlogPost(id) {
@@ -1093,12 +1157,13 @@ function editBlogPost(id) {
         });
     }
     
-    document.getElementById('blogPostModal').style.display = 'flex';
+    showModal('blogPostModal');
 }
 
 function closeBlogPostModal() {
-    document.getElementById('blogPostModal').style.display = 'none';
+    hideModal('blogPostModal');
     editingBlogPostId = null;
+    clearBlogImagePreviews();
 }
 
 async function handleBlogPostSubmit(e) {
@@ -1150,14 +1215,14 @@ function confirmDeleteBlogPost(id) {
     
     deletingBlogPostId = id;
     document.getElementById('deleteBlogPostName').textContent = post.title;
-    document.getElementById('deleteBlogModal').style.display = 'flex';
+    showModal('deleteBlogModal');
     
     const confirmBtn = document.getElementById('confirmDeleteBlogBtn');
     confirmBtn.onclick = () => deleteBlogPost(id);
 }
 
 function closeDeleteBlogModal() {
-    document.getElementById('deleteBlogModal').style.display = 'none';
+    hideModal('deleteBlogModal');
     deletingBlogPostId = null;
 }
 

@@ -89,7 +89,8 @@ export const handler = async (event, context) => {
                     location: row.location,
                     completedDate: row.completed_date,
                     description: row.description,
-                    images: row.images
+                    images: row.images,
+                    tags: row.tags || []
                 })))
             };
         }
@@ -99,16 +100,16 @@ export const handler = async (event, context) => {
 
         // POST /projects - Create new project
         if (method === 'POST' && path === '') {
-            const { title, type, location, completedDate, description, images } = JSON.parse(event.body);
+            const { title, type, location, completedDate, description, images, tags } = JSON.parse(event.body);
 
             const client = getDbClient();
             await client.connect();
 
             const result = await client.query(
-                `INSERT INTO projects (title, type, location, completed_date, description, images)
-                 VALUES ($1, $2, $3, $4, $5, $6)
+                `INSERT INTO projects (title, type, location, completed_date, description, images, tags)
+                 VALUES ($1, $2, $3, $4, $5, $6, $7)
                  RETURNING *`,
-                [title, type, location, completedDate, description, images]
+                [title, type, location, completedDate, description, images, tags || []]
             );
 
             await client.end();
@@ -134,7 +135,7 @@ export const handler = async (event, context) => {
         // PUT /projects/:id - Update project
         if (method === 'PUT' && path.startsWith('/')) {
             const id = path.substring(1);
-            const { title, type, location, completedDate, description, images } = JSON.parse(event.body);
+            const { title, type, location, completedDate, description, images, tags } = JSON.parse(event.body);
 
             const client = getDbClient();
             await client.connect();
@@ -142,10 +143,10 @@ export const handler = async (event, context) => {
             const result = await client.query(
                 `UPDATE projects 
                  SET title = $1, type = $2, location = $3, completed_date = $4, 
-                     description = $5, images = $6, updated_at = CURRENT_TIMESTAMP
-                 WHERE id = $7
+                     description = $5, images = $6, tags = $7, updated_at = CURRENT_TIMESTAMP
+                 WHERE id = $8
                  RETURNING *`,
-                [title, type, location, completedDate, description, images, id]
+                [title, type, location, completedDate, description, images, tags || [], id]
             );
 
             await client.end();
@@ -170,7 +171,8 @@ export const handler = async (event, context) => {
                         location: result.rows[0].location,
                         completedDate: result.rows[0].completed_date,
                         description: result.rows[0].description,
-                        images: result.rows[0].images
+                        images: result.rows[0].images,
+                        tags: result.rows[0].tags || []
                     }
                 })
             };

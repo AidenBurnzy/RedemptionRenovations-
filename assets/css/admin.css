@@ -23,6 +23,10 @@ body {
     color: var(--admin-text);
 }
 
+body.modal-open {
+    overflow: hidden;
+}
+
 /* Login Screen */
 .login-screen {
     min-height: 100vh;
@@ -210,6 +214,11 @@ body {
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.project-type-badge:last-of-type {
+    margin-right: 0;
 }
 
 .project-description {
@@ -327,6 +336,47 @@ body {
     font-size: 1rem;
     font-family: inherit;
     transition: border-color 0.3s;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border: 2px solid var(--admin-border);
+    border-radius: 8px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+}
+
+.checkbox-item:hover {
+    background: #f0f9fa;
+    border-color: #1d8a9b;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #1d8a9b;
+}
+
+.checkbox-item span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #333;
+    user-select: none;
 }
 
 .form-group input:focus,
@@ -456,25 +506,91 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .admin-header-content {
         flex-direction: column;
+        align-items: stretch;
         gap: 1rem;
-        align-items: flex-start;
     }
 
     .admin-header-actions {
         width: 100%;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .tab-buttons {
+        display: flex;
+        width: 100%;
         justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    .tab-buttons .tab-btn {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-screen {
+        padding: 1.5rem;
+    }
+
+    .login-container {
+        padding: 2.25rem 1.75rem;
+    }
+
+    .admin-header {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .admin-header-actions {
+        gap: 0.75rem;
+    }
+
+    .admin-header-actions .btn {
+        flex: 1 1 calc(50% - 0.5rem);
+        justify-content: center;
+    }
+
+    .tab-buttons {
+        order: 1;
+    }
+
+    .tab-buttons .tab-btn {
+        flex: 1;
+    }
+
+    .admin-main {
+        padding: 1.5rem 1.25rem;
     }
 
     .action-bar {
         flex-direction: column;
         align-items: stretch;
+        padding: 1.25rem;
+        gap: 0.75rem;
+    }
+
+    .action-bar .btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .search-box {
         max-width: 100%;
+        width: 100%;
+    }
+
+    .projects-list {
+        gap: 1rem;
+    }
+
+    .project-item {
+        padding: 1.25rem;
     }
 
     .project-images-section {
@@ -483,18 +599,27 @@ body {
     }
 
     .cover-photo-thumb,
-    .project-thumbnail {
+    .project-thumbnail,
+    .no-image {
         width: 100%;
-        height: 200px;
+        height: auto;
+        min-height: 200px;
+    }
+
+    .project-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 
     .project-actions {
-        flex-direction: row;
-        justify-content: stretch;
+        flex-direction: column;
+        gap: 0.75rem;
     }
-    
+
     .project-actions .btn {
-        flex: 1;
+        width: 100%;
+        justify-content: center;
     }
 
     .form-row {
@@ -503,11 +628,107 @@ body {
 
     .form-actions {
         flex-direction: column-reverse;
+        gap: 0.75rem;
     }
 
     .form-actions .btn {
         width: 100%;
         justify-content: center;
+    }
+
+    .drop-zone {
+        padding: 2.25rem 1.5rem;
+    }
+
+    .image-preview-list {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .modal {
+        padding: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .modal-content {
+        max-height: calc(100vh - 3rem);
+    }
+
+    .modal-header {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .modal-body,
+    .project-form {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 2rem 1.5rem;
+    }
+
+    .login-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .admin-header {
+        padding: 1rem;
+    }
+
+    .admin-main {
+        padding: 1rem;
+    }
+
+    .admin-header-actions {
+        flex-direction: column;
+    }
+
+    .admin-header-actions .btn {
+        flex: 1 1 100%;
+    }
+
+    .tab-buttons {
+        flex-direction: column;
+    }
+
+    .modal {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: none;
+        border-radius: 18px 18px 0 0;
+        max-height: calc(100vh - 2rem);
+    }
+
+    .modal-header,
+    .modal-body,
+    .project-form {
+        padding: 1.25rem;
+    }
+
+    .modal-small .modal-content,
+    .modal-large .modal-content {
+        max-width: none;
+    }
+
+    .drop-zone {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .drop-zone-small {
+        padding: 1.25rem;
+    }
+
+    .project-item {
+        padding: 1rem;
+    }
+
+    .project-meta {
+        gap: 0.35rem;
     }
 }
 

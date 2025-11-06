@@ -104,27 +104,49 @@
                            placeholder="e.g., Modern Kitchen Renovation">
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="projectType">Type *</label>
-                        <select id="projectType" name="type" required>
-                            <option value="">Select type...</option>
-                            <option value="Kitchen">Kitchen</option>
-                            <option value="Bathroom">Bathroom</option>
-                            <option value="Addition">Addition</option>
-                            <option value="Basement">Basement</option>
-                            <option value="Deck">Deck</option>
-                            <option value="Carpentry">Carpentry</option>
-                            <option value="Remodel">Remodel</option>
-                            <option value="Other">Other</option>
-                        </select>
+                <div class="form-group">
+                    <label>Project Categories *</label>
+                    <div class="checkbox-group" id="projectTypeCheckboxes">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Kitchen">
+                            <span>Kitchen</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Bathroom">
+                            <span>Bathroom</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Basement">
+                            <span>Basement</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Outdoor Living">
+                            <span>Outdoor Living</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Addition">
+                            <span>Addition</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Built-In">
+                            <span>Built-In</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Renovation">
+                            <span>Renovation</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Trim">
+                            <span>Trim</span>
+                        </label>
                     </div>
+                    <small>Select all categories that apply to this project. The first checked will be the primary type.</small>
+                </div>
 
-                    <div class="form-group">
-                        <label for="projectLocation">Location *</label>
-                        <input type="text" id="projectLocation" name="location" required 
-                               placeholder="e.g., Grand Rapids, MI">
-                    </div>
+                <div class="form-group">
+                    <label for="projectLocation">Location *</label>
+                    <input type="text" id="projectLocation" name="location" required 
+                           placeholder="e.g., Grand Rapids, MI">
                 </div>
 
                 <div class="form-group">

@@ -91,6 +91,7 @@ const SAMPLE_PROJECTS_DEPRECATED = [
 let currentProjects = [];
 let currentProjectIndex = 0;
 let currentSlideIndex = 0;
+let activeFilter = 'all';
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
@@ -102,26 +103,67 @@ if (document.readyState === 'loading') {
 function initGallery() {
     console.log('Initializing gallery...');
     document.addEventListener('keydown', handleKeyboard);
+    
+    // Check URL parameters for filter
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    if (filterParam) {
+        activeFilter = filterParam;
+    }
+    
+    setupFilterButtons();
     loadProjectsFromAPI();
+}
+
+function setupFilterButtons() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    // Update active state based on current filter
+    filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-filter') === activeFilter) {
+            btn.classList.add('active');
+        }
+    });
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Update active filter and re-render
+            activeFilter = filter;
+            renderProjects();
+        });
+    });
 }
 
 async function loadProjectsFromAPI() {
     const grid = document.getElementById('projectsGrid');
     
     try {
+        console.log('Fetching projects from API...');
         const response = await fetch('/.netlify/functions/projects');
+        
+        console.log('API Response status:', response.status);
         
         if (!response.ok) {
             throw new Error('Failed to load projects from database');
         }
         
         const data = await response.json();
+        console.log('API Response data:', data);
+        
         // API returns array directly, not wrapped in projects property
         currentProjects = Array.isArray(data) ? data : (data.projects || []);
         
-        // Hide loading state
-        const loadingEl = document.querySelector('.loading-state');
-        if (loadingEl) loadingEl.style.display = 'none';
+        console.log('Current projects loaded:', currentProjects.length);
+        
+        // Hide loading state by clearing the grid
+        grid.innerHTML = '';
         
         if (currentProjects.length === 0) {
             // Show empty state message with helpful instructions
@@ -173,12 +215,35 @@ function renderProjects() {
         return;
     }
     
-    currentProjects.forEach((project, index) => {
-        const card = createProjectCard(project, index);
+    // Filter projects based on active filter
+    let filteredProjects = currentProjects;
+    if (activeFilter !== 'all') {
+        filteredProjects = currentProjects.filter(project => {
+            // Check if project.type matches the filter
+            // Also check if project has tags array that includes the filter
+            return project.type === activeFilter || 
+                   (project.tags && Array.isArray(project.tags) && project.tags.includes(activeFilter));
+        });
+    }
+    
+    if (filteredProjects.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-state" style="text-align: center; padding: 4rem 2rem; grid-column: 1 / -1;">
+                <h2 style="color: #333; margin-bottom: 1rem;">No ${activeFilter} Projects</h2>
+                <p style="color: #666;">Try selecting a different category to view more projects.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    filteredProjects.forEach((project, index) => {
+        // Find the original index in currentProjects array for modal navigation
+        const originalIndex = currentProjects.findIndex(p => p.id === project.id);
+        const card = createProjectCard(project, originalIndex);
         grid.appendChild(card);
     });
     
-    console.log('Rendered ' + currentProjects.length + ' projects');
+    console.log('Rendered ' + filteredProjects.length + ' of ' + currentProjects.length + ' projects (filter: ' + activeFilter + ')');
 }
 
 function createProjectCard(project, index) {
