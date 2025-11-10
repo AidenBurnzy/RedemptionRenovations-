@@ -4194,3 +4194,13 @@ blockquote {
         text-decoration: none;
     }
 }
+
+/* Remove dropdown functionality from service cards on mobile */
+@media (max-width: 768px) {
+    .mobile-wrapper .service-card-description {
+        display: block !important;
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
