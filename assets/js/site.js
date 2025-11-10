@@ -14,9 +14,25 @@ window.addEventListener('pageshow', (event) => {
     }
 });
 
+const syncMobileLayoutFlags = () => {
+    if (!document.body) {
+        return;
+    }
+
+    const hasWrapper = Boolean(document.querySelector('.mobile-wrapper'));
+    document.body.classList.toggle('has-mobile-wrapper', hasWrapper);
+
+    const hasMobileNav = Boolean(document.querySelector('.mobile-nav-shell'));
+    document.body.classList.toggle('has-mobile-nav', hasMobileNav);
+};
+
+syncMobileLayoutFlags();
+
 document.addEventListener('DOMContentLoaded', () => {
     // Force scroll to top on load
     window.scrollTo(0, 0);
+
+    syncMobileLayoutFlags();
     
     const yearElement = document.getElementById('year');
     if (yearElement) {
@@ -228,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     loadSectionIncludes().then(() => {
+        syncMobileLayoutFlags();
         bootstrapNavbarEnhancements();
         // Mark page as loaded
         document.body.classList.add('loaded');

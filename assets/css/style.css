@@ -394,6 +394,59 @@ textarea {
     color: var(--teal);
 }
 
+@media (max-width: 1080px) {
+    .hero {
+        justify-content: center;
+        align-items: center;
+        padding: clamp(5.5rem, 11vw, 6.5rem) clamp(1.5rem, 5vw, 2.75rem) clamp(3.5rem, 8vw, 4.5rem);
+    }
+
+    .hero-inner {
+        margin-right: 0;
+        padding-right: 0;
+        justify-content: center;
+    }
+
+    .hero-copy {
+        margin-right: 0;
+        margin-left: 0;
+        width: min(100%, 440px);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        padding: clamp(5.5rem, 14vw, 7rem) 1.25rem clamp(3rem, 12vw, 4.25rem);
+        background-position: center;
+        background-size: cover;
+        text-shadow: none;
+    }
+
+    .hero-inner {
+        padding-right: 0;
+    }
+
+    .hero-copy {
+        width: 100%;
+        max-width: 460px;
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem;
+        border-radius: calc(var(--radius) * 1.2);
+        box-shadow: 0 18px 36px rgba(31, 31, 31, 0.18);
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+}
+
 /* Gap note stays on left side */
 .hero-gap-note {
     position: absolute;
@@ -1144,6 +1197,10 @@ textarea {
 .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-nav-shell {
+    display: none;
 }
 
 .mobile-wrapper {
@@ -2269,7 +2326,7 @@ body.mobile-menu-open .mobile-wrapper {
 }
 
 section {
-    padding: 4rem 1.5rem;
+    padding: clamp(3rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 3rem);
 }
 
 .section-inner {
@@ -2550,6 +2607,42 @@ section {
 .service-card:focus-within .service-card-description {
     max-height: 220px;
     opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .signature-section {
+        margin: clamp(2.5rem, 6vw, 3.25rem) 1rem;
+        padding: 3rem 1.5rem 3.25rem;
+    }
+
+    .signature-grid {
+        margin-bottom: 3rem;
+        row-gap: 2.5rem;
+    }
+
+    .service-card {
+        height: auto;
+        min-height: 0;
+        --service-card-peek: var(--service-card-image-height);
+        box-shadow: 0 16px 32px rgba(31, 31, 31, 0.12);
+    }
+
+    .service-card-media {
+        height: var(--service-card-image-height);
+    }
+
+    .service-card-media img {
+        transform: none;
+    }
+
+    .service-card-description {
+        max-height: none;
+        opacity: 1;
+    }
+
+    .service-card-content {
+        padding: 1.25rem 1.35rem 1.4rem;
+    }
 }
 
 .team-section {
@@ -3376,19 +3469,19 @@ blockquote {
 }
 
 @media (max-width: 768px) {
-    header,
-    main,
-    footer {
+    body.has-mobile-wrapper header,
+    body.has-mobile-wrapper main,
+    body.has-mobile-wrapper footer {
         display: none;
     }
 
-    .mobile-wrapper {
+    body.has-mobile-wrapper .mobile-wrapper {
         display: flex;
         flex-direction: column;
     }
 
-    .mobile-nav-sheet,
-    .mobile-nav-panel {
+    body.has-mobile-wrapper .mobile-nav-sheet,
+    body.has-mobile-wrapper .mobile-nav-panel {
         display: block;
     }
 }
@@ -3476,13 +3569,13 @@ blockquote {
 
 /* Smooth transition zone between mobile and desktop */
 @media (min-width: 769px) and (max-width: 960px) {
-    .mobile-wrapper {
+    body.has-mobile-wrapper .mobile-wrapper {
         display: none;
     }
     
-    header,
-    main,
-    footer {
+    body.has-mobile-wrapper header,
+    body.has-mobile-wrapper main,
+    body.has-mobile-wrapper footer {
         display: block;
     }
 }
@@ -3520,6 +3613,13 @@ blockquote {
     margin: 0;
     letter-spacing: -0.04em;
     text-align: left;
+}
+
+.hero-company-name .hero-logo {
+    display: none;
+    width: auto;
+    height: clamp(3.25rem, 6vw, 4.75rem);
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.35));
 }
 
 /* Responsive breakpoints */
@@ -3584,9 +3684,16 @@ blockquote {
 
 @media (max-width: 768px) {
     .hero-company-name h2 {
-        font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+        display: none;
     }
-    
+
+    .hero-company-name .hero-logo {
+        display: block;
+        width: clamp(200px, 56vw, 260px);
+        height: auto;
+        margin: 0 auto;
+    }
+
     .hero-company-name {
         margin-bottom: 2rem;
     }
@@ -3613,6 +3720,19 @@ blockquote {
    ============================================ */
 
 @media (max-width: 768px) {
+    body.has-mobile-nav #navbar-container {
+        display: none;
+    }
+
+    body.has-mobile-nav .mobile-nav-shell {
+        display: flex;
+        flex-direction: column;
+    }
+
+    body.has-mobile-nav main {
+        padding-top: calc(4.25rem + env(safe-area-inset-top, 0px));
+    }
+
     /* Mobile Hero Adjustments */
     .mobile-wrapper .hero {
         min-height: auto;
