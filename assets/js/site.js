@@ -1,4 +1,23 @@
+// Prevent scroll restoration on page load
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Ensure page starts at top immediately
+window.scrollTo(0, 0);
+
+// Also ensure scroll to top on page show (back/forward navigation)
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        // Page was loaded from cache (back/forward button)
+        window.scrollTo(0, 0);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Force scroll to top on load
+    window.scrollTo(0, 0);
+    
     const yearElement = document.getElementById('year');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
@@ -208,5 +227,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    loadSectionIncludes().then(bootstrapNavbarEnhancements);
+    loadSectionIncludes().then(() => {
+        bootstrapNavbarEnhancements();
+        // Mark page as loaded
+        document.body.classList.add('loaded');
+        // Ensure we're at the top after all content loads
+        window.scrollTo(0, 0);
+    });
 });

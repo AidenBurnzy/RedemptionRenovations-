@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Redemption Renovations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <script src="assets/js/admin.js" defer></script>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Admin Panel</h1>
+                <p>Redemption Renovations Project Management</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required autocomplete="email" placeholder="admin@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <div id="loginError" class="error-message" style="display: none;"></div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="projectsGallery.html" class="btn btn-outline" style="margin-top: 1rem; text-align: center; display: block; text-decoration: none;">Back to Gallery</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1 id="dashboardTitle">Project Management</h1>
+                <div class="admin-header-actions">
+                    <div class="tab-buttons">
+                        <button id="projectsTab" class="tab-btn active">Projects</button>
+                        <button id="blogTab" class="tab-btn">Blog Posts</button>
+                    </div>
+                    <a href="projectsGallery.html" class="btn btn-secondary" target="_blank">View Gallery</a>
+                    <a href="blog.html" class="btn btn-secondary" target="_blank">View Blog</a>
+                    <button id="logoutBtn" class="btn btn-outline">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <!-- Projects Section -->
+            <div id="projectsSection" class="admin-container">
+                <!-- Action Bar -->
+                <div class="action-bar">
+                    <button id="addProjectBtn" class="btn btn-primary">+ Add New Project</button>
+                    <div class="search-box">
+                        <input type="search" id="searchProjects" placeholder="Search projects...">
+                    </div>
+                </div>
+
+                <!-- Projects List -->
+                <div id="projectsList" class="projects-list">
+                    <div class="loading-spinner">Loading projects...</div>
+                </div>
+            </div>
+
+            <!-- Blog Section -->
+            <div id="blogSection" class="admin-container" style="display: none;">
+                <!-- Action Bar -->
+                <div class="action-bar">
+                    <button id="addBlogPostBtn" class="btn btn-primary">+ Add New Blog Post</button>
+                    <div class="search-box">
+                        <input type="search" id="searchBlogPosts" placeholder="Search blog posts...">
+                    </div>
+                </div>
+
+                <!-- Blog Posts List -->
+                <div id="blogPostsList" class="projects-list">
+                    <div class="loading-spinner">Loading blog posts...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Project Modal (Add/Edit) -->
+    <div id="projectModal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Project</h2>
+                <button class="modal-close" onclick="closeProjectModal()">&times;</button>
+            </div>
+            <form id="projectForm" class="project-form">
+                <input type="hidden" id="projectId" name="id">
+                
+                <div class="form-group">
+                    <label for="projectTitle">Project Title *</label>
+                    <input type="text" id="projectTitle" name="title" required 
+                           placeholder="e.g., Modern Kitchen Renovation">
+                </div>
+
+                <div class="form-group">
+                    <label>Project Categories *</label>
+                    <div class="checkbox-group" id="projectTypeCheckboxes">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Kitchen">
+                            <span>Kitchen</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Bathroom">
+                            <span>Bathroom</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Basement">
+                            <span>Basement</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Outdoor Living">
+                            <span>Outdoor Living</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Addition">
+                            <span>Addition</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Built-In">
+                            <span>Built-In</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Renovation">
+                            <span>Renovation</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="projectTypes" value="Trim">
+                            <span>Trim</span>
+                        </label>
+                    </div>
+                    <small>Select all categories that apply to this project. The first checked will be the primary type.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectLocation">Location *</label>
+                    <input type="text" id="projectLocation" name="location" required 
+                           placeholder="e.g., Grand Rapids, MI">
+                </div>
+
+                <div class="form-group">
+                    <label for="projectDate">Completed Date *</label>
+                    <input type="text" id="projectDate" name="completedDate" required 
+                           placeholder="e.g., October 2024">
+                </div>
+
+                <div class="form-group">
+                    <label for="projectDescription">Description *</label>
+                    <textarea id="projectDescription" name="description" required rows="5"
+                              placeholder="Detailed project description..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectCoverImage">Cover Photo *</label>
+                    
+                    <!-- Cover Photo Drop Zone -->
+                    <div id="coverDropZone" class="drop-zone drop-zone-small">
+                        <div class="drop-zone-content">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <p><strong>Upload cover photo</strong> or click to browse</p>
+                        </div>
+                        <input type="file" id="coverFileInput" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                    </div>
+                    
+                    <!-- Cover Photo Preview -->
+                    <div id="coverPreview" class="featured-image-preview"></div>
+                    
+                    <!-- Manual URL Input Toggle -->
+                    <button type="button" id="toggleCoverUrlInput" class="btn-link" style="margin-top: 0.5rem;">+ Or enter URL manually</button>
+                    <input type="url" id="projectCoverUrl" style="display: none; margin-top: 0.5rem;"
+                           placeholder="https://example.com/cover-image.jpg">
+                    <small>This will be the main image shown in the gallery</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectImages">Gallery Images *</label>
+                    
+                    <!-- Drag and Drop Zone -->
+                    <div id="dropZone" class="drop-zone">
+                        <div class="drop-zone-content">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p><strong>Drag & drop gallery images</strong> or click to browse</p>
+                            <p class="drop-zone-hint">Supports: JPG, PNG, WEBP (Max 5MB each)</p>
+                        </div>
+                        <input type="file" id="imageFileInput" accept="image/jpeg,image/png,image/webp" multiple style="display: none;">
+                    </div>
+
+                    <!-- Image Preview List -->
+                    <div id="imagePreviewList" class="image-preview-list"></div>
+
+                    <!-- Manual URL Input (Toggle) -->
+                    <button type="button" id="toggleUrlInput" class="btn-link" style="margin-top: 0.5rem;">+ Or enter image URLs manually</button>
+                    <textarea id="projectImages" name="images" required rows="6" style="display: none; margin-top: 0.5rem;"
+                              placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"></textarea>
+                    <small id="urlInputHint" style="display: none;">Enter full image URLs, one per line. Cover photo will be added automatically as first image.</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeProjectModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Delete Project</h2>
+                <button class="modal-close" onclick="closeDeleteModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this project? This action cannot be undone.</p>
+                <p id="deleteProjectName" style="font-weight: 600; margin-top: 1rem;"></p>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeDeleteModal()">Cancel</button>
+                <button id="confirmDeleteBtn" class="btn btn-danger">Delete Project</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Post Modal (Add/Edit) -->
+    <div id="blogPostModal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="blogModalTitle">Add New Blog Post</h2>
+                <button class="modal-close" onclick="closeBlogPostModal()">&times;</button>
+            </div>
+            <form id="blogPostForm" class="project-form">
+                <input type="hidden" id="blogPostId" name="id">
+                
+                <div class="form-group">
+                    <label for="blogTitle">Post Title *</label>
+                    <input type="text" id="blogTitle" name="title" required 
+                           placeholder="e.g., Top 5 Kitchen Renovation Trends">
+                    <small>This will be the headline of your post</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="blogContent">Post Content *</label>
+                    <textarea id="blogContent" name="content" required rows="16"
+                              placeholder="Write your blog post content here...&#10;&#10;Share project updates, tips, news, and more. Use line breaks for paragraphs - this is the main content that will be displayed in the feed."></textarea>
+                    <small>This is the main text that will appear in the Facebook-style feed. Write as much as you want!</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="blogFeaturedImage">Featured Image (Cover Photo)</label>
+                    
+                    <!-- Featured Image Drop Zone -->
+                    <div id="blogFeaturedDropZone" class="drop-zone drop-zone-small">
+                        <div class="drop-zone-content">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <p><strong>Upload cover photo</strong> or click to browse</p>
+                        </div>
+                        <input type="file" id="blogFeaturedFileInput" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                    </div>
+                    
+                    <!-- Featured Image Preview -->
+                    <div id="blogFeaturedPreview" class="featured-image-preview"></div>
+                    
+                    <!-- Manual URL Input Toggle -->
+                    <button type="button" id="toggleFeaturedUrlInput" class="btn-link" style="margin-top: 0.5rem;">+ Or enter URL manually</button>
+                    <input type="url" id="blogFeaturedImage" name="featured_image" style="display: none; margin-top: 0.5rem;"
+                           placeholder="https://example.com/featured-image.jpg">
+                    <small>Optional: Add a photo to display in the post (like a Facebook post with an image)</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="blogAuthor">Author</label>
+                        <input type="text" id="blogAuthor" name="author" 
+                               placeholder="Redemption Renovations" value="Redemption Renovations">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blogTags">Tags (comma-separated)</label>
+                        <input type="text" id="blogTags" name="tags" 
+                               placeholder="e.g., kitchen, trends, design">
+                    </div>
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <label for="blogExcerpt">Excerpt (Short Summary)</label>
+                    <textarea id="blogExcerpt" name="excerpt" rows="2"
+                              placeholder="Optional: A brief summary (not used in current design)"></textarea>
+                </div>
+
+                <div class="form-group" style="display: none;">
+                    <label for="blogImages">Additional Gallery Images</label>
+                    
+                    <!-- Gallery Images Drop Zone -->
+                    <div id="blogGalleryDropZone" class="drop-zone">
+                        <div class="drop-zone-content">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p><strong>Drag & drop gallery images</strong> or click to browse</p>
+                            <p class="drop-zone-hint">Supports: JPG, PNG, WEBP (Max 5MB each)</p>
+                        </div>
+                        <input type="file" id="blogGalleryFileInput" accept="image/jpeg,image/png,image/webp" multiple style="display: none;">
+                    </div>
+
+                    <!-- Gallery Image Preview List -->
+                    <div id="blogGalleryPreviewList" class="image-preview-list"></div>
+
+                    <!-- Manual URL Input Toggle -->
+                    <button type="button" id="toggleGalleryUrlInput" class="btn-link" style="margin-top: 0.5rem;">+ Or enter image URLs manually</button>
+                    <textarea id="blogImages" name="images" rows="4" style="display: none; margin-top: 0.5rem;"
+                              placeholder="https://example.com/image1.jpg&#10;https://example.com/image2.jpg"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="blogPublished" name="published">
+                        <span>Publish immediately (visible on blog page)</span>
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="closeBlogPostModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Blog Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Blog Post Modal -->
+    <div id="deleteBlogModal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Delete Blog Post</h2>
+                <button class="modal-close" onclick="closeDeleteBlogModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this blog post? This action cannot be undone.</p>
+                <p id="deleteBlogPostName" style="font-weight: 600; margin-top: 1rem;"></p>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" onclick="closeDeleteBlogModal()">Cancel</button>
+                <button id="confirmDeleteBlogBtn" class="btn btn-danger">Delete Blog Post</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -11,12 +11,21 @@
 
 html {
     background: var(--warm-gray);
+    scroll-behavior: auto;
+    overflow-y: scroll;
 }
 
 body {
     font-family: 'Outfit', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: var(--charcoal);
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Prevent layout shift during content loading */
+[data-include] {
+    min-height: 50px;
+    display: block;
 }
 
 button,
@@ -1634,6 +1643,33 @@ body.mobile-menu-open .mobile-wrapper {
 .mobile-footer-links-list a:active::after {
     transform: translateX(3px);
     opacity: 0;
+}
+
+.mobile-admin-cta {
+    display: flex;
+}
+
+.mobile-admin-button {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.25rem;
+    margin-top: 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.14);
+    color: var(--white);
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-admin-button:active {
+    background: rgba(255, 255, 255, 0.24);
+    transform: translateY(1px);
 }
 
 .mobile-footer-copy {

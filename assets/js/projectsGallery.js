@@ -1,8 +1,8 @@
 // Projects Gallery JavaScript
 // Manages project gallery display, modal interactions, and carousel functionality
 
-// Sample project data (will be replaced with database/API calls)
-const SAMPLE_PROJECTS = [
+// DEPRECATED: Sample data removed - all projects loaded from database
+const SAMPLE_PROJECTS_DEPRECATED = [
     {
         id: 1,
         title: "Modern Kitchen Renovation",
@@ -91,6 +91,7 @@ const SAMPLE_PROJECTS = [
 let currentProjects = [];
 let currentProjectIndex = 0;
 let currentSlideIndex = 0;
+let activeFilter = 'all';
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
@@ -101,12 +102,103 @@ if (document.readyState === 'loading') {
 
 function initGallery() {
     console.log('Initializing gallery...');
-    setTimeout(() => {
-        currentProjects = [...SAMPLE_PROJECTS];
-        renderProjects();
-    }, 500);
-    
     document.addEventListener('keydown', handleKeyboard);
+    
+    // Check URL parameters for filter
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    if (filterParam) {
+        activeFilter = filterParam;
+    }
+    
+    setupFilterButtons();
+    loadProjectsFromAPI();
+}
+
+function setupFilterButtons() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    // Update active state based on current filter
+    filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-filter') === activeFilter) {
+            btn.classList.add('active');
+        }
+    });
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Update active filter and re-render
+            activeFilter = filter;
+            renderProjects();
+        });
+    });
+}
+
+async function loadProjectsFromAPI() {
+    const grid = document.getElementById('projectsGrid');
+    
+    try {
+        console.log('Fetching projects from API...');
+        const response = await fetch('/.netlify/functions/projects');
+        
+        console.log('API Response status:', response.status);
+        
+        if (!response.ok) {
+            throw new Error('Failed to load projects from database');
+        }
+        
+        const data = await response.json();
+        console.log('API Response data:', data);
+        
+        // API returns array directly, not wrapped in projects property
+        currentProjects = Array.isArray(data) ? data : (data.projects || []);
+        
+        console.log('Current projects loaded:', currentProjects.length);
+        
+        // Hide loading state by clearing the grid
+        grid.innerHTML = '';
+        
+        if (currentProjects.length === 0) {
+            // Show empty state message with helpful instructions
+            grid.innerHTML = `
+                <div class="empty-state" style="text-align: center; padding: 4rem 2rem;">
+                    <h2 style="color: #333; margin-bottom: 1rem;">No Projects Yet</h2>
+                    <p style="color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Projects will appear here once they're added through the admin panel. 
+                        ${window.location.hostname === 'localhost' ? 'Make sure your database is configured first.' : ''}
+                    </p>
+                    <a href="admin.html" style="display: inline-block; padding: 0.75rem 2rem; background: #1d8a9b; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                        Go to Admin Panel
+                    </a>
+                </div>
+            `;
+        } else {
+            renderProjects();
+        }
+    } catch (error) {
+        console.error('Error loading projects from API:', error);
+        
+        // Show error message with helpful information
+        grid.innerHTML = `
+            <div class="error-state" style="text-align: center; padding: 4rem 2rem;">
+                <h2 style="color: #dc3545; margin-bottom: 1rem;">Unable to Load Projects</h2>
+                <p style="color: #666; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    There was an error connecting to the database. 
+                    ${window.location.hostname === 'localhost' ? 'Please check that your DATABASE_URL is configured in the .env file.' : 'Please try again later or contact support.'}
+                </p>
+                <button onclick="location.reload()" style="padding: 0.75rem 2rem; background: #1d8a9b; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                    Try Again
+                </button>
+            </div>
+        `;
+    }
 }
 
 function renderProjects() {
@@ -123,12 +215,35 @@ function renderProjects() {
         return;
     }
     
-    currentProjects.forEach((project, index) => {
-        const card = createProjectCard(project, index);
+    // Filter projects based on active filter
+    let filteredProjects = currentProjects;
+    if (activeFilter !== 'all') {
+        filteredProjects = currentProjects.filter(project => {
+            // Check if project.type matches the filter
+            // Also check if project has tags array that includes the filter
+            return project.type === activeFilter || 
+                   (project.tags && Array.isArray(project.tags) && project.tags.includes(activeFilter));
+        });
+    }
+    
+    if (filteredProjects.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-state" style="text-align: center; padding: 4rem 2rem; grid-column: 1 / -1;">
+                <h2 style="color: #333; margin-bottom: 1rem;">No ${activeFilter} Projects</h2>
+                <p style="color: #666;">Try selecting a different category to view more projects.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    filteredProjects.forEach((project, index) => {
+        // Find the original index in currentProjects array for modal navigation
+        const originalIndex = currentProjects.findIndex(p => p.id === project.id);
+        const card = createProjectCard(project, originalIndex);
         grid.appendChild(card);
     });
     
-    console.log('Rendered ' + currentProjects.length + ' projects');
+    console.log('Rendered ' + filteredProjects.length + ' of ' + currentProjects.length + ' projects (filter: ' + activeFilter + ')');
 }
 
 function createProjectCard(project, index) {
