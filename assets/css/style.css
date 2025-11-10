@@ -3988,7 +3988,7 @@ blockquote {
     .mobile-wrapper .cta-highlight-meta a {
         color: var(--white);
         font-weight: 600;
-        text-decoration: underline;
+        text-decoration: none;
     }
     
     .mobile-wrapper .cta-gallery-header {
@@ -4009,7 +4009,7 @@ blockquote {
     .mobile-wrapper .cta-gallery-link {
         font-size: 0.85rem;
         color: var(--white);
-        text-decoration: underline;
+        text-decoration: none;
         opacity: 0.9;
     }
     
@@ -4133,7 +4133,7 @@ blockquote {
     
     .mobile-wrapper .footer-links a:hover {
         color: var(--white);
-        text-decoration: underline;
+        text-decoration: none;
     }
     
     .mobile-wrapper .footer-bottom {
@@ -4154,5 +4154,43 @@ blockquote {
     .mobile-wrapper .footer-panels {
         grid-template-columns: 1fr;
         gap: 1.25rem;
+    }
+}
+
+/* Remove all underlines from mobile links */
+@media (max-width: 768px) {
+    .mobile-wrapper a {
+        text-decoration: none !important;
+    }
+    
+    .mobile-wrapper a:hover {
+        text-decoration: none !important;
+    }
+    
+    .mobile-wrapper .service-card {
+        text-decoration: none;
+    }
+    
+    .mobile-wrapper .btn {
+        text-decoration: none;
+    }
+}
+
+/* Remove all underlines from mobile links */
+@media (max-width: 768px) {
+    .mobile-wrapper a {
+        text-decoration: none !important;
+    }
+    
+    .mobile-wrapper a:hover {
+        text-decoration: none !important;
+    }
+    
+    .mobile-wrapper .service-card {
+        text-decoration: none;
+    }
+    
+    .mobile-wrapper .btn {
+        text-decoration: none;
     }
 }
