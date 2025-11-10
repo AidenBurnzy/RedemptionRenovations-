@@ -3683,25 +3683,33 @@ blockquote {
 }
 
 @media (max-width: 768px) {
+    .hero-company-name {
+        margin-bottom: 2rem;
+        width: 100%;
+        padding: 0 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .hero-company-name h2 {
         display: none;
     }
 
     .hero-company-name .hero-logo {
         display: block;
-        width: clamp(200px, 56vw, 260px);
+        width: 100%;
+        max-width: 260px;
         height: auto;
-        margin: 0 auto;
-    }
-
-    .hero-company-name {
-        margin-bottom: 2rem;
+        margin: 0;
+        filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.35));
     }
 }
 
 @media (max-width: 640px) {
     .hero-company-name {
         margin-bottom: 1.5rem;
+        padding: 0 1.25rem;
     }
     
     .hero-company-name h2 {
@@ -3710,6 +3718,10 @@ blockquote {
 }
 
 @media (max-width: 480px) {
+    .hero-company-name {
+        padding: 0 1rem;
+    }
+
     .hero-company-name h2 {
         font-size: clamp(1.7rem, 4.5vw, 2.3rem);
     }
