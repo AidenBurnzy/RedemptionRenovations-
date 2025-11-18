@@ -238,6 +238,10 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .blog-hero {
+        display: none;
+    }
+
     .blog-feed-section {
         padding: 1.5rem 0;
     }
