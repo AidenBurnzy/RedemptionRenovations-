@@ -267,6 +267,10 @@
 }
 
 @media (max-width: 768px) {
+    .about-hero {
+        display: none;
+    }
+
     .values-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
