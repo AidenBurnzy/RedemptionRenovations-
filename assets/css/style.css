@@ -519,14 +519,9 @@ textarea {
         min-width: 0;
     }
 
-    .hero-copy .btn.secondary {
-        border-color: rgba(255, 255, 255, 0.65);
-        color: var(--white);
-        background: rgba(255, 255, 255, 0.12);
-    }
-
-    .hero-copy .btn.secondary:hover {
-        background: rgba(255, 255, 255, 0.2);
+    /* Move logo 25% down from the top on non-home pages */
+    body:not([data-page="home"]) .mobile-brand-logo {
+        top: 25% !important;
     }
 }
 
@@ -1182,8 +1177,9 @@ textarea {
         font-size: 0.9rem;
     }
 
-    .hero-gap-note {
-        display: none;
+    /* Move logo 25% down from the top on non-home pages */
+    body:not([data-page="home"]) .mobile-brand-logo {
+        top: 25% !important;
     }
 }
 
@@ -1226,8 +1222,9 @@ textarea {
         font-size: 0.82rem;
     }
 
-    .hero-gap-note {
-        display: none;
+    /* Move logo 25% down from the top on non-home pages */
+    body:not([data-page="home"]) .mobile-brand-logo {
+        top: 25% !important;
     }
 }
 
@@ -1705,7 +1702,7 @@ body.mobile-menu-open .mobile-wrapper {
     align-items: center;
     gap: 0.5rem;
     text-transform: uppercase;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.24em;
     font-size: 0.7rem;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.7);
@@ -2387,7 +2384,7 @@ body.mobile-menu-open .mobile-wrapper {
 
 .mobile-gallery-item img {
     width: 100%;
-    height: 180px;
+    height: 100%;
     object-fit: cover;
     display: block;
 }
@@ -3248,9 +3245,9 @@ section {
 
 .cta-gallery-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .cta-gallery-eyebrow {
@@ -3634,6 +3631,16 @@ blockquote {
         top: clamp(5rem, 11vh, 6.5rem);
     }
     
+    /* Move logo down on non-home pages */
+    body:not([data-page="home"]) .mobile-brand-logo {
+        top: 25% !important;
+    }
+    
+    /* Move logo 25% down from the top on non-home pages */
+    body:not([data-page="home"]) .mobile-brand-logo {
+        top: 25% !important;
+    }
+    
     .mobile-hero-welcome {
         padding: 1.25rem;
     }
@@ -3792,6 +3799,7 @@ blockquote {
         padding: 0 1rem;
     }
 }
+
 /* ============================================
    MOBILE-SPECIFIC OVERRIDES FOR DESKTOP SECTIONS
    Ensures desktop sections look great on mobile
@@ -3805,6 +3813,11 @@ blockquote {
     body.has-mobile-nav .mobile-nav-shell {
         display: flex;
         flex-direction: column;
+    }
+
+    /* Move logo down on non-home pages */
+    body:not([data-page="home"]) .mobile-brand-logo {
+        top: 25% !important;
     }
 
     body.has-mobile-nav main {
@@ -3862,11 +3875,6 @@ blockquote {
     .mobile-wrapper .hero-actions {
         gap: 0.75rem;
         margin-top: 0.5rem;
-    }
-    
-    .mobile-wrapper .hero-actions .btn {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.95rem;
     }
     
     /* Mobile Signature/Services Section */
@@ -4245,160 +4253,5 @@ blockquote {
         color: var(--white);
         font-size: 0.9rem;
         font-weight: 600;
-    }
-}
-
-/* Tablet optimization (480px - 768px) */
-@media (min-width: 480px) and (max-width: 768px) {
-    .mobile-wrapper .signature-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-    
-    .mobile-wrapper .cta-gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .mobile-wrapper .cta-gallery-item.featured {
-        grid-column: 1 / -1;
-    }
-}
-
-/* Mobile Footer Enhancements */
-@media (max-width: 768px) {
-    .mobile-wrapper .site-footer {
-        margin: 0;
-        padding: 1.5rem 1.25rem 1.5rem;
-    }
-    
-    .mobile-wrapper .footer-top {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    .mobile-wrapper .footer-brand-block {
-        max-width: 100%;
-    }
-    
-    .mobile-wrapper .footer-eyebrow {
-        font-size: 0.75rem;
-        letter-spacing: 0.28em;
-    }
-    
-    .mobile-wrapper .footer-brand-block h3 {
-        font-size: 1.3rem;
-        margin: 0.75rem 0 0.85rem;
-        line-height: 1.3;
-    }
-    
-    .mobile-wrapper .footer-brand-block p {
-        font-size: 0.9rem;
-        line-height: 1.6;
-        opacity: 0.9;
-    }
-    
-    .mobile-wrapper .footer-panels {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem 1.25rem;
-    }
-    
-    .mobile-wrapper .footer-panel h4 {
-        font-size: 1rem;
-        margin-bottom: 0.75rem;
-        font-weight: 600;
-    }
-    
-    .mobile-wrapper .footer-links {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    
-    .mobile-wrapper .footer-links li {
-        margin-bottom: 0.5rem;
-        font-size: 0.85rem;
-        line-height: 1.5;
-    }
-    
-    .mobile-wrapper .footer-links a {
-        color: rgba(255, 255, 255, 0.85);
-        text-decoration: none;
-        transition: color 0.2s ease;
-    }
-    
-    .mobile-wrapper .footer-links a:hover {
-        color: var(--white);
-        text-decoration: none;
-    }
-    
-    .mobile-wrapper .footer-bottom {
-        padding-top: 1.25rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        text-align: center;
-    }
-    
-    .mobile-wrapper .mobile-footer-copy {
-        font-size: 0.85rem;
-        opacity: 0.8;
-        margin: 0;
-    }
-}
-
-/* Single column layout for smaller phones */
-@media (max-width: 480px) {
-    .mobile-wrapper .footer-panels {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-    }
-}
-
-/* Remove all underlines from mobile links */
-@media (max-width: 768px) {
-    .mobile-wrapper a {
-        text-decoration: none !important;
-    }
-    
-    .mobile-wrapper a:hover {
-        text-decoration: none !important;
-    }
-    
-    .mobile-wrapper .service-card {
-        text-decoration: none;
-    }
-    
-    .mobile-wrapper .btn {
-        text-decoration: none;
-    }
-}
-
-/* Remove all underlines from mobile links */
-@media (max-width: 768px) {
-    .mobile-wrapper a {
-        text-decoration: none !important;
-    }
-    
-    .mobile-wrapper a:hover {
-        text-decoration: none !important;
-    }
-    
-    .mobile-wrapper .service-card {
-        text-decoration: none;
-    }
-    
-    .mobile-wrapper .btn {
-        text-decoration: none;
-    }
-}
-
-/* Remove dropdown functionality from service cards on mobile */
-@media (max-width: 768px) {
-    .mobile-wrapper .service-card-description {
-        display: block !important;
-        max-height: none !important;
-        opacity: 1 !important;
-        visibility: visible !important;
     }
 }
