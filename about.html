@@ -15,11 +15,29 @@
 <body data-page="about">
     <div id="navbar-container"></div>
     <script>
+        // Set active navigation link based on current page
+        function setActiveNavLink() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navbarContainer = document.getElementById('navbar-container');
+            if (!navbarContainer) return;
+            
+            const navLinks = navbarContainer.querySelectorAll('.airbnb-link');
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                link.classList.remove('active-link');
+                if (linkHref === currentPage || 
+                    (currentPage === '' && linkHref === 'index.html') ||
+                    (currentPage === '/' && linkHref === 'index.html')) {
+                    link.classList.add('active-link');
+                }
+            });
+        }
+        
         fetch('navbar.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                if (window.setActiveNavLink) window.setActiveNavLink();
+                setActiveNavLink();
             });
     </script>
 
