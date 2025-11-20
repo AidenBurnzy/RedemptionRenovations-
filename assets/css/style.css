@@ -391,8 +391,9 @@ textarea {
 }
 
 .hero-copy .btn.secondary {
-    border-color: var(--teal);
-    color: var(--teal);
+    background: var(--teal);
+    color: var(--white);
+    border: 2px solid var(--teal);
 }
 
 @media (max-width: 1080px) {
@@ -463,24 +464,28 @@ textarea {
         text-align: center;
         gap: clamp(1.5rem, 5vw, 2.5rem);
         min-height: auto;
-        padding: clamp(5.5rem, 14vw, 7rem) 1.25rem clamp(3rem, 12vw, 4.25rem);
+        padding: clamp(5.5rem, 14vw, 7rem) 1rem clamp(3rem, 12vw, 4.25rem);
         background-position: center;
         background-size: cover;
         text-shadow: none;
     }
 
     .hero-inner {
-        margin: 0;
+        margin: 0 auto;
         padding: 0;
         width: 100%;
+        max-width: 100%;
         justify-content: center;
         flex-direction: column;
         align-items: center;
     }
 
     .hero-copy {
-        margin: 0 auto;
-        width: min(100%, 460px);
+        margin: 0 auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: calc(100% - 2rem);
+        max-width: 460px;
         background: rgba(255, 255, 255, 0.16);
         color: rgba(255, 255, 255, 0.94);
         padding: 1.85rem 1.5rem;
@@ -492,7 +497,9 @@ textarea {
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-align: center;
         gap: clamp(0.9rem, 2.5vw, 1.4rem);
+        box-sizing: border-box;
     }
 
     .hero h1 {
@@ -1102,27 +1109,26 @@ textarea {
 
 @media (max-width: 768px) {
     .hero {
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
-        padding: clamp(2.5rem, 6vw, 3rem) 0;
+        padding: clamp(2.5rem, 6vw, 3rem) 1rem;
         padding-top: clamp(7rem, 14vw, 8rem);
         padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
         min-height: clamp(640px, 94vh, 780px);
     }
 
     .hero-inner {
-        justify-content: flex-end;
+        justify-content: center;
         align-items: center;
-        margin-right: 0;
-        padding-right: 0;
+        margin: 0 auto;
+        padding: 0;
         width: 100%;
     }
 
     .hero-copy {
-        width: min(100%, clamp(240px, 42vw, 310px));
-        max-width: 310px;
-        margin-left: auto;
-        margin-right: clamp(4.5rem, 8.5vw, 5.5rem);
+        width: calc(100% - 2rem);
+        max-width: 460px;
+        margin: 0 auto !important;
         padding: clamp(1.35rem, 2.8vw, 1.7rem);
     }
 
@@ -1141,24 +1147,24 @@ textarea {
 
 @media (max-width: 640px) {
     .hero {
-        padding: 2rem 0;
+        padding: 2rem 1rem;
         padding-top: clamp(6.5rem, 16vw, 7.5rem);
         padding-bottom: clamp(2rem, 5vw, 3rem);
         min-height: clamp(600px, 90vh, 760px);
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
     }
 
     .hero-inner {
         width: 100%;
-        justify-content: flex-end;
+        justify-content: center;
+        margin: 0 auto;
     }
 
     .hero-copy {
-        width: min(100%, clamp(230px, 50vw, 300px));
-        max-width: 300px;
-        margin-left: auto;
-        margin-right: clamp(3.5rem, 7vw, 4rem);
+        width: calc(100% - 2rem);
+        max-width: 460px;
+        margin: 0 auto !important;
         padding: clamp(1.25rem, 2.8vw, 1.55rem);
     }
 
@@ -1185,12 +1191,12 @@ textarea {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 1.75rem 0;
+        padding: 1.75rem 1rem;
         padding-top: clamp(6rem, 18vw, 7rem);
         padding-bottom: clamp(1.75rem, 5vw, 2.5rem);
         min-height: clamp(560px, 86vh, 720px);
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
     }
 
     .hero-inner {
@@ -1262,6 +1268,7 @@ textarea {
     color: var(--white);
     font-weight: 600;
     cursor: pointer;
+    text-decoration: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
