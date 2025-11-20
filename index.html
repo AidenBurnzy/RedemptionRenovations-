@@ -14,39 +14,12 @@
 <body>
     <div id="navbar-container"></div>
     <script>
-        // Set active navigation link based on current page
-        function setActiveNavLink() {
-            const pathname = window.location.pathname;
-            const currentPage = pathname.split('/').pop();
-            
-            const navbarContainer = document.getElementById('navbar-container');
-            if (!navbarContainer) return;
-            
-            const navLinks = navbarContainer.querySelectorAll('.airbnb-link');
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                link.classList.remove('active-link');
-                
-                // Extract filename without extension for comparison
-                const pageName = currentPage.replace('.html', '') || 'index';
-                const linkName = linkHref.replace('.html', '');
-                
-                // Check if this is the current page
-                if (linkHref === currentPage || 
-                    linkName === pageName ||
-                    (pathname === '/' && linkHref === 'index.html') ||
-                    (currentPage === '' && linkHref === 'index.html') ||
-                    pathname.endsWith('/' + linkHref)) {
-                    link.classList.add('active-link');
-                }
-            });
-        }
-        
         fetch('navbar.html')
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                setActiveNavLink();
+                const homeLink = document.querySelector('a[href="index.html"]');
+                if (homeLink) homeLink.classList.add('active-link');
             });
     </script>
     <div class="mobile-nav-shell">
