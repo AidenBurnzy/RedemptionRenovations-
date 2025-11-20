@@ -15,7 +15,7 @@
 <body data-page="services">
     <div id="navbar-container"></div>
     <script>
-        fetch('navbar.html')
+        fetch('navbar.html?v=' + Date.now())
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
@@ -24,11 +24,9 @@
                     const servicesLink = navbar.querySelector('a[href="services.html"]');
                     if (servicesLink) {
                         servicesLink.classList.add('active-link');
-                        servicesLink.style.background = '#1d8a9b';
-                        servicesLink.style.color = '#ffffff';
-                        servicesLink.style.boxShadow = '0 2px 8px rgba(29,138,155,0.18)';
+                        servicesLink.style.cssText = 'background: #1d8a9b !important; color: #ffffff !important; box-shadow: 0 2px 8px rgba(29,138,155,0.18) !important;';
                     }
-                }, 50);
+                }, 100);
             });
     </script>
 

@@ -15,7 +15,7 @@
 <body data-page="about">
     <div id="navbar-container"></div>
     <script>
-        fetch('navbar.html')
+        fetch('navbar.html?v=' + Date.now())
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
@@ -24,11 +24,9 @@
                     const aboutLink = navbar.querySelector('a[href="about.html"]');
                     if (aboutLink) {
                         aboutLink.classList.add('active-link');
-                        aboutLink.style.background = '#1d8a9b';
-                        aboutLink.style.color = '#ffffff';
-                        aboutLink.style.boxShadow = '0 2px 8px rgba(29,138,155,0.18)';
+                        aboutLink.style.cssText = 'background: #1d8a9b !important; color: #ffffff !important; box-shadow: 0 2px 8px rgba(29,138,155,0.18) !important;';
                     }
-                }, 50);
+                }, 100);
             });
     </script>
 
