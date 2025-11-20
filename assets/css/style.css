@@ -2911,7 +2911,7 @@ section {
 
 .team-photo.secondary {
     position: absolute;
-    width: 280px;
+    width: 200px;
     bottom: -44px;
     right: clamp(-1rem, -2vw, -2.5rem);
     border: 6px solid var(--white);
@@ -2995,12 +2995,16 @@ section {
     .team-quote {
         position: relative;
         inset: auto;
-        width: min(70%, 320px);
         margin: 1.75rem auto 0;
     }
 
     .team-photo.secondary {
+        width: min(70%, 320px);
         border-width: 4px;
+    }
+
+    .team-quote {
+        width: min(70%, 320px);
     }
 
     .team-quote {
@@ -3040,6 +3044,16 @@ section {
 
     .team-stats div {
         padding: 1rem;
+    }
+
+    .team-photo.secondary {
+        width: min(50%, 180px) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-photo.secondary {
+        display: none !important;
     }
 }
 
@@ -4111,7 +4125,9 @@ blockquote {
     }
     
     .mobile-wrapper .team-photo.secondary {
-        display: none;
+        display: block;
+        width: 180px;
+        margin: 1.5rem auto 0;
     }
     
     .mobile-wrapper .team-photo img {
