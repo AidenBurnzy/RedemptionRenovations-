@@ -3856,6 +3856,11 @@ blockquote {
         display: none;
     }
 
+    /* Hide desktop testimonials content on mobile */
+    body[data-page="testimonials"] main {
+        display: none;
+    }
+
     /* Move logo down on non-home pages */
     body:not([data-page="home"]) .mobile-brand-logo {
         top: 25% !important;

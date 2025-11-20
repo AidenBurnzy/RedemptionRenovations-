@@ -1,5 +1,12 @@
 /* Testimonials Page Styles for Redemption Renovations */
 
+/* Hide desktop main content on mobile, show mobile sections */
+@media (max-width: 768px) {
+    body[data-page="testimonials"] main {
+        display: none;
+    }
+}
+
 /* Testimonials Hero */
 .testimonials-hero {
     position: relative;
