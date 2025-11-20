@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Navbar Active Link</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+</head>
+<body>
+    <h1 style="margin-top: 300px; text-align: center;">Testing About Page Active Link</h1>
+    
+    <div id="navbar-container"></div>
+    <script>
+        console.log('Script started');
+        fetch('navbar.html')
+            .then(response => {
+                console.log('Fetch response:', response.ok);
+                return response.text();
+            })
+            .then(html => {
+                console.log('HTML received, length:', html.length);
+                document.getElementById('navbar-container').innerHTML = html;
+                console.log('HTML inserted');
+                
+                const allLinks = document.querySelectorAll('a[href="about.html"]');
+                console.log('All about.html links found:', allLinks.length);
+                
+                const aboutLink = document.querySelector('a[href="about.html"]');
+                console.log('About link found:', aboutLink);
+                
+                if (aboutLink) {
+                    console.log('Adding active styling...');
+                    aboutLink.classList.add('active-link');
+                    aboutLink.style.background = '#1d8a9b';
+                    aboutLink.style.color = '#ffffff';
+                    console.log('Active styling applied');
+                    console.log('Link styles:', aboutLink.style.cssText);
+                    console.log('Link classes:', aboutLink.className);
+                } else {
+                    console.log('ERROR: About link not found!');
+                }
+            })
+            .catch(error => {
+                console.error('Error loading navbar:', error);
+            });
+    </script>
+</body>
+</html>

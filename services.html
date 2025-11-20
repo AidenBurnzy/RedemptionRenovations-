@@ -19,12 +19,16 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                const servicesLink = document.querySelector('a[href="services.html"]');
-                if (servicesLink) {
-                    servicesLink.classList.add('active-link');
-                    servicesLink.style.background = '#1d8a9b';
-                    servicesLink.style.color = '#ffffff';
-                }
+                setTimeout(() => {
+                    const navbar = document.getElementById('navbar-container');
+                    const servicesLink = navbar.querySelector('a[href="services.html"]');
+                    if (servicesLink) {
+                        servicesLink.classList.add('active-link');
+                        servicesLink.style.background = '#1d8a9b';
+                        servicesLink.style.color = '#ffffff';
+                        servicesLink.style.boxShadow = '0 2px 8px rgba(29,138,155,0.18)';
+                    }
+                }, 50);
             });
     </script>
 

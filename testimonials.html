@@ -19,12 +19,16 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                const testimonialsLink = document.querySelector('a[href="testimonials.html"]');
-                if (testimonialsLink) {
-                    testimonialsLink.classList.add('active-link');
-                    testimonialsLink.style.background = '#1d8a9b';
-                    testimonialsLink.style.color = '#ffffff';
-                }
+                setTimeout(() => {
+                    const navbar = document.getElementById('navbar-container');
+                    const testimonialsLink = navbar.querySelector('a[href="testimonials.html"]');
+                    if (testimonialsLink) {
+                        testimonialsLink.classList.add('active-link');
+                        testimonialsLink.style.background = '#1d8a9b';
+                        testimonialsLink.style.color = '#ffffff';
+                        testimonialsLink.style.boxShadow = '0 2px 8px rgba(29,138,155,0.18)';
+                    }
+                }, 50);
             });
     </script>
 

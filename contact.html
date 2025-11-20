@@ -18,12 +18,16 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                const contactLink = document.querySelector('a[href="contact.html"]');
-                if (contactLink) {
-                    contactLink.classList.add('active-link');
-                    contactLink.style.background = '#1d8a9b';
-                    contactLink.style.color = '#ffffff';
-                }
+                setTimeout(() => {
+                    const navbar = document.getElementById('navbar-container');
+                    const contactLink = navbar.querySelector('a[href="contact.html"]');
+                    if (contactLink) {
+                        contactLink.classList.add('active-link');
+                        contactLink.style.background = '#1d8a9b';
+                        contactLink.style.color = '#ffffff';
+                        contactLink.style.boxShadow = '0 2px 8px rgba(29,138,155,0.18)';
+                    }
+                }, 50);
             });
     </script>
 

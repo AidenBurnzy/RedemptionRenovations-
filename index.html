@@ -18,12 +18,16 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                const homeLink = document.querySelector('a[href="index.html"]');
-                if (homeLink) {
-                    homeLink.classList.add('active-link');
-                    homeLink.style.background = '#1d8a9b';
-                    homeLink.style.color = '#ffffff';
-                }
+                setTimeout(() => {
+                    const navbar = document.getElementById('navbar-container');
+                    const homeLink = navbar.querySelector('a[href="index.html"]');
+                    if (homeLink) {
+                        homeLink.classList.add('active-link');
+                        homeLink.style.background = '#1d8a9b';
+                        homeLink.style.color = '#ffffff';
+                        homeLink.style.boxShadow = '0 2px 8px rgba(29,138,155,0.18)';
+                    }
+                }, 50);
             });
     </script>
     <div class="mobile-nav-shell">

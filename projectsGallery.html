@@ -20,12 +20,16 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                const galleryLink = document.querySelector('a[href="projectsGallery.html"]');
-                if (galleryLink) {
-                    galleryLink.classList.add('active-link');
-                    galleryLink.style.background = '#1d8a9b';
-                    galleryLink.style.color = '#ffffff';
-                }
+                setTimeout(() => {
+                    const navbar = document.getElementById('navbar-container');
+                    const galleryLink = navbar.querySelector('a[href="projectsGallery.html"]');
+                    if (galleryLink) {
+                        galleryLink.classList.add('active-link');
+                        galleryLink.style.background = '#1d8a9b';
+                        galleryLink.style.color = '#ffffff';
+                        galleryLink.style.boxShadow = '0 2px 8px rgba(29,138,155,0.18)';
+                    }
+                }, 50);
             });
     </script>
 
