@@ -14,6 +14,32 @@ window.addEventListener('pageshow', (event) => {
     }
 });
 
+// Global function to set active navigation link
+window.setActiveNavLink = function() {
+    // Get the current page filename
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // Find all nav links in the navbar
+    const navbarContainer = document.getElementById('navbar-container');
+    if (!navbarContainer) return;
+    
+    const navLinks = navbarContainer.querySelectorAll('.airbnb-link');
+    
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        
+        // Remove active-link class from all links first
+        link.classList.remove('active-link');
+        
+        // Add active-link class to the current page
+        if (linkHref === currentPage || 
+            (currentPage === '' && linkHref === 'index.html') ||
+            (currentPage === '/' && linkHref === 'index.html')) {
+            link.classList.add('active-link');
+        }
+    });
+};
+
 const syncMobileLayoutFlags = () => {
     if (!document.body) {
         return;
@@ -243,9 +269,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const setActiveNavLink = () => {
+        // Get the current page filename
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        
+        // Wait for navbar to be loaded
+        const navbarContainer = document.getElementById('navbar-container');
+        if (!navbarContainer) return;
+        
+        // Find all nav links in the navbar
+        const navLinks = navbarContainer.querySelectorAll('.airbnb-link');
+        
+        navLinks.forEach(link => {
+            const linkHref = link.getAttribute('href');
+            
+            // Remove active-link class from all links first
+            link.classList.remove('active-link');
+            
+            // Add active-link class to the current page
+            if (linkHref === currentPage || 
+                (currentPage === '' && linkHref === 'index.html') ||
+                (currentPage === '/' && linkHref === 'index.html')) {
+                link.classList.add('active-link');
+            }
+        });
+    };
+
     loadSectionIncludes().then(() => {
         syncMobileLayoutFlags();
         bootstrapNavbarEnhancements();
+        setActiveNavLink();
         // Mark page as loaded
         document.body.classList.add('loaded');
         // Ensure we're at the top after all content loads

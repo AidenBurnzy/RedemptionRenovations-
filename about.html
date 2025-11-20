@@ -19,12 +19,7 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                // Remove active-link from all navigation links
-                const allLinks = document.querySelectorAll('#navbar-container .airbnb-link');
-                allLinks.forEach(link => link.classList.remove('active-link'));
-                // Set active link for About page only
-                const aboutLink = document.querySelector('#navbar-container a[href="about.html"]');
-                if (aboutLink) aboutLink.classList.add('active-link');
+                if (window.setActiveNavLink) window.setActiveNavLink();
             });
     </script>
 

@@ -20,10 +20,7 @@
             .then(response => response.text())
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
-                const allLinks = document.querySelectorAll('#navbar-container .airbnb-link');
-                allLinks.forEach(link => link.classList.remove('active-link'));
-                const galleryLink = document.querySelector('#navbar-container a[href="projectsGallery.html"]');
-                if (galleryLink) galleryLink.classList.add('active-link');
+                if (window.setActiveNavLink) window.setActiveNavLink();
             });
     </script>
 
