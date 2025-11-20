@@ -21,7 +21,11 @@
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
                 const galleryLink = document.querySelector('a[href="projectsGallery.html"]');
-                if (galleryLink) galleryLink.classList.add('active-link');
+                if (galleryLink) {
+                    galleryLink.classList.add('active-link');
+                    galleryLink.style.background = '#1d8a9b';
+                    galleryLink.style.color = '#ffffff';
+                }
             });
     </script>
 

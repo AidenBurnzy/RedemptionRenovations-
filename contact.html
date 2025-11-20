@@ -19,7 +19,11 @@
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
                 const contactLink = document.querySelector('a[href="contact.html"]');
-                if (contactLink) contactLink.classList.add('active-link');
+                if (contactLink) {
+                    contactLink.classList.add('active-link');
+                    contactLink.style.background = '#1d8a9b';
+                    contactLink.style.color = '#ffffff';
+                }
             });
     </script>
 

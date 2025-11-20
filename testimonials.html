@@ -20,7 +20,11 @@
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
                 const testimonialsLink = document.querySelector('a[href="testimonials.html"]');
-                if (testimonialsLink) testimonialsLink.classList.add('active-link');
+                if (testimonialsLink) {
+                    testimonialsLink.classList.add('active-link');
+                    testimonialsLink.style.background = '#1d8a9b';
+                    testimonialsLink.style.color = '#ffffff';
+                }
             });
     </script>
 

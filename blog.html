@@ -21,7 +21,11 @@
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
                 const blogLink = document.querySelector('a[href="blog.html"]');
-                if (blogLink) blogLink.classList.add('active-link');
+                if (blogLink) {
+                    blogLink.classList.add('active-link');
+                    blogLink.style.background = '#1d8a9b';
+                    blogLink.style.color = '#ffffff';
+                }
             });
     </script>
 

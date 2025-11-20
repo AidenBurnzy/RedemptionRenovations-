@@ -20,7 +20,11 @@
             .then(html => {
                 document.getElementById('navbar-container').innerHTML = html;
                 const aboutLink = document.querySelector('a[href="about.html"]');
-                if (aboutLink) aboutLink.classList.add('active-link');
+                if (aboutLink) {
+                    aboutLink.classList.add('active-link');
+                    aboutLink.style.background = '#1d8a9b';
+                    aboutLink.style.color = '#ffffff';
+                }
             });
     </script>
 
