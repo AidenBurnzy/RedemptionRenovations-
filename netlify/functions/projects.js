@@ -1,19 +1,13 @@
 // Projects API - CRUD operations for project management
 // Connects to Neon PostgreSQL database
 
-import pg from 'pg';
+import { neon } from '@neondatabase/serverless';
 import jwt from 'jsonwebtoken';
 
-const { Client } = pg;
-
-// Database connection
+// Database connection using Neon serverless driver
 const getDbClient = () => {
-    return new Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        }
-    });
+    const sql = neon(process.env.DATABASE_URL);
+    return sql;
 };
 
 // Verify JWT token
@@ -72,26 +66,19 @@ export const handler = async (event, context) => {
             console.log('GET /projects - Starting...');
             console.log('Database URL configured:', !!process.env.DATABASE_URL);
             
-            const client = getDbClient();
+            const sql = getDbClient();
             
             try {
-                console.log('Attempting database connection...');
-                await client.connect();
-                console.log('Database connected successfully');
-
-                const result = await client.query(
-                    'SELECT * FROM projects ORDER BY created_at DESC'
-                );
+                console.log('Attempting database query...');
+                const result = await sql`SELECT * FROM projects ORDER BY created_at DESC`;
                 
-                console.log(`Retrieved ${result.rows.length} projects`);
-
-                await client.end();
+                console.log(`Retrieved ${result.length} projects`);
 
                 // Return array directly (not wrapped in object)
                 return {
                     statusCode: 200,
                     headers,
-                    body: JSON.stringify(result.rows.map(row => ({
+                    body: JSON.stringify(result.map(row => ({
                         id: row.id,
                         title: row.title,
                         type: row.type,
@@ -104,7 +91,6 @@ export const handler = async (event, context) => {
                 };
             } catch (dbError) {
                 console.error('Database error:', dbError);
-                await client.end().catch(e => console.error('Error closing client:', e));
                 throw dbError;
             }
         }
@@ -118,17 +104,13 @@ export const handler = async (event, context) => {
 
             console.log('Creating project:', { title, type, tags });
             
-            const client = getDbClient();
-            await client.connect();
+            const sql = getDbClient();
 
-            const result = await client.query(
-                `INSERT INTO projects (title, type, location, completed_date, description, images, tags)
-                 VALUES ($1, $2, $3, $4, $5, $6, $7)
-                 RETURNING *`,
-                [title, type, location, completedDate, description, images, tags || []]
-            );
-
-            await client.end();
+            const result = await sql`
+                INSERT INTO projects (title, type, location, completed_date, description, images, tags)
+                VALUES (${title}, ${type}, ${location}, ${completedDate}, ${description}, ${images}, ${tags || []})
+                RETURNING *
+            `;
 
             return {
                 statusCode: 201,
@@ -136,13 +118,14 @@ export const handler = async (event, context) => {
                 body: JSON.stringify({
                     success: true,
                     project: {
-                        id: result.rows[0].id,
-                        title: result.rows[0].title,
-                        type: result.rows[0].type,
-                        location: result.rows[0].location,
-                        completedDate: result.rows[0].completed_date,
-                        description: result.rows[0].description,
-                        images: result.rows[0].images
+                        id: result[0].id,
+                        title: result[0].title,
+                        type: result[0].type,
+                        location: result[0].location,
+                        completedDate: result[0].completed_date,
+                        description: result[0].description,
+                        images: result[0].images,
+                        tags: result[0].tags || []
                     }
                 })
             };
@@ -155,21 +138,17 @@ export const handler = async (event, context) => {
 
             console.log('Updating project:', { id, title, type, tags });
             
-            const client = getDbClient();
-            await client.connect();
+            const sql = getDbClient();
 
-            const result = await client.query(
-                `UPDATE projects 
-                 SET title = $1, type = $2, location = $3, completed_date = $4, 
-                     description = $5, images = $6, tags = $7, updated_at = CURRENT_TIMESTAMP
-                 WHERE id = $8
-                 RETURNING *`,
-                [title, type, location, completedDate, description, images, tags || [], id]
-            );
+            const result = await sql`
+                UPDATE projects 
+                SET title = ${title}, type = ${type}, location = ${location}, completed_date = ${completedDate},
+                    description = ${description}, images = ${images}, tags = ${tags || []}, updated_at = CURRENT_TIMESTAMP
+                WHERE id = ${id}
+                RETURNING *
+            `;
 
-            await client.end();
-
-            if (result.rows.length === 0) {
+            if (result.length === 0) {
                 return {
                     statusCode: 404,
                     headers,
@@ -183,14 +162,14 @@ export const handler = async (event, context) => {
                 body: JSON.stringify({
                     success: true,
                     project: {
-                        id: result.rows[0].id,
-                        title: result.rows[0].title,
-                        type: result.rows[0].type,
-                        location: result.rows[0].location,
-                        completedDate: result.rows[0].completed_date,
-                        description: result.rows[0].description,
-                        images: result.rows[0].images,
-                        tags: result.rows[0].tags || []
+                        id: result[0].id,
+                        title: result[0].title,
+                        type: result[0].type,
+                        location: result[0].location,
+                        completedDate: result[0].completed_date,
+                        description: result[0].description,
+                        images: result[0].images,
+                        tags: result[0].tags || []
                     }
                 })
             };
@@ -200,17 +179,13 @@ export const handler = async (event, context) => {
         if (method === 'DELETE' && path.startsWith('/')) {
             const id = path.substring(1);
 
-            const client = getDbClient();
-            await client.connect();
+            const sql = getDbClient();
 
-            const result = await client.query(
-                'DELETE FROM projects WHERE id = $1 RETURNING id',
-                [id]
-            );
+            const result = await sql`
+                DELETE FROM projects WHERE id = ${id} RETURNING id
+            `;
 
-            await client.end();
-
-            if (result.rows.length === 0) {
+            if (result.length === 0) {
                 return {
                     statusCode: 404,
                     headers,
