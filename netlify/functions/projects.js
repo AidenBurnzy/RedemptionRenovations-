@@ -102,6 +102,8 @@ export const handler = async (event, context) => {
         if (method === 'POST' && path === '') {
             const { title, type, location, completedDate, description, images, tags } = JSON.parse(event.body);
 
+            console.log('Creating project:', { title, type, tags });
+            
             const client = getDbClient();
             await client.connect();
 
@@ -137,6 +139,8 @@ export const handler = async (event, context) => {
             const id = path.substring(1);
             const { title, type, location, completedDate, description, images, tags } = JSON.parse(event.body);
 
+            console.log('Updating project:', { id, title, type, tags });
+            
             const client = getDbClient();
             await client.connect();
 

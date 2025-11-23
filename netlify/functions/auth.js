@@ -37,8 +37,16 @@ export const handler = async (event, context) => {
 
         // Debug logging
         console.log('Login attempt with email:', email);
+        console.log('Password length:', password?.length);
         console.log('Configured emails:', adminEmails);
+        console.log('Configured passwords count:', adminPasswords.length);
         console.log('Email match check:', adminEmails.map((e, i) => `${e} === ${email} ? ${e === email}`));
+        
+        // Debug password comparison (first 3 chars only for security)
+        adminPasswords.forEach((p, i) => {
+            console.log(`Password[${i}] starts with: ${p.substring(0, 3)}... (length: ${p.length})`);
+        });
+        console.log(`Input password starts with: ${password.substring(0, 3)}... (length: ${password.length})`);
 
         // Validate that we have matching email/password pairs
         if (adminEmails.length !== adminPasswords.length) {
@@ -53,6 +61,7 @@ export const handler = async (event, context) => {
         // Check if credentials match any user
         let userIndex = -1;
         for (let i = 0; i < adminEmails.length; i++) {
+            console.log(`Checking user ${i}: email match=${email === adminEmails[i]}, password match=${password === adminPasswords[i]}`);
             if (email === adminEmails[i] && password === adminPasswords[i]) {
                 userIndex = i;
                 break;

@@ -426,11 +426,21 @@ async function handleProjectSubmit(e) {
     
     try {
         const token = localStorage.getItem(AUTH_TOKEN_KEY);
+        
+        if (!token) {
+            alert('Authentication token missing. Please log in again.');
+            showLoginForm();
+            return;
+        }
+        
         const url = editingProjectId 
             ? `${API_BASE}/projects/${editingProjectId}`
             : `${API_BASE}/projects`;
         
         const method = editingProjectId ? 'PUT' : 'POST';
+        
+        console.log('Saving project:', method, url);
+        console.log('Project data:', projectData);
         
         const response = await fetch(url, {
             method: method,
@@ -441,15 +451,24 @@ async function handleProjectSubmit(e) {
             body: JSON.stringify(projectData)
         });
         
+        console.log('Save response status:', response.status);
+        
         if (!response.ok) {
-            throw new Error('Failed to save project');
+            const errorData = await response.json().catch(() => ({}));
+            console.error('Save failed:', errorData);
+            throw new Error(errorData.error || 'Failed to save project');
         }
         
+        const result = await response.json();
+        console.log('Save successful:', result);
+        
+        alert('Project saved successfully!');
         closeProjectModal();
-        loadProjects();
+        await loadProjects();
         
     } catch (error) {
         console.error('Error saving project:', error);
+        alert('Error saving project: ' + error.message + '\nCheck console for details.');
         
         // Fallback for development
         if (editingProjectId) {
