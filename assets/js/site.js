@@ -23,7 +23,8 @@ window.setActiveNavLink = function() {
     const navbarContainer = document.getElementById('navbar-container');
     if (!navbarContainer) return;
     
-    const navLinks = navbarContainer.querySelectorAll('.airbnb-link');
+    // Select only navigation links, excluding the logo
+    const navLinks = navbarContainer.querySelectorAll('.airbnb-navbar-center .airbnb-link');
     
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
@@ -277,8 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const navbarContainer = document.getElementById('navbar-container');
         if (!navbarContainer) return;
         
-        // Find all nav links in the navbar
-        const navLinks = navbarContainer.querySelectorAll('.airbnb-link');
+        // Select only navigation links, excluding the logo
+        const navLinks = navbarContainer.querySelectorAll('.airbnb-navbar-center .airbnb-link');
         
         navLinks.forEach(link => {
             const linkHref = link.getAttribute('href');

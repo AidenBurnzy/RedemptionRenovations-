@@ -20,7 +20,8 @@
                 document.getElementById('navbar-container').innerHTML = html;
                 setTimeout(() => {
                     const navbar = document.getElementById('navbar-container');
-                    const homeLink = navbar.querySelector('a[href="index.html"]');
+                    // Only select the Home link in the navigation center, not the logo
+                    const homeLink = navbar.querySelector('.airbnb-navbar-center a[href="index.html"]');
                     if (homeLink) {
                         homeLink.classList.add('active-link');
                         homeLink.style.cssText = 'background: #1d8a9b !important; color: #ffffff !important; box-shadow: 0 2px 8px rgba(29,138,155,0.18) !important;';
