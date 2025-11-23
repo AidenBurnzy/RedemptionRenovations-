@@ -470,21 +470,8 @@ async function handleProjectSubmit(e) {
         console.error('Error saving project:', error);
         alert('Error saving project: ' + error.message + '\nCheck console for details.');
         
-        // Fallback for development
-        if (editingProjectId) {
-            const index = currentProjects.findIndex(p => p.id == editingProjectId);
-            if (index !== -1) {
-                currentProjects[index] = projectData;
-            }
-        } else {
-            currentProjects.push(projectData);
-        }
-        
-        closeProjectModal();
-        renderProjects(currentProjects);
-        
-        // Update local storage for development
-        localStorage.setItem('rr_projects', JSON.stringify(currentProjects));
+        // Don't use localStorage fallback - it causes quota errors
+        // User needs to fix database connection to save projects
     }
 }
 
