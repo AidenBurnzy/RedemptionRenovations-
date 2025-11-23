@@ -181,21 +181,8 @@ textarea {
     transition: color 0.2s ease;
 }
 
-.footer-links a::after {
-    content: '';
-    width: 12px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.45);
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
 .footer-links a:hover {
     color: rgba(255, 255, 255, 1);
-}
-
-.footer-links a:hover::after {
-    transform: translateX(4px);
-    opacity: 0;
 }
 
 .footer-bottom {
