@@ -69,30 +69,44 @@ export const handler = async (event, context) => {
     try {
         // GET /projects - Get all projects (public)
         if (method === 'GET' && path === '') {
+            console.log('GET /projects - Starting...');
+            console.log('Database URL configured:', !!process.env.DATABASE_URL);
+            
             const client = getDbClient();
-            await client.connect();
+            
+            try {
+                console.log('Attempting database connection...');
+                await client.connect();
+                console.log('Database connected successfully');
 
-            const result = await client.query(
-                'SELECT * FROM projects ORDER BY created_at DESC'
-            );
+                const result = await client.query(
+                    'SELECT * FROM projects ORDER BY created_at DESC'
+                );
+                
+                console.log(`Retrieved ${result.rows.length} projects`);
 
-            await client.end();
+                await client.end();
 
-            // Return array directly (not wrapped in object)
-            return {
-                statusCode: 200,
-                headers,
-                body: JSON.stringify(result.rows.map(row => ({
-                    id: row.id,
-                    title: row.title,
-                    type: row.type,
-                    location: row.location,
-                    completedDate: row.completed_date,
-                    description: row.description,
-                    images: row.images,
-                    tags: row.tags || []
-                })))
-            };
+                // Return array directly (not wrapped in object)
+                return {
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify(result.rows.map(row => ({
+                        id: row.id,
+                        title: row.title,
+                        type: row.type,
+                        location: row.location,
+                        completedDate: row.completed_date,
+                        description: row.description,
+                        images: row.images,
+                        tags: row.tags || []
+                    })))
+                };
+            } catch (dbError) {
+                console.error('Database error:', dbError);
+                await client.end().catch(e => console.error('Error closing client:', e));
+                throw dbError;
+            }
         }
 
         // Verify authentication for all other operations
