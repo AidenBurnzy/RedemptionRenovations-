@@ -39,9 +39,13 @@ export const handler = async (event, context) => {
     const path = event.path.replace('/.netlify/functions/projects', '');
     const method = event.httpMethod;
 
+    console.log('Projects function called:', method, path);
+    console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+
     // Check if database is configured
     const dbUrl = process.env.DATABASE_URL;
     if (!dbUrl || dbUrl === 'your_neon_connection_string_here' || dbUrl === 'base') {
+        console.log('Database not configured');
         // Return empty array for GET requests when DB not configured
         if (method === 'GET' && path === '') {
             return {
