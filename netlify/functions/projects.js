@@ -1,19 +1,13 @@
 // Projects API - CRUD operations for project management
 // Connects to Neon PostgreSQL database
 
-import pg from 'pg';
+import { neon } from '@neondatabase/serverless';
 import jwt from 'jsonwebtoken';
 
-const { Client } = pg;
-
-// Database connection
+// Database connection using Neon serverless driver
 const getDbClient = () => {
-    return new Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        }
-    });
+    const sql = neon(process.env.DATABASE_URL);
+    return sql;
 };
 
 // Verify JWT token
@@ -45,9 +39,13 @@ export const handler = async (event, context) => {
     const path = event.path.replace('/.netlify/functions/projects', '');
     const method = event.httpMethod;
 
+    console.log('Projects function called:', method, path);
+    console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+
     // Check if database is configured
     const dbUrl = process.env.DATABASE_URL;
     if (!dbUrl || dbUrl === 'your_neon_connection_string_here' || dbUrl === 'base') {
+        console.log('Database not configured');
         // Return empty array for GET requests when DB not configured
         if (method === 'GET' && path === '') {
             return {
@@ -69,30 +67,36 @@ export const handler = async (event, context) => {
     try {
         // GET /projects - Get all projects (public)
         if (method === 'GET' && path === '') {
-            const client = getDbClient();
-            await client.connect();
+            console.log('GET /projects - Starting...');
+            console.log('Database URL configured:', !!process.env.DATABASE_URL);
+            
+            const sql = getDbClient();
+            
+            try {
+                console.log('Attempting database query...');
+                const result = await sql`SELECT * FROM projects ORDER BY created_at DESC`;
+                
+                console.log(`Retrieved ${result.length} projects`);
 
-            const result = await client.query(
-                'SELECT * FROM projects ORDER BY created_at DESC'
-            );
-
-            await client.end();
-
-            // Return array directly (not wrapped in object)
-            return {
-                statusCode: 200,
-                headers,
-                body: JSON.stringify(result.rows.map(row => ({
-                    id: row.id,
-                    title: row.title,
-                    type: row.type,
-                    location: row.location,
-                    completedDate: row.completed_date,
-                    description: row.description,
-                    images: row.images,
-                    tags: row.tags || []
-                })))
-            };
+                // Return array directly (not wrapped in object)
+                return {
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify(result.map(row => ({
+                        id: row.id,
+                        title: row.title,
+                        type: row.type,
+                        location: row.location,
+                        completedDate: row.completed_date,
+                        description: row.description,
+                        images: row.images,
+                        tags: row.tags || []
+                    })))
+                };
+            } catch (dbError) {
+                console.error('Database error:', dbError);
+                throw dbError;
+            }
         }
 
         // Verify authentication for all other operations
@@ -102,17 +106,15 @@ export const handler = async (event, context) => {
         if (method === 'POST' && path === '') {
             const { title, type, location, completedDate, description, images, tags } = JSON.parse(event.body);
 
-            const client = getDbClient();
-            await client.connect();
+            console.log('Creating project:', { title, type, tags });
+            
+            const sql = getDbClient();
 
-            const result = await client.query(
-                `INSERT INTO projects (title, type, location, completed_date, description, images, tags)
-                 VALUES ($1, $2, $3, $4, $5, $6, $7)
-                 RETURNING *`,
-                [title, type, location, completedDate, description, images, tags || []]
-            );
-
-            await client.end();
+            const result = await sql`
+                INSERT INTO projects (title, type, location, completed_date, description, images, tags)
+                VALUES (${title}, ${type}, ${location}, ${completedDate}, ${description}, ${images}, ${tags || []})
+                RETURNING *
+            `;
 
             return {
                 statusCode: 201,
@@ -120,13 +122,14 @@ export const handler = async (event, context) => {
                 body: JSON.stringify({
                     success: true,
                     project: {
-                        id: result.rows[0].id,
-                        title: result.rows[0].title,
-                        type: result.rows[0].type,
-                        location: result.rows[0].location,
-                        completedDate: result.rows[0].completed_date,
-                        description: result.rows[0].description,
-                        images: result.rows[0].images
+                        id: result[0].id,
+                        title: result[0].title,
+                        type: result[0].type,
+                        location: result[0].location,
+                        completedDate: result[0].completed_date,
+                        description: result[0].description,
+                        images: result[0].images,
+                        tags: result[0].tags || []
                     }
                 })
             };
@@ -137,21 +140,19 @@ export const handler = async (event, context) => {
             const id = path.substring(1);
             const { title, type, location, completedDate, description, images, tags } = JSON.parse(event.body);
 
-            const client = getDbClient();
-            await client.connect();
+            console.log('Updating project:', { id, title, type, tags });
+            
+            const sql = getDbClient();
 
-            const result = await client.query(
-                `UPDATE projects 
-                 SET title = $1, type = $2, location = $3, completed_date = $4, 
-                     description = $5, images = $6, tags = $7, updated_at = CURRENT_TIMESTAMP
-                 WHERE id = $8
-                 RETURNING *`,
-                [title, type, location, completedDate, description, images, tags || [], id]
-            );
+            const result = await sql`
+                UPDATE projects 
+                SET title = ${title}, type = ${type}, location = ${location}, completed_date = ${completedDate},
+                    description = ${description}, images = ${images}, tags = ${tags || []}, updated_at = CURRENT_TIMESTAMP
+                WHERE id = ${id}
+                RETURNING *
+            `;
 
-            await client.end();
-
-            if (result.rows.length === 0) {
+            if (result.length === 0) {
                 return {
                     statusCode: 404,
                     headers,
@@ -165,14 +166,14 @@ export const handler = async (event, context) => {
                 body: JSON.stringify({
                     success: true,
                     project: {
-                        id: result.rows[0].id,
-                        title: result.rows[0].title,
-                        type: result.rows[0].type,
-                        location: result.rows[0].location,
-                        completedDate: result.rows[0].completed_date,
-                        description: result.rows[0].description,
-                        images: result.rows[0].images,
-                        tags: result.rows[0].tags || []
+                        id: result[0].id,
+                        title: result[0].title,
+                        type: result[0].type,
+                        location: result[0].location,
+                        completedDate: result[0].completed_date,
+                        description: result[0].description,
+                        images: result[0].images,
+                        tags: result[0].tags || []
                     }
                 })
             };
@@ -182,17 +183,13 @@ export const handler = async (event, context) => {
         if (method === 'DELETE' && path.startsWith('/')) {
             const id = path.substring(1);
 
-            const client = getDbClient();
-            await client.connect();
+            const sql = getDbClient();
 
-            const result = await client.query(
-                'DELETE FROM projects WHERE id = $1 RETURNING id',
-                [id]
-            );
+            const result = await sql`
+                DELETE FROM projects WHERE id = ${id} RETURNING id
+            `;
 
-            await client.end();
-
-            if (result.rows.length === 0) {
+            if (result.length === 0) {
                 return {
                     statusCode: 404,
                     headers,
