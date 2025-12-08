@@ -585,6 +585,18 @@
         gap: 2.5rem;
     }
     
+    .culture-left-column {
+        order: 2;
+    }
+    
+    .culture-right-column {
+        order: 1;
+    }
+    
+    .culture-left-column .family-photo-wrapper {
+        order: -1;
+    }
+    
     .content-section {
         padding: 2rem 1.5rem;
     }
