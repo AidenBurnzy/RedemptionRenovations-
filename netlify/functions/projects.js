@@ -78,7 +78,7 @@ export const handler = async (event, context) => {
             try {
                 console.log('Attempting database query from projects...');
                 const result = await sql`
-                    SELECT * FROM projects 
+                    SELECT * FROM project_gallery 
                     WHERE client_id = ${CLIENT_ID} 
                     ORDER BY created_at DESC
                 `;
@@ -118,7 +118,7 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                INSERT INTO projects (client_id, title, type, location, completed_date, description, images, tags)
+                INSERT INTO project_gallery (client_id, title, type, location, completed_date, description, images, tags)
                 VALUES (${CLIENT_ID}, ${title}, ${type}, ${location}, ${completedDate}, ${description}, ${images}, ${tags || []})
                 RETURNING *
             `;
@@ -152,7 +152,7 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                UPDATE projects 
+                UPDATE project_gallery 
                 SET title = ${title}, type = ${type}, location = ${location}, completed_date = ${completedDate},
                     description = ${description}, images = ${images}, tags = ${tags || []}, updated_at = CURRENT_TIMESTAMP
                 WHERE id = ${id} AND client_id = ${CLIENT_ID}
@@ -193,7 +193,7 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                DELETE FROM projects 
+                DELETE FROM project_gallery 
                 WHERE id = ${id} AND client_id = ${CLIENT_ID} 
                 RETURNING id
             `;
