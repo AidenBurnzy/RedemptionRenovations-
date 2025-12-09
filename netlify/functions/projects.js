@@ -1,5 +1,5 @@
 // Projects API - CRUD operations for project management
-// Connects to Auctus App database (project_gallery table with client_id filter)
+// Connects to Auctus App database (projects table with client_id filter)
 
 import { neon } from '@neondatabase/serverless';
 import jwt from 'jsonwebtoken';
@@ -76,9 +76,9 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
             
             try {
-                console.log('Attempting database query from project_gallery...');
+                console.log('Attempting database query from projects...');
                 const result = await sql`
-                    SELECT * FROM project_gallery 
+                    SELECT * FROM projects 
                     WHERE client_id = ${CLIENT_ID} 
                     ORDER BY created_at DESC
                 `;
@@ -118,7 +118,7 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                INSERT INTO project_gallery (client_id, title, type, location, completed_date, description, images, tags)
+                INSERT INTO projects (client_id, title, type, location, completed_date, description, images, tags)
                 VALUES (${CLIENT_ID}, ${title}, ${type}, ${location}, ${completedDate}, ${description}, ${images}, ${tags || []})
                 RETURNING *
             `;
@@ -152,7 +152,7 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                UPDATE project_gallery 
+                UPDATE projects 
                 SET title = ${title}, type = ${type}, location = ${location}, completed_date = ${completedDate},
                     description = ${description}, images = ${images}, tags = ${tags || []}, updated_at = CURRENT_TIMESTAMP
                 WHERE id = ${id} AND client_id = ${CLIENT_ID}
@@ -193,7 +193,7 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                DELETE FROM project_gallery 
+                DELETE FROM projects 
                 WHERE id = ${id} AND client_id = ${CLIENT_ID} 
                 RETURNING id
             `;
