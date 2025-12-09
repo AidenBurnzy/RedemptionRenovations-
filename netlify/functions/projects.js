@@ -96,7 +96,7 @@ export const handler = async (event, context) => {
                         location: row.location,
                         completedDate: row.completed_date,
                         description: row.description,
-                        images: row.images,
+                        images: row.images || [],
                         tags: row.tags || []
                     })))
                 };
