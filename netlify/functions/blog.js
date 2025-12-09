@@ -1,35 +1,49 @@
 // Blog Posts API
 // Handles CRUD operations for blog posts
+// Connects to Auctus App database (blog_posts table with client_id filter)
 
-import pg from 'pg';
+import { neon } from '@neondatabase/serverless';
 import jwt from 'jsonwebtoken';
-const { Client } = pg;
+
+// Redemption Renovations client ID in Auctus App database
+const CLIENT_ID = 1;
+
+// Database connection using Neon serverless driver
+const getDbClient = () => {
+    const sql = neon(process.env.DATABASE_URL);
+    return sql;
+};
+
+// CORS headers
+const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Content-Type': 'application/json'
+};
 
 export const handler = async (event, context) => {
-    // Enable CORS
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
-    };
-
     // Handle preflight
     if (event.httpMethod === 'OPTIONS') {
         return { statusCode: 200, headers, body: '' };
     }
 
+    const method = event.httpMethod;
+    const path = event.path.replace('/.netlify/functions/blog', '');
+
+    console.log('Blog function called:', method, path);
+
     // Check if database is configured
     const dbUrl = process.env.DATABASE_URL;
     if (!dbUrl || dbUrl === 'your_neon_connection_string_here' || dbUrl === 'base') {
-        // Return empty array for GET requests when DB not configured
-        if (event.httpMethod === 'GET') {
+        console.log('Database not configured');
+        if (method === 'GET') {
             return {
                 statusCode: 200,
                 headers,
                 body: JSON.stringify([])
             };
         }
-        // Return error for other operations
         return {
             statusCode: 503,
             headers,
@@ -39,33 +53,38 @@ export const handler = async (event, context) => {
         };
     }
 
-    const client = new Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: { rejectUnauthorized: false }
-    });
-
     try {
-        await client.connect();
+        const sql = getDbClient();
 
-        // GET - Fetch all blog posts (public can see published, admin sees all)
-        if (event.httpMethod === 'GET') {
+        // GET - Fetch all blog posts (public only sees published posts)
+        if (method === 'GET' && path === '') {
             const isAuthenticated = await verifyAuth(event.headers);
             
-            let query;
+            let result;
             if (isAuthenticated) {
-                // Admin sees all posts
-                query = 'SELECT * FROM blog_posts ORDER BY created_at DESC';
+                // Admin sees all posts for this client
+                console.log('Fetching all blog posts for authenticated user');
+                result = await sql`
+                    SELECT * FROM blog_posts 
+                    WHERE client_id = ${CLIENT_ID} 
+                    ORDER BY created_at DESC
+                `;
             } else {
                 // Public only sees published posts
-                query = 'SELECT * FROM blog_posts WHERE published = true ORDER BY published_at DESC';
+                console.log('Fetching published blog posts for public');
+                result = await sql`
+                    SELECT * FROM blog_posts 
+                    WHERE client_id = ${CLIENT_ID} AND published = true 
+                    ORDER BY published_at DESC
+                `;
             }
-
-            const result = await client.query(query);
+            
+            console.log(`Retrieved ${result.length} blog posts for client ${CLIENT_ID}`);
             
             return {
                 statusCode: 200,
                 headers,
-                body: JSON.stringify(result.rows)
+                body: JSON.stringify(result)
             };
         }
 
@@ -80,90 +99,75 @@ export const handler = async (event, context) => {
         }
 
         // POST - Create new blog post
-        if (event.httpMethod === 'POST') {
+        if (method === 'POST' && path === '') {
             const post = JSON.parse(event.body);
             
-            const query = `
+            console.log('Creating blog post:', { title: post.title, published: post.published });
+            
+            const publishedAt = post.published ? new Date().toISOString() : null;
+            
+            const result = await sql`
                 INSERT INTO blog_posts 
-                (title, content, excerpt, author, featured_image, images, tags, published, published_at)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+                (client_id, title, content, excerpt, author, featured_image, images, tags, published, published_at)
+                VALUES (
+                    ${CLIENT_ID},
+                    ${post.title},
+                    ${post.content},
+                    ${post.excerpt || null},
+                    ${post.author || 'Redemption Renovations'},
+                    ${post.featured_image || null},
+                    ${post.images || []},
+                    ${post.tags || []},
+                    ${post.published || false},
+                    ${publishedAt}
+                )
                 RETURNING *
             `;
-            
-            const publishedAt = post.published ? new Date() : null;
-            
-            const values = [
-                post.title,
-                post.content,
-                post.excerpt || null,
-                post.author || 'Redemption Renovations',
-                post.featured_image || null,
-                post.images || [],
-                post.tags || [],
-                post.published || false,
-                publishedAt
-            ];
-            
-            const result = await client.query(query, values);
             
             return {
                 statusCode: 201,
                 headers,
-                body: JSON.stringify(result.rows[0])
+                body: JSON.stringify(result[0])
             };
         }
 
         // PUT - Update blog post
-        if (event.httpMethod === 'PUT') {
+        if (method === 'PUT' && path.startsWith('/')) {
             const post = JSON.parse(event.body);
-            const postId = event.path.split('/').pop();
+            const postId = path.substring(1);
             
-            // If publishing for the first time, set published_at
-            let publishedAtQuery = '';
-            let publishedAtValue = [];
+            console.log('Updating blog post:', { id: postId, title: post.title });
             
-            if (post.published) {
-                // Get current post to check if it was previously unpublished
-                const checkQuery = 'SELECT published, published_at FROM blog_posts WHERE id = $1';
-                const checkResult = await client.query(checkQuery, [postId]);
-                
-                if (checkResult.rows.length > 0 && !checkResult.rows[0].published && !checkResult.rows[0].published_at) {
-                    publishedAtQuery = ', published_at = $10';
-                    publishedAtValue = [new Date()];
-                }
+            // Check if we need to set published_at (first time publishing)
+            const checkResult = await sql`
+                SELECT published, published_at FROM blog_posts 
+                WHERE id = ${postId} AND client_id = ${CLIENT_ID}
+            `;
+            
+            let publishedAt = checkResult[0]?.published_at;
+            
+            // If publishing for the first time, set published_at to now
+            if (post.published && checkResult.length > 0 && !checkResult[0].published && !checkResult[0].published_at) {
+                publishedAt = new Date().toISOString();
             }
             
-            const query = `
+            const result = await sql`
                 UPDATE blog_posts SET
-                title = $1,
-                content = $2,
-                excerpt = $3,
-                author = $4,
-                featured_image = $5,
-                images = $6,
-                tags = $7,
-                published = $8
-                ${publishedAtQuery}
-                WHERE id = $9
+                    title = ${post.title},
+                    content = ${post.content},
+                    excerpt = ${post.excerpt || null},
+                    author = ${post.author || 'Redemption Renovations'},
+                    featured_image = ${post.featured_image || null},
+                    images = ${post.images || []},
+                    tags = ${post.tags || []},
+                    published = ${post.published || false},
+                    published_at = ${publishedAt},
+                    updated_at = CURRENT_TIMESTAMP
+                WHERE id = ${postId} AND client_id = ${CLIENT_ID}
                 RETURNING *
             `;
             
-            const values = [
-                post.title,
-                post.content,
-                post.excerpt || null,
-                post.author || 'Redemption Renovations',
-                post.featured_image || null,
-                post.images || [],
-                post.tags || [],
-                post.published || false,
-                postId,
-                ...publishedAtValue
-            ];
-            
-            const result = await client.query(query, values);
-            
-            if (result.rows.length === 0) {
+            if (result.length === 0) {
                 return {
                     statusCode: 404,
                     headers,
@@ -174,18 +178,23 @@ export const handler = async (event, context) => {
             return {
                 statusCode: 200,
                 headers,
-                body: JSON.stringify(result.rows[0])
+                body: JSON.stringify(result[0])
             };
         }
 
         // DELETE - Delete blog post
-        if (event.httpMethod === 'DELETE') {
-            const postId = event.path.split('/').pop();
+        if (method === 'DELETE' && path.startsWith('/')) {
+            const postId = path.substring(1);
             
-            const query = 'DELETE FROM blog_posts WHERE id = $1 RETURNING *';
-            const result = await client.query(query, [postId]);
+            console.log('Deleting blog post:', { id: postId });
             
-            if (result.rows.length === 0) {
+            const result = await sql`
+                DELETE FROM blog_posts 
+                WHERE id = ${postId} AND client_id = ${CLIENT_ID} 
+                RETURNING *
+            `;
+            
+            if (result.length === 0) {
                 return {
                     statusCode: 404,
                     headers,
@@ -196,7 +205,7 @@ export const handler = async (event, context) => {
             return {
                 statusCode: 200,
                 headers,
-                body: JSON.stringify({ success: true, deleted: result.rows[0] })
+                body: JSON.stringify({ success: true, deleted: result[0] })
             };
         }
 
@@ -211,10 +220,8 @@ export const handler = async (event, context) => {
         return {
             statusCode: 500,
             headers,
-            body: JSON.stringify({ error: 'Internal server error', details: error.message })
+            body: JSON.stringify({ error: 'Server error', message: error.message })
         };
-    } finally {
-        await client.end();
     }
 };
 

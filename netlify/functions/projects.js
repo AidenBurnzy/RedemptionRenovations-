@@ -1,8 +1,11 @@
 // Projects API - CRUD operations for project management
-// Connects to Neon PostgreSQL database
+// Connects to Auctus App database (project_gallery table with client_id filter)
 
 import { neon } from '@neondatabase/serverless';
 import jwt from 'jsonwebtoken';
+
+// Redemption Renovations client ID in Auctus App database
+const CLIENT_ID = 1;
 
 // Database connection using Neon serverless driver
 const getDbClient = () => {
@@ -73,10 +76,14 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
             
             try {
-                console.log('Attempting database query...');
-                const result = await sql`SELECT * FROM projects ORDER BY created_at DESC`;
+                console.log('Attempting database query from project_gallery...');
+                const result = await sql`
+                    SELECT * FROM project_gallery 
+                    WHERE client_id = ${CLIENT_ID} 
+                    ORDER BY created_at DESC
+                `;
                 
-                console.log(`Retrieved ${result.length} projects`);
+                console.log(`Retrieved ${result.length} projects for client ${CLIENT_ID}`);
 
                 // Return array directly (not wrapped in object)
                 return {
@@ -111,8 +118,8 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                INSERT INTO projects (title, type, location, completed_date, description, images, tags)
-                VALUES (${title}, ${type}, ${location}, ${completedDate}, ${description}, ${images}, ${tags || []})
+                INSERT INTO project_gallery (client_id, title, type, location, completed_date, description, images, tags)
+                VALUES (${CLIENT_ID}, ${title}, ${type}, ${location}, ${completedDate}, ${description}, ${images}, ${tags || []})
                 RETURNING *
             `;
 
@@ -145,10 +152,10 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                UPDATE projects 
+                UPDATE project_gallery 
                 SET title = ${title}, type = ${type}, location = ${location}, completed_date = ${completedDate},
                     description = ${description}, images = ${images}, tags = ${tags || []}, updated_at = CURRENT_TIMESTAMP
-                WHERE id = ${id}
+                WHERE id = ${id} AND client_id = ${CLIENT_ID}
                 RETURNING *
             `;
 
@@ -186,7 +193,9 @@ export const handler = async (event, context) => {
             const sql = getDbClient();
 
             const result = await sql`
-                DELETE FROM projects WHERE id = ${id} RETURNING id
+                DELETE FROM project_gallery 
+                WHERE id = ${id} AND client_id = ${CLIENT_ID} 
+                RETURNING id
             `;
 
             if (result.length === 0) {
