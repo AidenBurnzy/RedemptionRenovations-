@@ -6,7 +6,7 @@ import { neon } from '@neondatabase/serverless';
 import jwt from 'jsonwebtoken';
 
 // Redemption Renovations client ID in Auctus App database
-const CLIENT_ID = 1;
+const CLIENT_ID = 9;  // Redemption Renovations
 
 // Database connection using Neon serverless driver
 const getDbClient = () => {
