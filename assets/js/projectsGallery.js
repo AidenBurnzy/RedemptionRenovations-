@@ -174,7 +174,7 @@ async function loadProjectsFromAPI() {
                         Projects will appear here once they're added through the admin panel. 
                         ${window.location.hostname === 'localhost' ? 'Make sure your database is configured first.' : ''}
                     </p>
-                    <a href="admin.html" style="display: inline-block; padding: 0.75rem 2rem; background: #1d8a9b; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                    <a href="https://auctus-app.vercel.app/client-login" target="_blank" rel="noopener" style="display: inline-block; padding: 0.75rem 2rem; background: #1d8a9b; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
                         Go to Admin Panel
                     </a>
                 </div>
