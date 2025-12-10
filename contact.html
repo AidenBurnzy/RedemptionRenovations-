@@ -71,22 +71,22 @@
         <section class="mobile-section">
             <span class="mobile-eyebrow">Send a Message</span>
             <h2>Contact Us</h2>
-            <form class="mobile-contact-form">
+            <form class="mobile-contact-form" name="contact" netlify>
                 <div class="mobile-form-group">
                     <label for="mobile-name">Name *</label>
-                    <input id="mobile-name" type="text" placeholder="Your name" required>
+                    <input id="mobile-name" name="name" type="text" placeholder="Your name" required>
                 </div>
                 <div class="mobile-form-group">
                     <label for="mobile-email">Email *</label>
-                    <input id="mobile-email" type="email" placeholder="you@example.com" required>
+                    <input id="mobile-email" name="email" type="email" placeholder="you@example.com" required>
                 </div>
                 <div class="mobile-form-group">
                     <label for="mobile-phone">Phone</label>
-                    <input id="mobile-phone" type="tel" placeholder="(616) 555-1234">
+                    <input id="mobile-phone" name="phone" type="tel" placeholder="(616) 555-1234">
                 </div>
                 <div class="mobile-form-group">
                     <label for="mobile-project">Project Type</label>
-                    <select id="mobile-project">
+                    <select id="mobile-project" name="projectType">
                         <option value="">Select a service</option>
                         <option value="kitchen">Kitchen Remodel</option>
                         <option value="bathroom">Bathroom Renovation</option>
@@ -100,9 +100,10 @@
                 </div>
                 <div class="mobile-form-group">
                     <label for="mobile-message">Tell us about your project *</label>
-                    <textarea id="mobile-message" rows="5" placeholder="Share your goals and any questions you have..." required></textarea>
+                    <textarea id="mobile-message" name="message" rows="5" placeholder="Share your goals and any questions you have..." required></textarea>
                 </div>
                 <button type="submit" class="mobile-primary" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+                <p style="text-align: center; margin-top: 1rem; color: #4c5c62; font-size: 0.9rem;">We'll reach back out to you shortly to discuss your project.</p>
             </form>
         </section>
 
@@ -189,7 +190,7 @@
                 
                 <div class="form">
                     <h2 style="margin-bottom: 1.5rem;">Send a Message</h2>
-                    <form action="#" method="post">
+                    <form name="contact" netlify>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input id="name" name="name" type="text" placeholder="Your name" required>
@@ -211,6 +212,7 @@
                             <textarea id="message" name="message" placeholder="Share your goals and any questions you have." rows="5"></textarea>
                         </div>
                         <button class="btn" type="submit">Send Message</button>
+                        <p style="text-align: center; margin-top: 1rem; color: #4c5c62; font-size: 0.9rem;">We'll reach back out to you shortly to discuss your project.</p>
                     </form>
                 </div>
 
@@ -221,7 +223,7 @@
                         <p style="color: #4c5c62;">Owner</p>
                     </div>
                     <div style="margin: 2rem 0;">
-                        <p style="margin-bottom: 0.5rem;"><strong>Kriste Hall</strong></p>
+                        <p style="margin-bottom: 0.5rem;"><strong>Kristi Hall</strong></p>
                         <p style="color: #4c5c62;">Owner</p>
                     </div>
                     
