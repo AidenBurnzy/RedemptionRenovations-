@@ -327,7 +327,14 @@ function setupCarousel(images) {
     images.forEach(function(imageSrc, index) {
         const slide = document.createElement('div');
         slide.className = 'carousel-slide';
-        slide.innerHTML = '<img src="' + imageSrc + '" alt="Project image ' + (index + 1) + '">';
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.alt = 'Project image ' + (index + 1);
+        img.onclick = function(e) {
+            e.stopPropagation();
+            openFullscreenImage(index);
+        };
+        slide.appendChild(img);
         track.appendChild(slide);
         
         const dot = document.createElement('button');
@@ -339,6 +346,83 @@ function setupCarousel(images) {
     });
     
     updateCarousel();
+}
+
+function openFullscreenImage(imageIndex) {
+    const project = currentProjects[currentProjectIndex];
+    if (!project || !project.images) return;
+    
+    // Create fullscreen viewer
+    const viewer = document.createElement('div');
+    viewer.className = 'fullscreen-viewer';
+    viewer.id = 'fullscreenViewer';
+    
+    const img = document.createElement('img');
+    img.src = project.images[imageIndex];
+    img.alt = 'Fullscreen project image';
+    img.onclick = function() { closeFullscreenImage(); };
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'fullscreen-close';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.onclick = function() { closeFullscreenImage(); };
+    closeBtn.setAttribute('aria-label', 'Close fullscreen');
+    
+    viewer.appendChild(img);
+    viewer.appendChild(closeBtn);
+    
+    // Add navigation if multiple images
+    if (project.images.length > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'fullscreen-nav prev';
+        prevBtn.innerHTML = '‹';
+        prevBtn.onclick = function(e) {
+            e.stopPropagation();
+            const newIndex = (imageIndex - 1 + project.images.length) % project.images.length;
+            img.src = project.images[newIndex];
+            imageIndex = newIndex;
+            counter.textContent = (newIndex + 1) + ' / ' + project.images.length;
+        };
+        prevBtn.setAttribute('aria-label', 'Previous image');
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'fullscreen-nav next';
+        nextBtn.innerHTML = '›';
+        nextBtn.onclick = function(e) {
+            e.stopPropagation();
+            const newIndex = (imageIndex + 1) % project.images.length;
+            img.src = project.images[newIndex];
+            imageIndex = newIndex;
+            counter.textContent = (newIndex + 1) + ' / ' + project.images.length;
+        };
+        nextBtn.setAttribute('aria-label', 'Next image');
+        
+        const counter = document.createElement('div');
+        counter.className = 'fullscreen-counter';
+        counter.textContent = (imageIndex + 1) + ' / ' + project.images.length;
+        
+        viewer.appendChild(prevBtn);
+        viewer.appendChild(nextBtn);
+        viewer.appendChild(counter);
+    }
+    
+    // Add to DOM
+    document.body.appendChild(viewer);
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+}
+
+function closeFullscreenImage() {
+    const viewer = document.getElementById('fullscreenViewer');
+    if (viewer) {
+        viewer.remove();
+        // Only restore scroll if modal is not open
+        const modal = document.getElementById('projectModal');
+        if (!modal || modal.style.display === 'none') {
+            document.body.style.overflow = '';
+        }
+    }
 }
 
 function updateCarousel() {
@@ -380,6 +464,22 @@ function goToSlide(index) {
 }
 
 function handleKeyboard(e) {
+    // Check if fullscreen viewer is open
+    const fullscreenViewer = document.getElementById('fullscreenViewer');
+    if (fullscreenViewer) {
+        if (e.key === 'Escape') {
+            closeFullscreenImage();
+        } else if (e.key === 'ArrowLeft') {
+            const prevBtn = fullscreenViewer.querySelector('.fullscreen-nav.prev');
+            if (prevBtn) prevBtn.click();
+        } else if (e.key === 'ArrowRight') {
+            const nextBtn = fullscreenViewer.querySelector('.fullscreen-nav.next');
+            if (nextBtn) nextBtn.click();
+        }
+        return;
+    }
+    
+    // Check if modal is open
     const modal = document.getElementById('projectModal');
     if (!modal || modal.style.display === 'none') return;
     
